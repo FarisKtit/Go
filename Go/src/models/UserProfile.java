@@ -51,6 +51,7 @@ public class UserProfile implements Serializable{
         this.winPercentage = winPercentage;
     }
     public String toString() {
-        return userName + "=="+firstName+"=="+lastName;
+        return userName + "=="+firstName+"=="+lastName+"=="+winPercentage+"=="+profileImage
+                +"=="+favouritePlayers+"=="+gameCredits;
     }
 }

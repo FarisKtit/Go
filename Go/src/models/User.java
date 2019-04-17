@@ -35,6 +35,6 @@ public class User implements Serializable{
         return "";
     }
     public String toString() {
-        return userName + "=="+firstName+"=="+lastName;
+        return profile + "=="+lastLoggedIn+"=="+gamesPlayed+"=="+newPlayers;
     }
 }

@@ -18,6 +18,6 @@ public class Administrator implements Serializable{
     public void giveCredits(String Player){
     }
     public String toString() {
-        return userName + "=="+firstName+"=="+lastName;
+        return joinDate + "=="+adminNumber+"==";
     }
 }
