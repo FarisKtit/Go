@@ -1,6 +1,8 @@
 package models;
 
-public class UserProfile {
+import java.io.Serializable;
+
+public class UserProfile implements Serializable{
     private String userName;
     private String firstName;
     private String lastName;
@@ -8,6 +10,7 @@ public class UserProfile {
     private String profileImage;
     private String[] favouritePlayers;
     private int gameCredits;
+    private static final long serialVersionUID = 1L;
 
     public UserProfile (String userName, String firstName, String lastName){
         this.userName = userName;
@@ -46,5 +49,8 @@ public class UserProfile {
     }
     public void setWinPercentage(int winPercentage){
         this.winPercentage = winPercentage;
+    }
+    public String toAString(){
+        return userName + "==" + firstName + "==" + lastName;
     }
 }
