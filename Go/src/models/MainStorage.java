@@ -1,22 +1,23 @@
 package models;
 
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 
-public class MainStorageModel {
-	public static void sayHello() {
-		System.out.println("Hellow");
-	}
-	public static void sayBye() {
-		System.out.println("Bye");
-	}
-	public static void sayFaris() {
-		System.out.println("Faris");
-	}
-	/*
-	public static ArrayList<UserModel> users;
+public class MainStorage {
 	
-	public static ArrayList<UserModel> getUserList() throws FileNotFoundException, IOException {
-		users = new ArrayList<UserModel>();
+    public static ArrayList<User> users;
+	
+	public static ArrayList<User> getUserList() throws FileNotFoundException, IOException {
+		users = new ArrayList<User>();
 		loadUsers();
 		return users;
 	}
@@ -31,7 +32,7 @@ public class MainStorageModel {
 			}
 			fileIs = new FileInputStream("users.txt");
 			objIs = new ObjectInputStream(fileIs);
-			users = (ArrayList<UserModel>) objIs.readObject();
+			users = (ArrayList<User>) objIs.readObject();
 		} catch (EOFException exc) {
 		    exc.printStackTrace();
 		} catch (ClassNotFoundException e) {
@@ -45,7 +46,7 @@ public class MainStorageModel {
 		}
 	}
 	
-	public static boolean createUser(UserModel user) throws FileNotFoundException, IOException {
+	public static boolean createUser(User user) throws FileNotFoundException, IOException {
 		OutputStream ops = null;
 		ObjectOutputStream objOps = null;
 		loadUsers();
@@ -53,7 +54,7 @@ public class MainStorageModel {
 			ops = new FileOutputStream("users.txt");
 			objOps = new ObjectOutputStream(ops);
 			for(int i = 0; i < users.size(); i++) {
-				if(users.get(i).getUserName().equals(user.getUserName())) {
+				if(users.get(i).getProfile().getUserName().equals(user.getProfile().getUserName())) {
 					return false;
 				}
 			}
@@ -61,7 +62,7 @@ public class MainStorageModel {
 			objOps.writeObject(users);
 			objOps.flush();
 		} catch (EOFException exc) {
-		    //exc.printStackTrace();
+		    exc.printStackTrace();
 		} finally {
 			try {
 				if(objOps != null) objOps.close();
@@ -81,7 +82,7 @@ public class MainStorageModel {
 			ops = new FileOutputStream("users.txt");
 			objOps = new ObjectOutputStream(ops);
 			for(int i = 0; i < users.size(); i++) {
-				if(users.get(i).getUserName().equals(username)) {
+				if(users.get(i).getProfile().getUserName().equals(username)) {
 					users.remove(i);
 					deleted = true;
 				}
@@ -99,6 +100,4 @@ public class MainStorageModel {
 		}
 		return deleted;
 	}
-	*/
-
 }
