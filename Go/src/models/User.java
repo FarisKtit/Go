@@ -31,8 +31,8 @@ public class User implements Serializable{
     public String getGamesPlayed(){
         return "";
     }
-    public String getProfile(){
-        return "";
+    public UserProfile getProfile(){
+        return this.profile;
     }
     public String toString() {
         return profile + "=="+lastLoggedIn+"=="+gamesPlayed+"=="+newPlayers;
