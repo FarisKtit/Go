@@ -22,43 +22,67 @@ public class MainStorage {
 		return users;
 	}
 	
-	public static void loadUsers() throws FileNotFoundException, IOException {
+	public static void loadUsers() throws IOException {
+		users = new ArrayList<User>();
+		users = (ArrayList<User>) readDataFromMemory("users");
+	}
+	
+	public static boolean createUser(User user) throws FileNotFoundException, IOException {
+		loadUsers();
+		for(int i = 0; i < users.size(); i++) {
+			if(users.get(i).getProfile().getUserName().equals(user.getProfile().getUserName())) {
+				return false;
+			}
+		}
+		users.add(user);
+		return writeUsersToMemory();
+	}
+	
+	public static boolean deleteUser(String userName) throws FileNotFoundException, IOException {
+		loadUsers();
+		boolean deleted = false;
+		for(int i = 0; i < users.size(); i++) {
+			if(users.get(i).getProfile().getUserName().equals(userName)) {
+				users.remove(i);
+				deleted = true;
+			}
+		}
+		if(!deleted) return deleted;
+		return writeUsersToMemory();
+	}
+	
+	private static Object readDataFromMemory(String dataType) throws IOException {
 		InputStream fileIs = null;
 		ObjectInputStream objIs = null;
+		Object data = new Object();
 		try {
-			File fileChecker = new File("users.txt");
-			if(fileChecker.isFile() && fileChecker.length() == 0) {
-				return;
+			File fileChecker = new File(dataType + ".txt");
+			if((fileChecker.isFile() == true) && (fileChecker.length() > 0)) {
+				fileIs = new FileInputStream(dataType + ".txt");
+				objIs = new ObjectInputStream(fileIs);
+				data = objIs.readObject();
 			}
-			fileIs = new FileInputStream("users.txt");
-			objIs = new ObjectInputStream(fileIs);
-			users = (ArrayList<User>) objIs.readObject();
 		} catch (EOFException exc) {
 		    exc.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} finally {
 			try {
+				if(fileIs != null) fileIs.close();
 				if(objIs != null) objIs.close();
 			} catch(Exception ex) {
 				
 			}
 		}
+		return data;
 	}
 	
-	public static boolean createUser(User user) throws FileNotFoundException, IOException {
+	private static boolean writeUsersToMemory() throws IOException {
 		OutputStream ops = null;
 		ObjectOutputStream objOps = null;
-		loadUsers();
 		try {
 			ops = new FileOutputStream("users.txt");
 			objOps = new ObjectOutputStream(ops);
-			for(int i = 0; i < users.size(); i++) {
-				if(users.get(i).getProfile().getUserName().equals(user.getProfile().getUserName())) {
-					return false;
-				}
-			}
-			users.add(user);
 			objOps.writeObject(users);
 			objOps.flush();
 		} catch (EOFException exc) {
@@ -71,33 +95,5 @@ public class MainStorage {
 			}
 		}
 		return true;
-	}
-	
-	public static boolean deleteUser(String username) throws FileNotFoundException, IOException {
-		OutputStream ops = null;
-		ObjectOutputStream objOps = null;
-		boolean deleted = false;
-		loadUsers();
-		try {
-			ops = new FileOutputStream("users.txt");
-			objOps = new ObjectOutputStream(ops);
-			for(int i = 0; i < users.size(); i++) {
-				if(users.get(i).getProfile().getUserName().equals(username)) {
-					users.remove(i);
-					deleted = true;
-				}
-			}
-			objOps.writeObject(users);
-			objOps.flush();
-		} catch (EOFException exc) {
-		    exc.printStackTrace();
-		} finally {
-			try {
-				if(objOps != null) objOps.close();
-			} catch (Exception ex) {
-				
-			}
-		}
-		return deleted;
 	}
 }
