@@ -3,9 +3,6 @@ package models;
 import java.util.ArrayList;
 
 public class MainStorageModel {
-	public static void sayHello() {
-		System.out.println("Hellow");
-	}
 	/*
 	public static ArrayList<UserModel> users;
 	
