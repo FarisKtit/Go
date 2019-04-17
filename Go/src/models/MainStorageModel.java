@@ -6,6 +6,9 @@ public class MainStorageModel {
 	public static void sayHello() {
 		System.out.println("Hellow");
 	}
+	public static void sayBye() {
+		System.out.println("Bye");
+	}
 	/*
 	public static ArrayList<UserModel> users;
 	
