@@ -17,7 +17,7 @@ public class Administrator implements Serializable{
     }
     public void giveCredits(String Player){
     }
-    public String toAString(){
-        return "HI";
+    public String toString() {
+        return userName + "=="+firstName+"=="+lastName;
     }
 }

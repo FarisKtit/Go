@@ -34,7 +34,7 @@ public class User implements Serializable{
     public String getProfile(){
         return "";
     }
-    public String toAString(){
-        return "HI";
+    public String toString() {
+        return userName + "=="+firstName+"=="+lastName;
     }
 }

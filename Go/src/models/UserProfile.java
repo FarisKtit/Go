@@ -50,7 +50,7 @@ public class UserProfile implements Serializable{
     public void setWinPercentage(int winPercentage){
         this.winPercentage = winPercentage;
     }
-    public String toAString(){
-        return userName + "==" + firstName + "==" + lastName;
+    public String toString() {
+        return userName + "=="+firstName+"=="+lastName;
     }
 }
