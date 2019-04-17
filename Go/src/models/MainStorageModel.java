@@ -9,6 +9,9 @@ public class MainStorageModel {
 	public static void sayBye() {
 		System.out.println("Bye");
 	}
+	public static void sayFaris() {
+		System.out.println("Faris");
+	}
 	/*
 	public static ArrayList<UserModel> users;
 	
