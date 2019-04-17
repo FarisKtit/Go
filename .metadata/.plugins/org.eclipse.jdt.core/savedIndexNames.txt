@@ -1,2 +1,0 @@
-INDEX VERSION 1.131+/Users/farisktit/Documents/CSCM94-CW3/.metadata/.plugins/org.eclipse.jdt.core
-2925886916.index
