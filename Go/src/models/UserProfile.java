@@ -7,9 +7,7 @@ public class UserProfile implements Serializable{
     private String firstName;
     private String lastName;
     private int winPercentage;
-    private String profileImage;
-    private String[] favouritePlayers;
-    private int gameCredits;
+    private ProfileImage profileImage;
     private static final long serialVersionUID = 1L;
 
     public UserProfile (String userName, String firstName, String lastName){
@@ -26,14 +24,8 @@ public class UserProfile implements Serializable{
     public String getLastName(){
         return lastName;
     }
-    public String getProfileImage(){
+    public ProfileImage getProfileImage(){
         return profileImage;
-    }
-    public String[] getFavouritePlayers(){
-        return favouritePlayers;
-    }
-    public int getCredits(){
-        return gameCredits;
     }
     public int getWinPercentage(){
         return winPercentage;
@@ -52,6 +44,6 @@ public class UserProfile implements Serializable{
     }
     public String toString() {
         return userName + "=="+firstName+"=="+lastName+"=="+winPercentage+"=="+profileImage
-                +"=="+favouritePlayers+"=="+gameCredits;
+                +"==";
     }
 }
