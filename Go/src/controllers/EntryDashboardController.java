@@ -33,7 +33,7 @@ public class EntryDashboardController {
 	@FXML
 	public void goToAdminDashboard(ActionEvent event) {
 	    try {
-	        goToView("AdminEntry", event);
+	        goToView("AdminDashboard", event);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
