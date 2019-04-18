@@ -17,7 +17,6 @@ public class MainStorage {
     public static ArrayList<User> users;
 	
 	public static ArrayList<User> getUserList() throws FileNotFoundException, IOException {
-		users = new ArrayList<User>();
 		loadUsers();
 		return users;
 	}
@@ -27,34 +26,43 @@ public class MainStorage {
 		users = (ArrayList<User>) readDataFromMemory("users");
 	}
 	
-	public static boolean createUser(User user) throws FileNotFoundException, IOException {
+	public static String createUser(User user) throws FileNotFoundException, IOException {
 		loadUsers();
 		for(int i = 0; i < users.size(); i++) {
 			if(users.get(i).getProfile().getUserName().equals(user.getProfile().getUserName())) {
-				return false;
+				return "User exists";
 			}
 		}
 		users.add(user);
-		return writeUsersToMemory();
+		if(writeUsersToMemory()) {
+			return "Success";
+		} else {
+			return "Error";
+		}
 	}
 	
-	public static boolean deleteUser(String userName) throws FileNotFoundException, IOException {
+	public static String deleteUser(String userName) throws FileNotFoundException, IOException {
 		loadUsers();
-		boolean deleted = false;
+		String deleted = "No user";
 		for(int i = 0; i < users.size(); i++) {
 			if(users.get(i).getProfile().getUserName().equals(userName)) {
 				users.remove(i);
-				deleted = true;
+				deleted = "Success";
 			}
 		}
-		if(!deleted) return deleted;
-		return writeUsersToMemory();
+		if(deleted.equals("No user")) {
+			return deleted;
+		}
+		if(!writeUsersToMemory()) {
+			deleted = "Error";
+		}
+		return deleted;
 	}
 	
 	private static Object readDataFromMemory(String dataType) throws IOException {
 		InputStream fileIs = null;
 		ObjectInputStream objIs = null;
-		Object data = new Object();
+		Object data = new ArrayList<Object>();
 		try {
 			File fileChecker = new File(dataType + ".txt");
 			if((fileChecker.isFile() == true) && (fileChecker.length() > 0)) {
@@ -80,12 +88,15 @@ public class MainStorage {
 	private static boolean writeUsersToMemory() throws IOException {
 		OutputStream ops = null;
 		ObjectOutputStream objOps = null;
+		boolean successful = false;
 		try {
 			ops = new FileOutputStream("users.txt");
 			objOps = new ObjectOutputStream(ops);
 			objOps.writeObject(users);
 			objOps.flush();
+			successful = true;
 		} catch (EOFException exc) {
+			successful = false;
 		    exc.printStackTrace();
 		} finally {
 			try {
@@ -94,6 +105,6 @@ public class MainStorage {
 				
 			}
 		}
-		return true;
+		return successful;
 	}
 }
