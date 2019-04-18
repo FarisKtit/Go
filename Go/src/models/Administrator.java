@@ -15,6 +15,6 @@ public class Administrator extends User implements Serializable{
     public void createNewUserAccount(String AdministratorDashboard){
     }
     public String toString() {
-        return joinDate + "=="+adminNumber+"==";
+        return joinDate+"=="+adminNumber;
     }
 }

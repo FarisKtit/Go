@@ -38,7 +38,7 @@ public class User implements Serializable{
     }
     public boolean isAdmin(){return isAdmin;}
     public String toString() {
-        return profile + "=="+lastLoggedIn+"=="+gamesPlayed+"=="+newPlayers
-                +isAdmin+"==";
+        return profile+"=="+lastLoggedIn+"=="+gamesPlayed+"=="+newPlayers
+                +"=="+isAdmin;
     }
 }

@@ -43,7 +43,6 @@ public class UserProfile implements Serializable{
         this.winPercentage = winPercentage;
     }
     public String toString() {
-        return userName + "=="+firstName+"=="+lastName+"=="+winPercentage+"=="+profileImage
-                +"==";
+        return userName+"=="+firstName+"=="+lastName+"=="+winPercentage+"=="+profileImage;
     }
 }
