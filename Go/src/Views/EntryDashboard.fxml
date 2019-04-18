@@ -8,9 +8,9 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EntryDashboardController">
     <children>
-        <Button fx:id="UserDashboard" alignment="CENTER" layoutX="374.0" layoutY="157.0" mnemonicParsing="false" onAction="#userDashboard" prefHeight="89.0" prefWidth="118.0" text="User Dashboard" />
-        <Button fx:id="GameDashboard" layoutX="371.0" layoutY="300.0" mnemonicParsing="false" onAction="#gameDashboard" prefHeight="89.0" prefWidth="125.0" text="Game Dashboard" />
-        <Button fx:id="AdminDashboard" layoutX="368.0" layoutY="457.0" mnemonicParsing="false" onAction="#adminDashboard" prefHeight="89.0" prefWidth="128.0" text="Admin Dashboard" />
+        <Button fx:id="UserDashboardBtn" alignment="CENTER" layoutX="374.0" layoutY="157.0" mnemonicParsing="false" onAction="#goToUserDashboard" prefHeight="89.0" prefWidth="118.0" text="User Dashboard" />
+        <Button fx:id="GameDashboardBtn" layoutX="371.0" layoutY="300.0" mnemonicParsing="false" onAction="#goToGameDashboard" prefHeight="89.0" prefWidth="125.0" text="Game Dashboard" />
+        <Button fx:id="AdminDashboardBtn" layoutX="368.0" layoutY="457.0" mnemonicParsing="false" onAction="#goToAdminDashboard" prefHeight="89.0" prefWidth="128.0" text="Admin Dashboard" />
       <Label alignment="CENTER" layoutX="293.0" layoutY="32.0" text="Welcome to Go94" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="72.0" />

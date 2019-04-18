@@ -26,9 +26,9 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="163.0" layoutY="522.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="153.0" text="Home" />
-      <Button layoutX="524.0" layoutY="522.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="153.0" text="Game Dashboard" />
-      <Button layoutX="866.0" layoutY="522.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="153.0" text="Admin Dashboard" />
+      <Button fx:id="EntryDashboardBtn" layoutX="163.0" layoutY="522.0" mnemonicParsing="false" onAction="#goToEntryDashboard" prefHeight="42.0" prefWidth="153.0" text="Home" />
+      <Button fx:id="GameDashboardBtn" layoutX="524.0" layoutY="522.0" mnemonicParsing="false" onAction="#goToGameDashboard" prefHeight="42.0" prefWidth="153.0" text="Game Dashboard" />
+      <Button fx:id="AdminDashboardBtn" layoutX="866.0" layoutY="522.0" mnemonicParsing="false" onAction="#goToAdminDashboard" prefHeight="42.0" prefWidth="153.0" text="Admin Dashboard" />
    </children>
 
 </AnchorPane>
