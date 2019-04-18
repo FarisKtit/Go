@@ -65,6 +65,9 @@ public class MainStorage {
 		Object data = new ArrayList<Object>();
 		try {
 			File fileChecker = new File(dataType + ".txt");
+			if(!fileChecker.exists()) {
+				fileChecker.createNewFile();
+			}
 			if((fileChecker.isFile() == true) && (fileChecker.length() > 0)) {
 				fileIs = new FileInputStream(dataType + ".txt");
 				objIs = new ObjectInputStream(fileIs);
@@ -90,6 +93,10 @@ public class MainStorage {
 		ObjectOutputStream objOps = null;
 		boolean successful = false;
 		try {
+			File fileChecker = new File("users.txt");
+			if(!fileChecker.exists()) {
+				fileChecker.createNewFile();
+			}
 			ops = new FileOutputStream("users.txt");
 			objOps = new ObjectOutputStream(ops);
 			objOps.writeObject(users);
