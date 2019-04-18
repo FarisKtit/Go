@@ -9,26 +9,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class EntryDashboardController {
-	
+public class GameDashboardController {
 	@FXML
 	private Button UserDashboardBtn;
 	public void goToUserDashboard() {
 		UserDashboardBtn.setOnAction(event -> {
 	        try {
 	        	goToView("UserDashboard", UserDashboardBtn);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		});
-	}
-	
-	@FXML
-	private Button GameDashboardBtn;
-	public void goToGameDashboard() {
-		GameDashboardBtn.setOnAction(event -> {
-	        try {
-	        	goToView("GameDashboard", GameDashboardBtn);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -53,5 +40,4 @@ public class EntryDashboardController {
 		Stage stage = (Stage) obj.getScene().getWindow();
 		stage.setScene(s);
 	}
-
 }
