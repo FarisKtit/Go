@@ -9,12 +9,13 @@ public class Administrator extends User implements Serializable{
     private static final long serialVersionUID = 1L;
 
     public Administrator(int adminNumber){
-        super("","", "", true);
+        super("","", "");
         this.adminNumber = adminNumber;
         this.joinDate = LocalDateTime.now();
     }
     public void createNewUserAccount(String AdministratorDashboard){
     }
+    public boolean isAdmin(){return true;}
     public String toString() {
         return joinDate+"=="+adminNumber;
     }

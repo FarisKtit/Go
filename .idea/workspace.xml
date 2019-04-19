@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="7072cf3a-80a2-4593-91d9-53a1d0649028" name="Default Changelist" comment="Default Changelist">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/Go/src/controllers/AdminDashboardController.java" afterPath="$PROJECT_DIR$/Go/src/controllers/AdminDashboardController.java" />
       <change beforePath="$PROJECT_DIR$/Go/src/models/Administrator.java" afterPath="$PROJECT_DIR$/Go/src/models/Administrator.java" />
+      <change beforePath="$PROJECT_DIR$/Go/src/models/User.java" afterPath="$PROJECT_DIR$/Go/src/models/User.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -52,11 +54,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="User.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Go/src/models/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="14" column="70" lean-forward="false" selection-start-line="14" selection-start-column="70" selection-end-line="14" selection-end-column="70" />
+            <state relative-caret-position="375">
+              <caret line="36" column="4" lean-forward="true" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -90,11 +92,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Administrator.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Administrator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Go/src/models/Administrator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="11" column="31" lean-forward="false" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+            <state relative-caret-position="285">
+              <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AdminDashboardController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Go/src/controllers/AdminDashboardController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="41" column="65" lean-forward="true" selection-start-line="41" selection-start-column="65" selection-end-line="41" selection-end-column="65" />
               <folding />
             </state>
           </provider>
@@ -127,9 +139,10 @@
         <option value="$PROJECT_DIR$/Go/src/Views/GameDashboard.fxml" />
         <option value="$PROJECT_DIR$/Go/src/Views/EntryDashboard.fxml" />
         <option value="$PROJECT_DIR$/Go/src/Views/AdminEntry.fxml" />
-        <option value="$PROJECT_DIR$/Go/src/models/User.java" />
         <option value="$PROJECT_DIR$/Go/src/models/UserProfile.java" />
+        <option value="$PROJECT_DIR$/Go/src/models/User.java" />
         <option value="$PROJECT_DIR$/Go/src/models/Administrator.java" />
+        <option value="$PROJECT_DIR$/Go/src/controllers/AdminDashboardController.java" />
       </list>
     </option>
   </component>
@@ -325,7 +338,14 @@
       <option name="project" value="LOCAL" />
       <updated>1555618736894</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Default Changelist">
+      <created>1555686640680</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1555686640680</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -353,7 +373,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2713816" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2713816" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -499,10 +519,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Go/src/models/User.java">
+    <entry file="file://$PROJECT_DIR$/Go/src/controllers/AdminDashboardController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="14" column="70" lean-forward="false" selection-start-line="14" selection-start-column="70" selection-end-line="14" selection-end-column="70" />
+        <state relative-caret-position="420">
+          <caret line="41" column="65" lean-forward="true" selection-start-line="41" selection-start-column="65" selection-end-line="41" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Go/src/models/Administrator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -520,10 +548,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Go/src/models/Administrator.java">
+    <entry file="file://$PROJECT_DIR$/Go/src/models/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="11" column="31" lean-forward="false" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+        <state relative-caret-position="375">
+          <caret line="36" column="4" lean-forward="true" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="43" />
           <folding />
         </state>
       </provider>

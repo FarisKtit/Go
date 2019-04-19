@@ -39,7 +39,7 @@ public class AdminDashboardController {
     		alertUser("Create New User", "Error", "Please make sure all fields have been filled in");
     		return;
     	} else {
-    		User newUser = new User(userName, firstName, lastName, false);
+    		User newUser = new User(userName, firstName, lastName);
     		try {
     			String result = MainStorage.createUser(newUser);
 				if(result.equals("Success")) {
