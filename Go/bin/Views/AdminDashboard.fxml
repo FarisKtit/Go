@@ -23,6 +23,8 @@
                </font>
             </Label>
             <Label layoutX="31.0" layoutY="86.0" text="Administrator ID:" />
+            <Button layoutX="22.0" layoutY="341.0" mnemonicParsing="false" text="User Dashboard" />
+            <Button layoutX="213.0" layoutY="341.0" mnemonicParsing="false" text="Game Dashboard" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
