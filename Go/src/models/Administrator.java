@@ -11,6 +11,7 @@ public class Administrator extends User implements Serializable{
     public Administrator(int adminNumber){
         super("","", "", true);
         this.adminNumber = adminNumber;
+        this.joinDate = LocalDateTime.now();
     }
     public void createNewUserAccount(String AdministratorDashboard){
     }
