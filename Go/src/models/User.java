@@ -6,6 +6,7 @@ import java.io.Serializable;
 public class User implements Serializable{
     private UserProfile profile;
     private LocalDateTime lastLoggedIn;
+    private LocalDateTime joinDate;
     private int[] gamesPlayed;
     private String[] newPlayers;
     private boolean isAdmin;
@@ -14,6 +15,7 @@ public class User implements Serializable{
     public User(String userName, String firstName, String lastName, boolean isAdmin){
         this.profile = new UserProfile(userName, firstName, lastName);
         this.lastLoggedIn = LocalDateTime.MIN;
+        this.joinDate = LocalDateTime.now();
         this.gamesPlayed = new int[9];
         this.newPlayers = new String[9];
         this.isAdmin = isAdmin;
@@ -38,6 +40,6 @@ public class User implements Serializable{
     }
     public boolean isAdmin(){return isAdmin;}
     public String toString() {
-        return profile+"=="+lastLoggedIn+"=="+gamesPlayed+"=="+newPlayers+"=="+isAdmin;
+        return profile+"=="+lastLoggedIn+"=="+joinDate+"=="+gamesPlayed+"=="+newPlayers+"=="+isAdmin;
     }
 }
