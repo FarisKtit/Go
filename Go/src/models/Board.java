@@ -1,17 +1,47 @@
 package models;
 
-public class Board{
-	//size of the board
-	public static int size = 9;
-	//grid intersection
+public class Board {
+	
+	// size of the board
+	private int size = 9;
+	// grid intersection
 	private int[][] board;
-	//constructor of class board
-	public Board(int[][] board){
-		this.board = new int [size][size];
-		for(int i = 0; i < size; i++){
-			for(int j = 0; j < size; j++){
-				this.board[i][j] = 0;
+	// player 2
+	private final int player2 = 2;
+	// player 1 
+	private final int player1 = 1;
+
+	// constructor of class board
+	public Board(int[][] board) {
+		this.board = new int[size][size];
+	}
+
+	// method to place stone
+	public String placeStones(int row, int column, String player) {
+		if (board[row][column] == 0) {
+			if (player.equalsIgnoreCase("Player 1")) {
+				board[row][column] = player1;
+			} 
+			else {
+				board[row][column] = player2;
 			}
+			return "SUCCESS";
+		} 
+		else {
+			return "FAIL";
 		}
+	}
+
+	// method to remove stone
+	public void removeStone(int row, int column) {
+		board[row][column] = 0;
+	}
+
+	// method to check if the given position is occupied
+	public boolean isOccupied(int row, int column) {
+		if (board[row][column] == 0) {
+			return false;
+		}
+		return true;
 	}
 }
