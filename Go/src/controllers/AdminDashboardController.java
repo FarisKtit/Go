@@ -5,22 +5,15 @@ import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Stage;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import models.MainStorage;
 import models.User;
 
 
-public class AdminDashboardController {
+public class AdminDashboardController extends GraphicalUserInterface {
     @FXML
     private ListView<String> userListView;
     @FXML
@@ -92,13 +85,6 @@ public class AdminDashboardController {
     	populateListView();
     }
     
-    private void alertUser(String title, String header, String content) {
-    	Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle(title);
-		alert.setHeaderText(header);
-		alert.setContentText(content);
-		alert.showAndWait();
-    }
     
     public void populateListView() {
     	ObservableList<String> obs = FXCollections.observableArrayList();
@@ -133,12 +119,5 @@ public class AdminDashboardController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-    
-	public void goToView(String view, ActionEvent e) throws IOException {
-		Parent userDash = FXMLLoader.load(getClass().getResource("/Views/" + view + ".fxml"));
-		Scene s = new Scene(userDash);
-		Stage stage = (Stage) ((Node) e.getTarget()).getScene().getWindow();
-		stage.setScene(s);
 	}
 }
