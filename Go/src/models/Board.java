@@ -12,14 +12,14 @@ public class Board {
 	private final int player1 = 1;
 
 	// constructor of class board
-	public Board(int[][] board) {
+	public Board() {
 		this.board = new int[size][size];
 	}
 
 	// method to place stone
 	public String placeStones(int row, int column, String player) {
 		if (board[row][column] == 0) {
-			if (player.equalsIgnoreCase("Player 1")) {
+			if (player.equals("Player 1")) {
 				board[row][column] = player1;
 			} 
 			else {

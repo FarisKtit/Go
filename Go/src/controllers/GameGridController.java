@@ -1,5 +1,8 @@
 package controllers;
 
+import java.util.ArrayList;
+import models.Game;
+
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -8,10 +11,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import models.User;
 
 public class GameGridController extends GraphicalUserInterface {
 	
-	private static int[][] game;
+	private static Game game;
+	
+	public void initData(ArrayList<User> obj) {
+        game = new Game(obj.get(0), obj.get(1));
+	}
 	
 	@FXML
 	private GridPane Grid;
@@ -40,7 +48,6 @@ public class GameGridController extends GraphicalUserInterface {
     			Grid.add(liney, i, j);
     		}
     	}
-    	game = new int[9][9];
     }
     
     @FXML
@@ -50,19 +57,19 @@ public class GameGridController extends GraphicalUserInterface {
 
         Integer yIndex = y / 30;
         Integer xIndex = x / 30;
-        
-        if(game[yIndex][xIndex] == 1) {
-        	alertUser("Game", "Click", "This intersection is already occupied");
-        	return;
-        }
-
         Circle c = new Circle();
 		c.setRadius(7.5f);
-		
-		GridPane.setHalignment(c, HPos.valueOf("CENTER"));
-		GridPane.setValignment(c, VPos.valueOf("CENTER"));
+		if(game.getUserMove().equals("Player 1")) c.setFill(javafx.scene.paint.Color.BLACK);
+		else c.setFill(javafx.scene.paint.Color.WHITE);
+        if(game.placeStone(xIndex, yIndex).equals("SUCCESS")) {
 
-		Grid.add(c, xIndex, yIndex);
-        game[yIndex][xIndex] = 1;
+    		GridPane.setHalignment(c, HPos.valueOf("CENTER"));
+    		GridPane.setValignment(c, VPos.valueOf("CENTER"));
+
+    		Grid.add(c, xIndex, yIndex);
+        	
+        } else {
+        	alertUser("Move", "Invalid move", "Please choose a different intersection");
+        }
     }    
 }
