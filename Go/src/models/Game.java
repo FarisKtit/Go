@@ -1,54 +1,68 @@
-Public class Game {
-  Private Board board;
-  Private String userMove; 
-  Private User storeplayerOne;
-  Private int PlayerOnePasses;
-  Private int PlayerTwoPasses; 
-  Private User storeplayerTwo;
-  Private String gameID;
-  Private String Winner;
-  Private String Loser;  
-  Public Game (User U1, User U2){
+package models;
+
+class Game {
+  private Board board;
+  private String userMove; 
+  private User storeplayerOne;
+  private int PlayerOnePasses;
+  private int PlayerTwoPasses; 
+  private User storeplayerTwo;
+  private String gameID;
+  private String Winner;
+  private String Loser;  
+  public Game (User U1, User U2){
 	  this.storeplayerOne = U1;
 	  this.storeplayerTwo = U2;
+	  userMove = "P1";
  }
-  Public String placeStone (int x, int y) {
-    if (UserMove.equals(“P1”)){ 
-    return Board.placeStone(“P1”, x, y);
+  public String placeStone(int x, int y) {
+    if (userMove.equals("P1")){ 
+    //return board.placeStone("P1", x, y);
+    	return "";
     } else {
-    return Board.placeStone(“P2”, x, y);
+    //return board.placeStone("P2", x, y);
+    	return "";
    }
   }
-  Public String checkPasses (player1, Player2) {
-  if (PlayerOnePasses >= 3) {
-  return “Player one reached 3 passes”;
+  
+  public String checkPasses() {
+    if (PlayerOnePasses >= 3) {
+      return "Player one reached 3 passes";
+    }
+    if (PlayerTwoPasses >= 3) {
+      return "Player two reached 3 passes";
+    }
+    return "Ok";
   }
-  if (PlayerTwoPasses >= 3) {
-  return “Player two reached 3 passes”;
+  public User getplayerOne() {
+    return this.storeplayerOne;
   }
+  
+  public User getPlayerTwo() {
+    return this.storeplayerTwo;
   }
-  Public User GetplayerOne  {
-  return this.storePlayerOne;
-  }
-  Public User GetPlayerTwo{
-  return this.storePlayerTwo;
-  }
-  Public String GetgameID () {
+  
+  public String getGameID () {
   return this.gameID;
   }
-  Public void SetgameID(String GameID){
-  this.gameID == GameID;
+  
+  public void getGameID(String GameID){
+    this.gameID = GameID;
   }
-  Public String GetWinner(){
-  return this.winner;
+  
+  public String getWinner(){
+    return this.Winner;
   }
-  Public String GetLoser(){
-  return this.loser;
+  
+  public String getLoser(){
+    return this.Loser;
   }
-  Public void setWinner(String Winner){
-  this.Winner == Winner;
+  
+  public void setWinner(String Winner){
+    this.Winner = Winner;
   }
-  Public void setLoser(String Loser){
-  this.Loser == Loser;
+  
+  public void setLoser(String Loser){
+    this.Loser = Loser;
   }
 }
