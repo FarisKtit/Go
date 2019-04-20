@@ -24,7 +24,7 @@ public class UserEntryController {
 	@FXML
 	public void goToEntryDashboard(ActionEvent event) {
 	    try {
-	        goToView("EntryEntry", event);
+	        goToView("EntryDashboard", event);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
