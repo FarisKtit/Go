@@ -1,6 +1,6 @@
 package models;
 
-class Game {
+public class Game {
   private Board board;
   private String userMove; 
   private User storeplayerOne;
@@ -10,19 +10,21 @@ class Game {
   private String gameID;
   private String Winner;
   private String Loser;  
+  
   public Game (User U1, User U2){
 	  this.storeplayerOne = U1;
 	  this.storeplayerTwo = U2;
-	  userMove = "P1";
- }
+	  this.board = new Board();
+	  userMove = "Player 1";
+  }
+  
   public String placeStone(int x, int y) {
-    if (userMove.equals("P1")){ 
-    //return board.placeStone("P1", x, y);
-    	return "";
-    } else {
-    //return board.placeStone("P2", x, y);
-    	return "";
-   }
+    String res = board.placeStones(x, y, userMove);
+    if(res.equals("SUCCESS")) {
+        if(userMove.equals("Player 1")) userMove = "Player 2";
+        else userMove = "Player 1";
+    }
+    return res;
   }
   
   public String checkPasses() {
@@ -34,6 +36,11 @@ class Game {
     }
     return "Ok";
   }
+  
+  public String getUserMove() {
+	  return userMove;
+  }
+  
   public User getplayerOne() {
     return this.storeplayerOne;
   }
