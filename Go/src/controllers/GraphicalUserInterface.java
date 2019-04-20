@@ -17,7 +17,7 @@ public class GraphicalUserInterface {
         stage.setScene(s);
     }
 
-    private void alertUser(String title, String header, String content) {
+    public void alertUser(String title, String header, String content) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(header);

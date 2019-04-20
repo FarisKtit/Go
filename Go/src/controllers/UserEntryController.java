@@ -4,13 +4,9 @@ import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
-public class UserEntryController {
+
+public class UserEntryController extends GraphicalUserInterface {
 	
 	@FXML
 	public void goToUserDashboard(ActionEvent event) {
@@ -28,12 +24,5 @@ public class UserEntryController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public void goToView(String view, ActionEvent e) throws IOException {
-		Parent userDash = FXMLLoader.load(getClass().getResource("./../Views/" + view + ".fxml"));
-		Scene s = new Scene(userDash);
-		Stage stage = (Stage) ((Node) e.getTarget()).getScene().getWindow();
-		stage.setScene(s);
 	}
 }

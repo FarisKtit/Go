@@ -4,14 +4,12 @@ import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
-public class GameGridController {
+public class GameGridController extends GraphicalUserInterface {
 	
 	private static int[][] game;
 	
@@ -43,16 +41,10 @@ public class GameGridController {
     		}
     	}
     	game = new int[9][9];
-
-    	
-
     }
     
     @FXML
     public void clickGrid(MouseEvent e) {
-    	
-    	
-        
     	int y = (int) e.getY();
     	int x = (int) e.getX();
 
@@ -65,25 +57,12 @@ public class GameGridController {
         }
 
         Circle c = new Circle();
-        
 		c.setRadius(7.5f);
-
-		
 		
 		GridPane.setHalignment(c, HPos.valueOf("CENTER"));
 		GridPane.setValignment(c, VPos.valueOf("CENTER"));
 
 		Grid.add(c, xIndex, yIndex);
         game[yIndex][xIndex] = 1;
-    }
-    
-    
-    private void alertUser(String title, String header, String content) {
-    	Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle(title);
-		alert.setHeaderText(header);
-		alert.setContentText(content);
-		alert.showAndWait();
-    }
-    
+    }    
 }
