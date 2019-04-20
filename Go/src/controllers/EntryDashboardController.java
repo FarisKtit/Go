@@ -15,7 +15,7 @@ public class EntryDashboardController {
 	@FXML
 	public void goToUserDashboard(ActionEvent event) {
 	    try {
-	        goToView("UserDashboard", event);
+	        goToView("UserEntry", event);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -33,11 +33,13 @@ public class EntryDashboardController {
 	@FXML
 	public void goToAdminDashboard(ActionEvent event) {
 	    try {
-	        goToView("AdminDashboard", event);
+	        goToView("AdminEntry", event);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+	
+	
 	
 	public void goToView(String view, ActionEvent e) throws IOException {
 		Parent userDash = FXMLLoader.load(getClass().getResource("./../Views/" + view + ".fxml"));
