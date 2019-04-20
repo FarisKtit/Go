@@ -7,28 +7,28 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserDashboardController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserDashboardController">
    <children>
-      <Label layoutX="355.0" layoutY="23.0" text="User Dashboard">
+      <Label layoutX="117.0" layoutY="26.0" text="User Dashboard">
          <font>
-            <Font name="System Bold" size="64.0" />
+            <Font name="System Bold" size="48.0" />
          </font>
       </Label>
-      <ListView layoutX="113.0" layoutY="166.0" prefHeight="320.0" prefWidth="253.0" />
-      <ListView layoutX="816.0" layoutY="166.0" prefHeight="320.0" prefWidth="253.0" />
-      <Label layoutX="166.0" layoutY="116.0" text="Favourite Players">
+      <Label layoutX="104.0" layoutY="105.0" text="Favourite Players">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="882.0" layoutY="116.0" text="Games Played">
+      <Label layoutX="364.0" layoutY="105.0" text="Games Played">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="EntryDashboardBtn" layoutX="163.0" layoutY="522.0" mnemonicParsing="false" onAction="#goToEntryDashboard" prefHeight="42.0" prefWidth="153.0" text="Home" />
-      <Button fx:id="GameDashboardBtn" layoutX="524.0" layoutY="522.0" mnemonicParsing="false" onAction="#goToGameDashboard" prefHeight="42.0" prefWidth="153.0" text="Game Dashboard" />
-      <Button fx:id="AdminDashboardBtn" layoutX="866.0" layoutY="522.0" mnemonicParsing="false" onAction="#goToAdminDashboard" prefHeight="42.0" prefWidth="153.0" text="Admin Dashboard" />
+      <Button fx:id="EntryDashboardBtn" layoutX="24.0" layoutY="344.0" mnemonicParsing="false" onAction="#goToEntryDashboard" prefHeight="42.0" prefWidth="153.0" text="Home" />
+      <Button fx:id="GameDashboardBtn" layoutX="224.0" layoutY="344.0" mnemonicParsing="false" onAction="#goToGameDashboard" prefHeight="42.0" prefWidth="153.0" text="Game Dashboard" />
+      <Button fx:id="AdminDashboardBtn" layoutX="424.0" layoutY="344.0" mnemonicParsing="false" onAction="#goToAdminDashboard" prefHeight="42.0" prefWidth="153.0" text="Admin Dashboard" />
+      <ListView layoutX="77.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" />
+      <ListView layoutX="324.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" />
    </children>
 
 </AnchorPane>
