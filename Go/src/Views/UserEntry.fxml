@@ -7,18 +7,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminEntryController">
+<AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserEntryController">
     <children>
-        <Label layoutX="163.0" layoutY="169.0" text="User Name: " />
-        <PasswordField layoutX="269.0" layoutY="210.0" />
-        <Label layoutX="169.0" layoutY="215.0" text="Password:" />
-        <TextField layoutX="269.0" layoutY="164.0" />
-        <Label layoutX="159.0" layoutY="33.0" text="Login to User Dashboard">
+        <Label layoutX="269.0" layoutY="169.0" text="User Name: " />
+        <PasswordField layoutX="375.0" layoutY="210.0" />
+        <Label layoutX="275.0" layoutY="215.0" text="Password:" />
+        <TextField layoutX="375.0" layoutY="164.0" />
+        <Label layoutX="259.0" layoutY="35.0" text="Login to User Dashboard">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
-        <Button layoutX="271.0" layoutY="296.0" mnemonicParsing="false" text="Login" />
+        <Button layoutX="375.0" layoutY="288.0" mnemonicParsing="false" onAction="#goToUserDashboard" text="Login" />
       <Button layoutX="14.0" layoutY="359.0" mnemonicParsing="false" onAction="#goToEntryDashboard" text="Back to Entry" />
     </children>
 </AnchorPane>
