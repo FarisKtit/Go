@@ -6,28 +6,28 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameDashboardController">
+<AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameDashboardController">
    <children>
-      <Label layoutX="104.0" layoutY="22.0" text="Game Dashboard">
+      <Label layoutX="222.0" layoutY="26.0" text="Game Dashboard">
          <font>
             <Font size="48.0" />
          </font>
       </Label>
-      <Label layoutX="18.0" layoutY="150.0" text="Pick Player 1:">
+      <Label layoutX="147.0" layoutY="150.0" text="Pick Player 1:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="17.0" layoutY="221.0" text="Pick Player 2:">
+      <Label layoutX="146.0" layoutY="225.0" text="Pick Player 2:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="playerOneField" layoutX="151.0" layoutY="148.0" />
-      <TextField fx:id="playerTwoField" layoutX="151.0" layoutY="219.0" />
-      <Button fx:id="GameGridBtn" layoutX="398.0" layoutY="161.0" mnemonicParsing="false" onAction="#goToGameGrid" prefHeight="72.0" prefWidth="142.0" text="Start Game" />
-      <Button fx:id="UserDashboardBtn" layoutX="114.0" layoutY="307.0" mnemonicParsing="false" onAction="#goToUserDashboard" prefHeight="51.0" prefWidth="129.0" text="User Dashboard" />
-      <Button fx:id="AdminDashboardBtn" layoutX="354.0" layoutY="307.0" mnemonicParsing="false" onAction="#goToAdminDashboard" prefHeight="51.0" prefWidth="129.0" text="Admin Dashboard" />
+      <TextField fx:id="playerOneField" layoutX="279.0" layoutY="148.0" />
+      <TextField fx:id="playerTwoField" layoutX="279.0" layoutY="221.0" />
+      <Button fx:id="GameGridBtn" layoutX="532.0" layoutY="164.0" mnemonicParsing="false" onAction="#goToGameGrid" prefHeight="72.0" prefWidth="142.0" text="Start Game" />
+      <Button fx:id="UserDashboardBtn" layoutX="222.0" layoutY="307.0" mnemonicParsing="false" onAction="#goToUserDashboard" prefHeight="51.0" prefWidth="129.0" text="User Dashboard" />
+      <Button fx:id="AdminDashboardBtn" layoutX="486.0" layoutY="307.0" mnemonicParsing="false" onAction="#goToAdminDashboard" prefHeight="51.0" prefWidth="129.0" text="Admin Dashboard" />
    </children>
 
 </AnchorPane>
