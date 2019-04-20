@@ -29,7 +29,7 @@ public class GameGridController {
     			line.setEndX(15.0f);
     			line.setEndY(30.0f);
     			Insets inset = new Insets(0.0d, 0d, 0d, 15.0d);
-    			Grid.setMargin(line, inset);
+    			GridPane.setMargin(line, inset);
     			Grid.add(line, i, j);
     			
     			Line liney = new Line();
@@ -38,7 +38,7 @@ public class GameGridController {
     			liney.setEndX(30.0f);
     			liney.setEndY(15.0f);
     			Insets inset2 = new Insets(0.0d, 0d, 0d, 0.0d);
-    			Grid.setMargin(liney, inset2);
+    			GridPane.setMargin(liney, inset2);
     			Grid.add(liney, i, j);
     		}
     	}

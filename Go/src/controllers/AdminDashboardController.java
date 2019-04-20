@@ -1,13 +1,19 @@
 package controllers;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import models.MainStorage;
@@ -109,4 +115,29 @@ public class AdminDashboardController {
     		alertUser("Load User List", "Error", "Users could not be loaded at this time");
 		}
     }
+    
+	@FXML
+	public void goToUserDashboard(ActionEvent event) {
+	    try {
+	        goToView("UserEntry", event);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	public void goToGameDashboard(ActionEvent event) {
+	    try {
+	        goToView("GameDashboard", event);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+    
+	public void goToView(String view, ActionEvent e) throws IOException {
+		Parent userDash = FXMLLoader.load(getClass().getResource("/Views/" + view + ".fxml"));
+		Scene s = new Scene(userDash);
+		Stage stage = (Stage) ((Node) e.getTarget()).getScene().getWindow();
+		stage.setScene(s);
+	}
 }

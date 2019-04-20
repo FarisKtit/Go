@@ -18,7 +18,7 @@ public class GameDashboardController {
 	@FXML
 	public void goToUserDashboard(ActionEvent event) {
 	    try {
-	        goToView("UserDashboard", event);
+	        goToView("UserEntry", event);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
