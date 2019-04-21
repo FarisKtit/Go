@@ -23,8 +23,14 @@ public class GraphicalUserInterface {
     public void goToViewWithUsers(String view, ActionEvent e, ArrayList<User> obj) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/" + view + ".fxml"));
         Scene s = new Scene(loader.load());
-        GameGridController controller = loader.<GameGridController>getController();
-        controller.initData(obj);
+        if(view.equals("GameGrid")) {
+        	GameGridController controller = loader.<GameGridController>getController();
+        	controller.initData(obj);
+        } else {
+        	UserDashboardController controller = loader.<UserDashboardController>getController();
+        	controller.initData(obj);
+        }
+           
         Stage stage = (Stage) ((Node) e.getTarget()).getScene().getWindow();
         stage.setScene(s);
     }

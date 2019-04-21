@@ -27,18 +27,34 @@ public class MainStorage {
 	}
 	
 	public static String createUser(User user) throws FileNotFoundException, IOException {
+		String username = user.getProfile().getUserName();
+		if(getUser(username) != null) {
+			return "User exists";
+		}
+		/*
 		loadUsers();
 		for(int i = 0; i < users.size(); i++) {
 			if(users.get(i).getProfile().getUserName().equals(user.getProfile().getUserName())) {
 				return "User exists";
 			}
 		}
+		*/
 		users.add(user);
 		if(writeUsersToMemory()) {
 			return "Success";
 		} else {
 			return "Error";
 		}
+	}
+	
+	public static User getUser(String username) throws IOException {
+		loadUsers();
+		for(int i = 0; i < users.size(); i++) {
+			if(users.get(i).getProfile().getUserName().equals(username)) {
+				return users.get(i);
+			}
+		}
+		return null;
 	}
 	
 	public static String deleteUser(String userName) throws FileNotFoundException, IOException {
