@@ -10,21 +10,22 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane dividerPositions="0.2040133779264214, 0.7909698996655519" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameGridController">
+<SplitPane dividerPositions="0.2040133779264214, 0.7909698996655519" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameGridController">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
-            <Label layoutX="35.0" layoutY="24.0" text="Player 1" />
+            <Label layoutX="56.0" layoutY="24.0" text="Player 1" />
             <ImageView fitHeight="72.0" fitWidth="82.0" layoutX="18.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" />
-            <Button layoutX="35.0" layoutY="211.0" mnemonicParsing="false" text="Pass" />
-            <Label layoutX="7.0" layoutY="139.0" text="Stones Captured" />
-            <Label layoutX="18.0" layoutY="267.0" text="No. of Passes" />
+            <Button layoutX="56.0" layoutY="211.0" mnemonicParsing="false" text="Pass" />
+            <Label layoutX="28.0" layoutY="139.0" text="Stones Captured" />
+            <Label layoutX="37.0" layoutY="267.0" text="No. of Passes" />
+            <Button layoutX="52.0" layoutY="327.0" mnemonicParsing="false" onAction="#forfeitPlayerOne" text="Forfeit" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
-            <AnchorPane layoutY="20.0" prefHeight="358.0" prefWidth="343.0" style="-fx-background-color: brown;">
+            <AnchorPane layoutX="65.0" layoutY="14.0" prefHeight="294.0" prefWidth="330.0" style="-fx-background-color: brown;">
                <children>
-                  <GridPane fx:id="Grid" layoutX="30.0" layoutY="53.0" onMouseClicked="#clickGrid" prefHeight="270.0" prefWidth="270.0" style="-fx-background-color: brown; -fx-border-color: brown; -fx-grid-lines-visible: false;">
+                  <GridPane fx:id="Grid" layoutX="30.0" layoutY="12.0" onMouseClicked="#clickGrid" prefHeight="270.0" prefWidth="270.0" style="-fx-background-color: brown; -fx-border-color: brown; -fx-grid-lines-visible: false;">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" />
@@ -50,17 +51,18 @@
                   </GridPane>
                </children>
             </AnchorPane>
+            <Button layoutX="190.0" layoutY="349.0" mnemonicParsing="false" onAction="#exitGame" text="Exit Game" />
          </children></AnchorPane>
       <SplitPane prefHeight="398.0" prefWidth="188.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Label layoutX="36.0" layoutY="24.0" text="Player 2" />
+                  <Label layoutX="57.0" layoutY="24.0" text="Player 2" />
                   <ImageView fitHeight="72.0" fitWidth="82.0" layoutX="20.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button layoutX="37.0" layoutY="211.0" mnemonicParsing="false" text="Pass" />
-                  <Label layoutX="9.0" layoutY="138.0" text="Stones Captured" />
-                  <Label layoutX="19.0" layoutY="265.0" text="No. of Passes" />
-                  <Button layoutX="21.0" layoutY="357.0" mnemonicParsing="false" text="Exit Game" />
+                  <Button layoutX="58.0" layoutY="211.0" mnemonicParsing="false" text="Pass" />
+                  <Label layoutX="30.0" layoutY="139.0" text="Stones Captured" />
+                  <Label layoutX="39.0" layoutY="265.0" text="No. of Passes" />
+                  <Button layoutX="52.0" layoutY="327.0" mnemonicParsing="false" onAction="#forfeitPlayerTwo" text="Forfeit" />
                </children>
             </AnchorPane>
         </items>

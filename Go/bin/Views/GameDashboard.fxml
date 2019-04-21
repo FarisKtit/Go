@@ -26,8 +26,7 @@
       <TextField fx:id="playerOneField" layoutX="279.0" layoutY="148.0" />
       <TextField fx:id="playerTwoField" layoutX="279.0" layoutY="221.0" />
       <Button fx:id="GameGridBtn" layoutX="532.0" layoutY="164.0" mnemonicParsing="false" onAction="#goToGameGrid" prefHeight="72.0" prefWidth="142.0" text="Start Game" />
-      <Button fx:id="UserDashboardBtn" layoutX="222.0" layoutY="307.0" mnemonicParsing="false" onAction="#goToUserDashboard" prefHeight="51.0" prefWidth="129.0" text="User Dashboard" />
-      <Button fx:id="AdminDashboardBtn" layoutX="486.0" layoutY="307.0" mnemonicParsing="false" onAction="#goToAdminDashboard" prefHeight="51.0" prefWidth="129.0" text="Admin Dashboard" />
+      <Button layoutX="354.0" layoutY="303.0" mnemonicParsing="false" onAction="#goToEntryDashboard" prefHeight="51.0" prefWidth="129.0" text="Home" />
    </children>
 
 </AnchorPane>

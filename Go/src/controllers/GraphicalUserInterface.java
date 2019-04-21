@@ -14,8 +14,8 @@ import javafx.scene.Scene;
 
 public class GraphicalUserInterface {
     public void goToView(String view, ActionEvent e) throws IOException {
-        Parent userDash = FXMLLoader.load(getClass().getResource("/Views/" + view + ".fxml"));
-        Scene s = new Scene(userDash);
+        Parent newView = FXMLLoader.load(getClass().getResource("/Views/" + view + ".fxml"));
+        Scene s = new Scene(newView);
         Stage stage = (Stage) ((Node) e.getTarget()).getScene().getWindow();
         stage.setScene(s);
     }
@@ -26,11 +26,13 @@ public class GraphicalUserInterface {
         if(view.equals("GameGrid")) {
         	GameGridController controller = loader.<GameGridController>getController();
         	controller.initData(obj);
+        } else if(view.equals("AdminDashboard")) {
+        	AdminDashboardController controller = loader.<AdminDashboardController>getController();
+        	controller.initData(obj);
         } else {
         	UserDashboardController controller = loader.<UserDashboardController>getController();
         	controller.initData(obj);
         }
-           
         Stage stage = (Stage) ((Node) e.getTarget()).getScene().getWindow();
         stage.setScene(s);
     }

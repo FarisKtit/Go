@@ -32,6 +32,8 @@ public class UserEntryController extends GraphicalUserInterface {
 		} catch (IOException e1) {
 			alertUser("User Dashboard", "Error", "Please try again later");
 			return;
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		if(userName.equals("") || userPassword.equals("")) {
 			alertUser("User Dashboard", "Error", "Please complete all fields");

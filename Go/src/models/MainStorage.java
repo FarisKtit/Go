@@ -17,33 +17,33 @@ public class MainStorage {
     public static ArrayList<User> users;
     public static ArrayList<Game> games;
 	
-	public static ArrayList<User> getUserList() throws FileNotFoundException, IOException {
+	public static ArrayList<User> getUserList() throws Exception {
 		loadUsers();
 		return users;
 	}
 	
-	public static ArrayList<Game> getGameList() throws FileNotFoundException, IOException {
+	public static ArrayList<Game> getGameList() throws Exception {
 		loadGames();
 		return games;
 	}
 	
-	public static void loadUsers() throws IOException {
+	public static void loadUsers() throws Exception {
 		users = new ArrayList<User>();
 		users = (ArrayList<User>) readFromMemory("users");
 	}
 	
-	public static void loadGames() throws IOException {
+	public static void loadGames() throws Exception {
 		games = new ArrayList<Game>();
 		games = (ArrayList<Game>) readFromMemory("games");
 	}
 	
-	public static boolean saveGame(Game game) throws FileNotFoundException, IOException {
+	public static boolean saveGame(Game game) throws Exception {
 		ArrayList<Game> games = getGameList();
 		games.add(game);
 		return writeGamesToMemory(games, "games");
 	}
 	
-	public static String createUser(User user) throws FileNotFoundException, IOException {
+	public static String createUser(User user) throws Exception {
 		String username = user.getProfile().getUserName();
 		if(getUser(username) != null) {
 			return "User exists";
@@ -56,7 +56,7 @@ public class MainStorage {
 		}
 	}
 	
-	public static User getUser(String username) throws IOException {
+	public static User getUser(String username) throws Exception {
 		loadUsers();
 		for(int i = 0; i < users.size(); i++) {
 			if(users.get(i).getProfile().getUserName().equals(username)) {
@@ -66,7 +66,7 @@ public class MainStorage {
 		return null;
 	}
 	
-	public static String deleteUser(String userName) throws FileNotFoundException, IOException {
+	public static String deleteUser(String userName) throws Exception {
 		loadUsers();
 		String deleted = "No user";
 		for(int i = 0; i < users.size(); i++) {
@@ -84,7 +84,7 @@ public class MainStorage {
 		return deleted;
 	}
 	
-	private static Object readFromMemory(String dataType) throws IOException {
+	private static Object readFromMemory(String dataType) throws Exception {
 		InputStream fileIs = null;
 		ObjectInputStream objIs = null;
 		Object data = new ArrayList<Object>();
@@ -99,9 +99,7 @@ public class MainStorage {
 				data = objIs.readObject();
 			}
 		} catch (EOFException exc) {
-		    exc.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+		    throw new EOFException();
 		} finally {
 			try {
 				if(fileIs != null) fileIs.close();

@@ -2,13 +2,14 @@ package controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import models.Administrator;
 import models.MainStorage;
 import models.User;
 
@@ -24,6 +25,12 @@ public class AdminDashboardController extends GraphicalUserInterface {
     private TextField firstNameField;
     @FXML
     private TextField lastNameField;
+    @FXML
+    private CheckBox isAdmin;
+    
+    public void initData(ArrayList<User> list) {
+		Administrator currentUser = (Administrator) list.get(0);
+	}
     
     @FXML
     public void initialize() {
@@ -38,24 +45,29 @@ public class AdminDashboardController extends GraphicalUserInterface {
     	if((userName.length() == 0) || (firstName.length() == 0) || (lastName.length() == 0)) {
     		alertUser("Create New User", "Error", "Please make sure all fields have been filled in");
     		return;
-    	} else {
-    		User newUser = new User(userName, firstName, lastName, false);
-    		try {
-    			String result = MainStorage.createUser(newUser);
-				if(result.equals("Success")) {
-					alertUser("Create New User", "Success", "User created");
-				} else if(result.equals("User exists")) {
-					alertUser("Create New User", "Error", "User already exists");
-					return;
-				} else {
-					alertUser("Create New User", "Error", "Please try again later");
-					return;
-				}
-			} catch (Exception e) {
-	    		alertUser("Create New User", "Error", "Please try again later");
-	    		return;
-			}
     	}
+    	User newUser = null;
+    	if(!isAdmin.isSelected()) newUser = new User(userName, firstName, lastName, false);
+    	else {
+    		int current= (int) System.currentTimeMillis();
+    		newUser = new Administrator(current, userName, firstName, lastName);
+    	}
+    	try {
+    		String result = MainStorage.createUser(newUser);
+			if(result.equals("Success")) {
+				alertUser("Create New User", "Success", "User created");
+			} else if(result.equals("User exists")) {
+				alertUser("Create New User", "Error", "User already exists");
+				return;
+			} else {
+				alertUser("Create New User", "Error", "Please try again later");
+				return;
+			}
+		} catch (Exception e) {
+	    	alertUser("Create New User", "Error", "Please try again later");
+	    	return;
+		}
+
     	userNameField.setText("");
     	firstNameField.setText("");
     	lastNameField.setText("");
@@ -104,20 +116,12 @@ public class AdminDashboardController extends GraphicalUserInterface {
     }
     
 	@FXML
-	public void goToUserDashboard(ActionEvent event) {
+	public void goToEntryDashboard(ActionEvent event) {
 	    try {
-	        goToView("UserEntry", event);
+	        goToView("EntryDashboard", event);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	@FXML
-	public void goToGameDashboard(ActionEvent event) {
-	    try {
-	        goToView("GameDashboard", event);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+
 }
