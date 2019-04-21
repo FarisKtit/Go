@@ -10,13 +10,13 @@
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="401.0">
          <children>
-            <Label layoutX="91.0" layoutY="147.0" text="User Name" />
-            <Label layoutX="92.0" layoutY="204.0" text="First Name" />
-            <Label layoutX="93.0" layoutY="257.0" text="Last Name" />
-            <TextField fx:id="userNameField" layoutX="192.0" layoutY="142.0" />
-            <TextField fx:id="firstNameField" layoutX="192.0" layoutY="199.0" />
-            <TextField fx:id="lastNameField" layoutX="192.0" layoutY="252.0" />
-            <Button fx:id="createUserBtn" layoutX="405.0" layoutY="199.0" mnemonicParsing="false" onAction="#createUser" text="Add" />
+            <Label layoutX="92.0" layoutY="134.0" text="User Name" />
+            <Label layoutX="93.0" layoutY="182.0" text="First Name" />
+            <Label layoutX="93.0" layoutY="226.0" text="Last Name" />
+            <TextField fx:id="userNameField" layoutX="192.0" layoutY="129.0" />
+            <TextField fx:id="firstNameField" layoutX="192.0" layoutY="177.0" />
+            <TextField fx:id="lastNameField" layoutX="192.0" layoutY="221.0" />
+            <Button fx:id="createUserBtn" layoutX="406.0" layoutY="177.0" mnemonicParsing="false" onAction="#createUser" text="Add" />
             <Label layoutX="100.0" layoutY="14.0" text="Administrator Dashboard">
                <font>
                   <Font size="24.0" />
@@ -25,6 +25,7 @@
             <Label layoutX="140.0" layoutY="84.0" text="Administrator ID:" />
             <Button layoutX="22.0" layoutY="341.0" mnemonicParsing="false" onAction="#goToUserDashboard" text="User Dashboard" />
             <Button layoutX="343.0" layoutY="341.0" mnemonicParsing="false" onAction="#goToGameDashboard" text="Game Dashboard" />
+            <CheckBox layoutX="190.0" layoutY="268.0" mnemonicParsing="false" text="Administrator" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
