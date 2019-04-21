@@ -14,18 +14,9 @@ import models.User;
 public class GameDashboardController extends GraphicalUserInterface {
 	
 	@FXML
-	public void goToUserDashboard(ActionEvent event) {
+	public void goToEntryDashboard(ActionEvent event) {
 	    try {
-	        goToView("UserEntry", event);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	@FXML
-	public void goToAdminDashboard(ActionEvent event) {
-	    try {
-	        goToView("AdminEntry", event);
+	        goToView("EntryDashboard", event);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -74,6 +65,9 @@ public class GameDashboardController extends GraphicalUserInterface {
 	    	}
 	        goToViewWithUsers("GameGrid", event, userList);
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -2,7 +2,7 @@ package controllers;
 
 import java.util.ArrayList;
 import models.Game;
-
+import models.MainStorage;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -27,8 +27,7 @@ public class GameGridController extends GraphicalUserInterface {
     public void initialize() {
       	    
     	for(int i = 0; i < 9; ++i) {
-    		for(int j = 0; j < 9; j++) {
-    			
+    		for(int j = 0; j < 9; j++) {	
     			Line line = new Line();
     			line.setStartX(15.0f);
     			line.setStartY(0.0f);
@@ -52,17 +51,18 @@ public class GameGridController extends GraphicalUserInterface {
     
     @FXML
     public void clickGrid(MouseEvent e) {
+
     	int y = (int) e.getY();
     	int x = (int) e.getX();
-
-        Integer yIndex = y / 30;
-        Integer xIndex = x / 30;
+        
+    	int nodeWidth = (int) (Grid.getWidth()/Grid.getColumnCount());
+        int yIndex = y / nodeWidth;
+        int xIndex = x / nodeWidth;
         Circle c = new Circle();
-		c.setRadius(7.5f);
+		c.setRadius((int) (Grid.getWidth()/Grid.getColumnCount())/4);
 		if(game.getUserMove().equals("Player 1")) c.setFill(javafx.scene.paint.Color.BLACK);
 		else c.setFill(javafx.scene.paint.Color.WHITE);
         if(game.placeStone(xIndex, yIndex).equals("SUCCESS")) {
-
     		GridPane.setHalignment(c, HPos.valueOf("CENTER"));
     		GridPane.setValignment(c, VPos.valueOf("CENTER"));
 
@@ -71,5 +71,31 @@ public class GameGridController extends GraphicalUserInterface {
         } else {
         	alertUser("Move", "Invalid move", "Please choose a different intersection");
         }
-    }    
+    }
+    
+    @FXML
+    public void forfeitPlayerOne() {
+    	alertUser("Forefeit", "Forefeit", "Forefeit player one");
+    	game.setLoser(game.getplayerOne().getProfile().getUserName());
+    	game.setWinner(game.getPlayerTwo().getProfile().getUserName());
+    	saveGame();
+    }
+    
+    @FXML
+    public void forfeitPlayerTwo() {
+    	alertUser("Forefeit", "Forefeit", "Forefeit player two");
+    	game.setLoser(game.getPlayerTwo().getProfile().getUserName());
+    	game.setWinner(game.getplayerOne().getProfile().getUserName());
+    	saveGame();
+    }
+    
+    private boolean saveGame() {
+    	try {
+			return MainStorage.saveGame(game);
+		} catch (Exception e) {
+			alertUser("End Game", "Error", "Cannot save game, system error");
+		}
+    	return true;
+    }
+    
 }
