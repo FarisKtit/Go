@@ -15,15 +15,32 @@ import java.util.ArrayList;
 public class MainStorage {
 	
     public static ArrayList<User> users;
+    public static ArrayList<Game> games;
 	
 	public static ArrayList<User> getUserList() throws FileNotFoundException, IOException {
 		loadUsers();
 		return users;
 	}
 	
+	public static ArrayList<Game> getGameList() throws FileNotFoundException, IOException {
+		loadGames();
+		return games;
+	}
+	
 	public static void loadUsers() throws IOException {
 		users = new ArrayList<User>();
-		users = (ArrayList<User>) readDataFromMemory("users");
+		users = (ArrayList<User>) readFromMemory("users");
+	}
+	
+	public static void loadGames() throws IOException {
+		games = new ArrayList<Game>();
+		games = (ArrayList<Game>) readFromMemory("games");
+	}
+	
+	public static boolean saveGame(Game game) throws FileNotFoundException, IOException {
+		ArrayList<Game> games = getGameList();
+		games.add(game);
+		return writeGamesToMemory(games, "games");
 	}
 	
 	public static String createUser(User user) throws FileNotFoundException, IOException {
@@ -31,14 +48,6 @@ public class MainStorage {
 		if(getUser(username) != null) {
 			return "User exists";
 		}
-		/*
-		loadUsers();
-		for(int i = 0; i < users.size(); i++) {
-			if(users.get(i).getProfile().getUserName().equals(user.getProfile().getUserName())) {
-				return "User exists";
-			}
-		}
-		*/
 		users.add(user);
 		if(writeUsersToMemory()) {
 			return "Success";
@@ -75,7 +84,7 @@ public class MainStorage {
 		return deleted;
 	}
 	
-	private static Object readDataFromMemory(String dataType) throws IOException {
+	private static Object readFromMemory(String dataType) throws IOException {
 		InputStream fileIs = null;
 		ObjectInputStream objIs = null;
 		Object data = new ArrayList<Object>();
@@ -116,6 +125,33 @@ public class MainStorage {
 			ops = new FileOutputStream("users.txt");
 			objOps = new ObjectOutputStream(ops);
 			objOps.writeObject(users);
+			objOps.flush();
+			successful = true;
+		} catch (EOFException exc) {
+			successful = false;
+		    exc.printStackTrace();
+		} finally {
+			try {
+				if(objOps != null) objOps.close();
+			} catch (Exception ex) {
+				
+			}
+		}
+		return successful;
+	}
+	
+	private static boolean writeGamesToMemory(ArrayList<Game> obj, String filename) throws IOException {
+		OutputStream ops = null;
+		ObjectOutputStream objOps = null;
+		boolean successful = false;
+		try {
+			File fileChecker = new File(filename + ".txt");
+			if(!fileChecker.exists()) {
+				fileChecker.createNewFile();
+			}
+			ops = new FileOutputStream(filename + ".txt");
+			objOps = new ObjectOutputStream(ops);
+			objOps.writeObject(obj);
 			objOps.flush();
 			successful = true;
 		} catch (EOFException exc) {
