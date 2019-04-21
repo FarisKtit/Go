@@ -22,6 +22,10 @@ public class UserEntryController extends GraphicalUserInterface {
 	public void goToUserDashboard(ActionEvent event) {
 		String userName = userNameField.getText().replaceAll("\\s+", "");
 		String userPassword = userPasswordField.getText().replaceAll("\\s+", "");
+		if(!userPassword.equals(userName + "94")) {
+			alertUser("User Dashboard", "Error", "Incorrect login details");
+			return;
+		}
 		User u = null;
 		try {
 			u = MainStorage.getUser(userName);
@@ -33,7 +37,7 @@ public class UserEntryController extends GraphicalUserInterface {
 			alertUser("User Dashboard", "Error", "Please complete all fields");
 			return;
 		} else if(u == null) {
-			alertUser("User Dashboard", "Error", "User does not exist");
+			alertUser("User Dashboard", "Error", "Incorrect login details");
 			return;
 		}
 		ArrayList<User> list = new ArrayList<User>();

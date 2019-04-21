@@ -9,9 +9,11 @@ import models.User;
 
 public class UserDashboardController extends GraphicalUserInterface {
 	
+	private User currentUser;
+	
 	public void initData(ArrayList<User> list) {
-		User user =  list.get(0);
-		System.out.println(user.getProfile().getUserName());
+		currentUser =  list.get(0);
+		System.out.println(currentUser.getProfile().getUserName());
 	}
 	
 	@FXML
