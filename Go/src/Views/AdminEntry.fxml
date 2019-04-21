@@ -19,6 +19,6 @@
          </font>
       </Label>
       <Button layoutX="374.0" layoutY="262.0" mnemonicParsing="false" onAction="#goToAdminDashboard" text="Login" />
-      <Button layoutX="14.0" layoutY="359.0" mnemonicParsing="false" onAction="#goToEntryDashboard" text="Back to Entry" />
+      <Button layoutX="14.0" layoutY="359.0" mnemonicParsing="false" onAction="#goToEntryDashboard" text="Home" />
    </children>
 </AnchorPane>
