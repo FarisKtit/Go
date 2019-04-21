@@ -18,16 +18,6 @@
             <ImageView fitHeight="72.0" fitWidth="82.0" layoutX="18.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" />
             <Button layoutX="35.0" layoutY="211.0" mnemonicParsing="false" text="Pass" />
             <Label layoutX="7.0" layoutY="139.0" text="Stones Captured" />
-            <Button layoutX="14.0" layoutY="374.0" mnemonicParsing="false" text="User Dashboard">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </Button>
-            <Button layoutX="12.0" layoutY="343.0" mnemonicParsing="false" text="Game Dashboard">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </Button>
             <Label layoutX="18.0" layoutY="267.0" text="No. of Passes" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
@@ -70,6 +60,7 @@
                   <Button layoutX="37.0" layoutY="211.0" mnemonicParsing="false" text="Pass" />
                   <Label layoutX="9.0" layoutY="138.0" text="Stones Captured" />
                   <Label layoutX="19.0" layoutY="265.0" text="No. of Passes" />
+                  <Button layoutX="21.0" layoutY="357.0" mnemonicParsing="false" text="Exit Game" />
                </children>
             </AnchorPane>
         </items>

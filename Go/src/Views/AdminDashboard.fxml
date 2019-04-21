@@ -23,8 +23,7 @@
                </font>
             </Label>
             <Label layoutX="140.0" layoutY="84.0" text="Administrator ID:" />
-            <Button layoutX="22.0" layoutY="341.0" mnemonicParsing="false" onAction="#goToUserDashboard" text="User Dashboard" />
-            <Button layoutX="343.0" layoutY="341.0" mnemonicParsing="false" onAction="#goToGameDashboard" text="Game Dashboard" />
+            <Button layoutX="197.0" layoutY="324.0" mnemonicParsing="false" onAction="#goToUserDashboard" prefHeight="41.0" prefWidth="95.0" text="Home" />
             <CheckBox layoutX="190.0" layoutY="268.0" mnemonicParsing="false" text="Administrator" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
