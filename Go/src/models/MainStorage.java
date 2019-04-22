@@ -84,7 +84,7 @@ public class MainStorage {
 		return deleted;
 	}
 	
-	private static Object readFromMemory(String dataType) throws Exception {
+	protected static Object readFromMemory(String dataType) throws Exception {
 		InputStream fileIs = null;
 		ObjectInputStream objIs = null;
 		Object data = new ArrayList<Object>();
