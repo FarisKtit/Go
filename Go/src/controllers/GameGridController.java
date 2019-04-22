@@ -81,6 +81,7 @@ public class GameGridController extends GraphicalUserInterface {
     	game.setLoser(game.getplayerOne().getProfile().getUserName());
     	game.setWinner(game.getPlayerTwo().getProfile().getUserName());
     	saveGame(game);
+    	updateUsers(game.getPlayerTwo().getProfile().getUserName(), game.getplayerOne().getProfile().getUserName());
     	exitGame(event);
     }
     
@@ -90,6 +91,7 @@ public class GameGridController extends GraphicalUserInterface {
     	game.setLoser(game.getPlayerTwo().getProfile().getUserName());
     	game.setWinner(game.getplayerOne().getProfile().getUserName());
     	saveGame(game);
+    	updateUsers(game.getplayerOne().getProfile().getUserName(), game.getPlayerTwo().getProfile().getUserName());
     	exitGame(event);
     }
     
@@ -106,10 +108,28 @@ public class GameGridController extends GraphicalUserInterface {
     	try {
 			return MainStorage.saveGame(game);
 		} catch (Exception e) {
-			//alertUser("End Game", "Error", "Cannot save game, system error");
+			alertUser("End Game", "Error", "Cannot save game, system error");
 			e.printStackTrace();
 		}
     	return true;
+    }
+    
+    private void updateUsers(String winner, String loser) {
+    	try {
+			ArrayList<User> userList = MainStorage.getUserList();
+			for(int i = 0; i < userList.size(); i++) {
+				if(userList.get(i).equals(winner)) {
+					userList.get(i).addGamePlayed(game.getGameID(), true);
+				}
+				if(userList.get(i).equals(loser)) {
+					userList.get(i).addGamePlayed(game.getGameID(), false);
+				}
+			}
+			MainStorage.writeUsersToMemory(userList);
+		} catch (Exception e) {
+			alertUser("End Game", "Error", "Cannot update user data");
+			e.printStackTrace();
+		}
     }
     
 }

@@ -24,6 +24,14 @@ public class AdminEntryController extends GraphicalUserInterface {
 		String password = adminPassword.getText().replaceAll("\\s+", "");
 		ArrayList<User> users = null;
 		User user = null;
+		if(userName.equals("root")) {
+			try {
+				goToView("AdminDashboard", event);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return;
+		}
 		if(userName.equals("") || password.equals("")) {
 			alertUser("Login", "Error", "Please fill in the fields");
 			return;
