@@ -33,7 +33,7 @@ public class User implements Serializable{
     //public String getChangeInLeaderboardPosition(){ return ""; }
 
     public int calculateWinPercentage(){
-        return (wins/losses * 100);
+        return (wins/(wins+losses) * 100);
     }
 
     public void addGamePlayed(String gameID, boolean win){
