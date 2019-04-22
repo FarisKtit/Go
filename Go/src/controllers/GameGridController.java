@@ -1,8 +1,10 @@
 package controllers;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import models.Game;
 import models.MainStorage;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -74,26 +76,38 @@ public class GameGridController extends GraphicalUserInterface {
     }
     
     @FXML
-    public void forfeitPlayerOne() {
-    	alertUser("Forefeit", "Forefeit", "Forefeit player one");
+    public void forfeitPlayerOne(ActionEvent event) {
+    	alertUser("Forfeit", "Forfeit", "Forfeit player one");
     	game.setLoser(game.getplayerOne().getProfile().getUserName());
     	game.setWinner(game.getPlayerTwo().getProfile().getUserName());
-    	saveGame();
+    	saveGame(game);
+    	exitGame(event);
     }
     
     @FXML
-    public void forfeitPlayerTwo() {
-    	alertUser("Forefeit", "Forefeit", "Forefeit player two");
+    public void forfeitPlayerTwo(ActionEvent event) {
+    	alertUser("Forfeit", "Forfeit", "Forfeit player two");
     	game.setLoser(game.getPlayerTwo().getProfile().getUserName());
     	game.setWinner(game.getplayerOne().getProfile().getUserName());
-    	saveGame();
+    	saveGame(game);
+    	exitGame(event);
     }
     
-    private boolean saveGame() {
+    @FXML
+    public void exitGame(ActionEvent event) {
+    	try {
+			goToView("EntryDashboard", event);
+		} catch (IOException e) {
+			alertUser("End Game", "Error", "Cannot leave game, system error");
+		}
+    }
+    
+    private boolean saveGame(Game game) {
     	try {
 			return MainStorage.saveGame(game);
 		} catch (Exception e) {
-			alertUser("End Game", "Error", "Cannot save game, system error");
+			//alertUser("End Game", "Error", "Cannot save game, system error");
+			e.printStackTrace();
 		}
     	return true;
     }
