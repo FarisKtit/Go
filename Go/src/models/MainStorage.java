@@ -49,7 +49,7 @@ public class MainStorage {
 			return "User exists";
 		}
 		users.add(user);
-		if(writeUsersToMemory()) {
+		if(writeUsersToMemory(users)) {
 			return "Success";
 		} else {
 			return "Error";
@@ -78,7 +78,7 @@ public class MainStorage {
 		if(deleted.equals("No user")) {
 			return deleted;
 		}
-		if(!writeUsersToMemory()) {
+		if(!writeUsersToMemory(users)) {
 			deleted = "Error";
 		}
 		return deleted;
@@ -111,7 +111,7 @@ public class MainStorage {
 		return data;
 	}
 	
-	private static boolean writeUsersToMemory() throws IOException {
+	public static boolean writeUsersToMemory(ArrayList<User> userList) throws IOException {
 		OutputStream ops = null;
 		ObjectOutputStream objOps = null;
 		boolean successful = false;
@@ -122,7 +122,7 @@ public class MainStorage {
 			}
 			ops = new FileOutputStream("users.txt");
 			objOps = new ObjectOutputStream(ops);
-			objOps.writeObject(users);
+			objOps.writeObject(userList);
 			objOps.flush();
 			successful = true;
 		} catch (EOFException exc) {
