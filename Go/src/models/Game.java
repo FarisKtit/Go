@@ -1,6 +1,9 @@
 package models;
 
-public class Game {
+import java.io.Serializable;
+
+public class Game implements Serializable {
+  
   private Board board;
   private String userMove; 
   private User storeplayerOne;
@@ -9,7 +12,8 @@ public class Game {
   private User storeplayerTwo;
   private String gameID;
   private String Winner;
-  private String Loser;  
+  private String Loser;
+  private static final long serialVersionUID = 1L;
   
   public Game (User U1, User U2){
 	  this.storeplayerOne = U1;
@@ -72,4 +76,7 @@ public class Game {
   public void setLoser(String Loser){
     this.Loser = Loser;
   }
+  
+  public String toString() {
+	  return storeplayerOne+"=="+storeplayerTwo+"=="+Winner+"=="+Loser+"=="+board+"=="+userMove+"=="+PlayerOnePasses+"=="+PlayerTwoPasses+"=="+gameID;  }
 }

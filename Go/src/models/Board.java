@@ -1,7 +1,9 @@
 package models;
 
-public class Board {
-	
+import java.io.Serializable;
+
+public class Board implements Serializable {
+	private static final long serialVersionUID = 1L;
 	// size of the board
 	private int size = 9;
 	// grid intersection
@@ -44,4 +46,7 @@ public class Board {
 		}
 		return true;
 	}
+	  public String toString() {
+	      return size+"=="+board+"=="+player2+"=="+player1;
+	  }
 }

@@ -40,7 +40,7 @@ public class MainStorage {
 	public static boolean saveGame(Game game) throws Exception {
 		ArrayList<Game> games = getGameList();
 		games.add(game);
-		return writeGamesToMemory(games, "games");
+		return writeGamesToMemory();
 	}
 	
 	public static String createUser(User user) throws Exception {
@@ -138,18 +138,18 @@ public class MainStorage {
 		return successful;
 	}
 	
-	private static boolean writeGamesToMemory(ArrayList<Game> obj, String filename) throws IOException {
+	private static boolean writeGamesToMemory() throws IOException {
 		OutputStream ops = null;
 		ObjectOutputStream objOps = null;
 		boolean successful = false;
 		try {
-			File fileChecker = new File(filename + ".txt");
+			File fileChecker = new File("games.txt");
 			if(!fileChecker.exists()) {
 				fileChecker.createNewFile();
 			}
-			ops = new FileOutputStream(filename + ".txt");
+			ops = new FileOutputStream("games.txt");
 			objOps = new ObjectOutputStream(ops);
-			objOps.writeObject(obj);
+			objOps.writeObject(games);
 			objOps.flush();
 			successful = true;
 		} catch (EOFException exc) {
