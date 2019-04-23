@@ -54,7 +54,7 @@ public class User implements Serializable{
         return this.gamesPlayed;
     }
 
-    public int calculateWinPercentage(){
+    public double calculateWinPercentage(){
         return (wins/(wins+losses) * 100);
     }
 
