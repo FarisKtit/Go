@@ -69,10 +69,8 @@ public class UserStorage extends MainStorage {
         return result;
     }
 
-
-
     public static ArrayList<Game> gamesPlayedSinceLastLogin(LocalDateTime lastLoggedIn) throws Exception {
-        ArrayList<Game> result = new ArrayList<User>();
+        ArrayList<Game> result = new ArrayList<Game>();
         for (int i = 0; i < games.size(); i++)
         {
             if (games.get(i).getGameDate().isAfter(lastLoggedIn)){
