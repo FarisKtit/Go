@@ -27,8 +27,16 @@ public class UserProfile implements Serializable{
     public ProfileImage getProfileImage(){
         return profileImage;
     }
+
+    public void setProfileImage(ProfileImage profileImage) {
+        this.profileImage = profileImage;
+    }
+
     public int getWinPercentage(){
         return winPercentage;
+    }
+    public void setWinPercentage(int winPercentage){
+        this.winPercentage = winPercentage;
     }
     public void setUserName(String userName){
         this.userName = userName;
@@ -38,9 +46,6 @@ public class UserProfile implements Serializable{
     }
     public void setLastName(String lastName){
         this.lastName = lastName;
-    }
-    public void setWinPercentage(int winPercentage){
-        this.winPercentage = winPercentage;
     }
     public String toString() {
         return userName+"=="+firstName+"=="+lastName+"=="+winPercentage+"=="+profileImage;
