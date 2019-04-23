@@ -4,7 +4,7 @@ public class ProfileImage {
  public ProfileImage (String input) {
  this.URL = input;
  }
- public string getURL () {
+ public String getURL () {
  return this.URL;
  }
  public void setURL (String input) {

@@ -66,6 +66,20 @@ public class MainStorage {
 		return null;
 	}
 	
+	public static boolean updateUser(User obj) throws Exception {
+		String userName = obj.getProfile().getUserName();
+		ArrayList<User> users = getUserList();
+		boolean updated = false;
+		for(int i = 0; i < users.size(); i++) {
+			if(users.get(i).getProfile().getUserName().equals(userName)) {
+				users.set(i, obj);
+				updated = true;
+			}
+		}
+		writeUsersToMemory(users);
+		return updated;
+	}
+	
 	public static String deleteUser(String userName) throws Exception {
 		loadUsers();
 		String deleted = "No user";
