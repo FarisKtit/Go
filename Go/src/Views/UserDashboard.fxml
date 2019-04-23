@@ -39,45 +39,45 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
-            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
-            <ImageView fitHeight="69.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2" />
-            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="Select" GridPane.columnIndex="1">
+            <ImageView fx:id="imageOne" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imageTwo" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
+            <ImageView fx:id="imageThree" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
+            <ImageView fx:id="imageFour" fitHeight="69.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <ImageView fx:id="imageFive" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2" />
+            <ImageView fx:id="imageSix" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#selectImageOne" text="Select" GridPane.columnIndex="1">
                <font>
                   <Font size="9.0" />
                </font>
             </Button>
-            <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="Select" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#selectImageThree" text="Select" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="9.0" />
                </font>
             </Button>
-            <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="Select" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#selectImageFive" text="Select" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font size="9.0" />
                </font>
             </Button>
-            <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="Select" GridPane.columnIndex="3">
+            <Button fx:id="selectImageTwo" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="Select" GridPane.columnIndex="3">
                <font>
                   <Font size="9.0" />
                </font>
             </Button>
-            <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="Select" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#selectImageFour" text="Select" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <font>
                   <Font size="9.0" />
                </font>
             </Button>
-            <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="Select" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#selectImageSix" text="Select" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <font>
                   <Font size="9.0" />
                </font>
             </Button>
          </children>
       </GridPane>
-      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="130.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="profileImage" fitHeight="100.0" fitWidth="100.0" layoutX="130.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
       <Label layoutX="37.0" layoutY="47.0" text="User Image:" />
    </children>
 
