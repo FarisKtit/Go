@@ -30,8 +30,7 @@ public class Leaderboard {
 
 	}
 
-	public static Map<User, Double> sortHashMapByValues(
-			Map<User, Double> leaderTable) {
+	public static Map<User, Double> sortHashMapByValues(Map<User, Double> leaderTable) {
 		List<User> mapKeys = new ArrayList<>(leaderTable.keySet());
 		List<Double> mapValues = new ArrayList<>(leaderTable.values());
 		Collections.sort(mapValues);
@@ -41,6 +40,7 @@ public class Leaderboard {
 
 		Iterator<Double> valueIt = mapValues.iterator();
 		while (valueIt.hasNext()) {
+			boolean declare = false;
 			Double val = valueIt.next();
 			Iterator<User> keyIt = mapKeys.iterator();
 
@@ -49,10 +49,10 @@ public class Leaderboard {
 				Double comp1 = leaderTable.get(key);
 				Double comp2 = val;
 
-				if (comp1 <= comp2  && sortedMap.get(key)==null) {
+				if (comp1 <= comp2  && sortedMap.get(key)==null && declare) {
 					keyIt.remove();
 					sortedMap.put(key, val);
-					break;
+					declare = true;
 				}
 			}
 		}
