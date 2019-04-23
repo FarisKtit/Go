@@ -9,7 +9,6 @@ public class User implements Serializable{
     private LocalDateTime lastLoggedIn;
     private LocalDateTime joinDate;
     private ArrayList<String> gamesPlayed;
-   // private String[] newPlayers;
     private int wins;
     private int losses;
     private boolean isAdmin;
@@ -20,20 +19,26 @@ public class User implements Serializable{
         this.lastLoggedIn = LocalDateTime.MIN;
         this.joinDate = LocalDateTime.now();
         this.gamesPlayed = new ArrayList<String>();
-        //this.newPlayers = new String[9];
         this.isAdmin = isAdmin;
         this.wins = 0;
         this.losses = 0;
     }
 
-    //public int getGamesPlayedSinceLastLogin(){ return 0;}
+    public UserProfile getProfile(){
+        return this.profile;
+    }
 
-    //public String getNewPlayersSinceLastLogin(){ return ""; }
+    public void onLogIn(){
+        lastLoggedIn = LocalDateTime.now();
 
-    //public String getChangeInLeaderboardPosition(){ return ""; }
+    }
 
-    public int calculateWinPercentage(){
-        return (wins/(wins+losses) * 100);
+    public LocalDateTime getLastLoggedIn() {
+        return this.lastLoggedIn;
+    }
+
+    public LocalDateTime getJoinDate() {
+        return this.joinDate;
     }
 
     public void addGamePlayed(String gameID, boolean win){
@@ -49,19 +54,19 @@ public class User implements Serializable{
         return this.gamesPlayed;
     }
 
-    public UserProfile getProfile(){
-        return this.profile;
+    public int calculateWinPercentage(){
+        return (wins/(wins+losses) * 100);
+    }
+
+    public int getWins(){
+       return this.wins;
+    }
+
+    public int getLosses(){
+        return this.losses;
     }
 
     public boolean isAdmin(){return isAdmin;}
-
-    public LocalDateTime getJoinDate() {
-        return this.joinDate;
-    }
-
-    public LocalDateTime getLastLoggedIn() {
-        return this.lastLoggedIn;
-    }
 
     public String toString() {
         return profile+"=="+lastLoggedIn+"=="+joinDate+"=="+gamesPlayed+"=="+wins+"=="
