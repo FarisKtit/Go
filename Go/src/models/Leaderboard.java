@@ -9,11 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Leaderboard {
-	
-	public static void main(String[] args) throws Exception {
-		//Leaderboard l = new Leaderboard();
-		//l.showLeaders();
-	}
 
 	public static Map<User, Double> showLeaders() throws Exception {
 		ArrayList<User> allUsers = MainStorage.getUserList();
@@ -21,12 +16,7 @@ public class Leaderboard {
 		for (User user : allUsers) {
 			leaderTable.put(user, user.calculateWinPercentage());
 		}
-		System.out.println("map before sorting by values in descending order: "
-				+ leaderTable);
 		Map<User, Double> sorted = sortHashMapByValues(leaderTable);
-
-		System.out.println("map after sorting by values in descending order: "
-				+ sorted);
         return sorted;
 	}
 
