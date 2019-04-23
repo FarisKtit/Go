@@ -26,23 +26,23 @@ public class Leaderboard {
 		Collections.sort(mapValues);
 		// Collections.sort(mapKeys);
 
-		LinkedHashMap<User, Double> sortedMap = new LinkedHashMap<User, Double>();
+		LinkedHashMap <User, Double> sortedMap = new LinkedHashMap<User, Double>();
 
 		Iterator<Double> valueIt = mapValues.iterator();
 		while (valueIt.hasNext()) {
-			boolean declare = false;
+			boolean exit = false;
 			Double val = valueIt.next();
 			Iterator<User> keyIt = mapKeys.iterator();
 
-			while (keyIt.hasNext()) {
+			while (keyIt.hasNext() && (!exit)) {
 				User key = keyIt.next();
 				Double comp1 = leaderTable.get(key);
 				Double comp2 = val;
 
-				if (comp1 <= comp2  && sortedMap.get(key)==null && declare) {
+				if (comp1 <= comp2  && sortedMap.get(key)==null) {
 					keyIt.remove();
 					sortedMap.put(key, val);
-					declare = true;
+					exit = true;
 				}
 			}
 		}

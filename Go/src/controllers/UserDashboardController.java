@@ -71,6 +71,7 @@ public class UserDashboardController extends GraphicalUserInterface {
 			}
 			for(int k = 0; k < leaderBoardReversed.size(); k++) {
 				String userName = leaderBoardReversed.get(k).getProfile().getUserName();
+				System.out.println(userName);
 				String winPct = Double.toString(leaderBoardReversed.get(k).calculateWinPercentage());
 				obs.add(userName + ", win pct: " + winPct);
 			}
