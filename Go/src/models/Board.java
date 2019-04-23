@@ -41,7 +41,7 @@ public class Board implements Serializable {
 		for (int row = 0; row < board.length; ++row) {
 			for (int column = 0; column < board[row].length; ++column) {
 				if (board[row][column] == oppositePlayer) {
-					connectedStones = new boolean[9][9];
+					connectedStones = new boolean[size][size];
 					findConnectedStones(row, column, oppositePlayer, connectedStones);
 					isCaptured = isCaptured(oppositePlayer, connectedStones);
 				}
