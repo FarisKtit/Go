@@ -20,11 +20,11 @@
          </font>
       </Label>
       <Button fx:id="EntryDashboardBtn" layoutX="450.0" layoutY="335.0" mnemonicParsing="false" onAction="#goToEntryDashboard" prefHeight="42.0" prefWidth="153.0" text="Home" />
-      <ListView layoutX="265.0" layoutY="133.0" prefHeight="187.0" prefWidth="153.0" />
+      <ListView fx:id="gamesPlayedListView" layoutX="265.0" layoutY="133.0" prefHeight="187.0" prefWidth="153.0" />
       <Label layoutX="440.0" layoutY="111.0" text="New Users Since Last Login" />
       <ListView layoutX="425.0" layoutY="133.0" prefHeight="187.0" prefWidth="200.0" />
       <Label layoutX="670.0" layoutY="111.0" text="Leaderboard" />
-      <ListView layoutX="633.0" layoutY="133.0" prefHeight="187.0" prefWidth="153.0" />
+      <ListView fx:id="leaderBoardListView" layoutX="633.0" layoutY="133.0" prefHeight="187.0" prefWidth="153.0" />
       <Label layoutX="74.0" layoutY="111.0" text="Select your Avatar" />
       <GridPane layoutX="4.0" layoutY="133.0" pickOnBounds="false" prefHeight="259.0" prefWidth="252.0" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="544.0" AnchorPane.topAnchor="133.0">
         <columnConstraints>

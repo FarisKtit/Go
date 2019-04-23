@@ -11,11 +11,11 @@ import java.util.Map;
 public class Leaderboard {
 	
 	public static void main(String[] args) throws Exception {
-		Leaderboard l = new Leaderboard();
-		l.showLeaders();
+		//Leaderboard l = new Leaderboard();
+		//l.showLeaders();
 	}
 
-	public void showLeaders() throws Exception {
+	public static Map<User, Double> showLeaders() throws Exception {
 		ArrayList<User> allUsers = MainStorage.getUserList();
 		Map<User, Double> leaderTable = new HashMap<User, Double>();
 		for (User user : allUsers) {
@@ -27,7 +27,7 @@ public class Leaderboard {
 
 		System.out.println("map after sorting by values in descending order: "
 				+ sorted);
-
+        return sorted;
 	}
 
 	public static Map<User, Double> sortHashMapByValues(

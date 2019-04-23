@@ -110,21 +110,23 @@ public class GameGridController extends GraphicalUserInterface {
     
     @FXML
     public void forfeitPlayerOne(ActionEvent event) {
-    	alertUser("Forfeit", "Forfeit", "Forfeit player one");
+    	
     	game.setLoser(game.getplayerOne().getProfile().getUserName());
     	game.setWinner(game.getPlayerTwo().getProfile().getUserName());
-    	saveGame(game);
     	updateUsers(game.getPlayerTwo().getProfile().getUserName(), game.getplayerOne().getProfile().getUserName());
+    	saveGame(game);
+    	alertUser("Forfeit", "Forfeit", "Forfeit player one");
     	exitGame(event);
     }
     
     @FXML
     public void forfeitPlayerTwo(ActionEvent event) {
-    	alertUser("Forfeit", "Forfeit", "Forfeit player two");
+    	
     	game.setLoser(game.getPlayerTwo().getProfile().getUserName());
     	game.setWinner(game.getplayerOne().getProfile().getUserName());
-    	saveGame(game);
     	updateUsers(game.getplayerOne().getProfile().getUserName(), game.getPlayerTwo().getProfile().getUserName());
+    	saveGame(game);
+    	alertUser("Forfeit", "Forfeit", "Forfeit player two");
     	exitGame(event);
     }
     
@@ -151,10 +153,10 @@ public class GameGridController extends GraphicalUserInterface {
     	try {
 			ArrayList<User> userList = MainStorage.getUserList();
 			for(int i = 0; i < userList.size(); i++) {
-				if(userList.get(i).equals(winner)) {
+				if(userList.get(i).getProfile().getUserName().equals(winner)) {
 					userList.get(i).addGamePlayed(game.getGameID(), true);
 				}
-				if(userList.get(i).equals(loser)) {
+				if(userList.get(i).getProfile().getUserName().equals(loser)) {
 					userList.get(i).addGamePlayed(game.getGameID(), false);
 				}
 			}
