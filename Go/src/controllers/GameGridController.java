@@ -2,13 +2,17 @@ package controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import models.Board;
 import models.Game;
 import models.MainStorage;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
+import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Circle;
@@ -62,17 +66,46 @@ public class GameGridController extends GraphicalUserInterface {
         int xIndex = x / nodeWidth;
         Circle c = new Circle();
 		c.setRadius((int) (Grid.getWidth()/Grid.getColumnCount())/4);
-		if(game.getUserMove().equals("Player 1")) c.setFill(javafx.scene.paint.Color.BLACK);
-		else c.setFill(javafx.scene.paint.Color.WHITE);
-        if(game.placeStone(xIndex, yIndex).equals("SUCCESS")) {
+		int oppositePlayer = 0;
+		if(game.getUserMove().equals("Player 1")) {
+			oppositePlayer = 2;
+			c.setFill(javafx.scene.paint.Color.BLACK);
+		} else { 
+			oppositePlayer = 1;
+			c.setFill(javafx.scene.paint.Color.WHITE);
+		}
+        if(game.placeStone(yIndex, xIndex).equals("SUCCESS")) {
     		GridPane.setHalignment(c, HPos.valueOf("CENTER"));
     		GridPane.setValignment(c, VPos.valueOf("CENTER"));
 
     		Grid.add(c, xIndex, yIndex);
+    		
         	
         } else {
         	alertUser("Move", "Invalid move", "Please choose a different intersection");
         }
+        Board b = game.getBoard();
+		boolean[][] connected = b.connectedStones(oppositePlayer);
+		if(connected != null) {
+		  b.replaceConnectedStones(connected);
+		  for(int i = 0; i < connected.length; i++) {
+		    for(int j = 0; j < connected[i].length; j++) {
+			  if(connected[i][j]) {
+				removeCircle(Grid, i, j);
+			  }
+			}		
+		  }
+	   }
+    }
+    
+    public void removeCircle(GridPane grid, int row, int column) {
+    	ObservableList<Node> childrens = grid.getChildren();
+    	for(Node node : childrens) {
+    	    if(node instanceof Circle && grid.getRowIndex(node) == row && grid.getColumnIndex(node) == column) {
+    	        grid.getChildren().remove(node);
+    	        break;
+    	    }
+    	}
     }
     
     @FXML

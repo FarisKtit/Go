@@ -36,7 +36,7 @@
             <Label layoutX="51.0" layoutY="282.0" text="User Name" />
             <TextField fx:id="deleteUserField" layoutX="141.0" layoutY="277.0" prefHeight="27.0" prefWidth="116.0" />
             <Button fx:id="deleteUserBtn" layoutX="124.0" layoutY="332.0" mnemonicParsing="false" onAction="#deleteUser" text="Delete" />
-            <ListView layoutX="30.0" layoutY="70.0" prefHeight="184.0" prefWidth="251.0" />
+            <ListView fx:id="userListView" layoutX="30.0" layoutY="70.0" prefHeight="184.0" prefWidth="251.0" />
             <Label layoutX="43.0" layoutY="53.0" text="userName" />
             <Label layoutX="127.0" layoutY="53.0" text="firstName" />
             <Label layoutX="207.0" layoutY="53.0" text="lastName" />

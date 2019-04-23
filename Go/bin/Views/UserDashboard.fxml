@@ -39,12 +39,30 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ImageView fx:id="imageOne" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="imageTwo" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
-            <ImageView fx:id="imageThree" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
-            <ImageView fx:id="imageFour" fitHeight="69.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <ImageView fx:id="imageFive" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2" />
-            <ImageView fx:id="imageSix" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <ImageView fx:id="imageOne" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../emoticons/emoticon-1.png" />
+               </image></ImageView>
+            <ImageView fx:id="imageTwo" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+               <image>
+                  <Image url="@../../emoticons/emoticon-2.png" />
+               </image></ImageView>
+            <ImageView fx:id="imageThree" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../../emoticons/emoticon-3.png" />
+               </image></ImageView>
+            <ImageView fx:id="imageFour" fitHeight="69.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../../emoticons/emoticon-4.png" />
+               </image></ImageView>
+            <ImageView fx:id="imageFive" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+               <image>
+                  <Image url="@../../emoticons/emoticon-5.png" />
+               </image></ImageView>
+            <ImageView fx:id="imageSix" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <image>
+                  <Image url="@../../emoticons/emoticon-6.png" />
+               </image></ImageView>
             <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#selectImageOne" text="Select" GridPane.columnIndex="1">
                <font>
                   <Font size="9.0" />
