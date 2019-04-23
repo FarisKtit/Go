@@ -1,9 +1,11 @@
 package models;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 public class Game implements Serializable {
   
+  private LocalDateTime gameDate;
   private Board board;
   private String userMove; 
   private User storeplayerOne;
@@ -19,6 +21,8 @@ public class Game implements Serializable {
 	  this.storeplayerOne = U1;
 	  this.storeplayerTwo = U2;
 	  this.board = new Board();
+	  this.gameID = U1.getProfile().getUserName() + " vs " + U2.getProfile().getUserName();
+	  this.gameDate = LocalDateTime.now();
 	  userMove = "Player 1";
   }
   
@@ -39,6 +43,10 @@ public class Game implements Serializable {
       return "Player two reached 3 passes";
     }
     return "Ok";
+  }
+  
+  public LocalDateTime getGameDate() {
+	  return this.gameDate;
   }
   
   public String getUserMove() {

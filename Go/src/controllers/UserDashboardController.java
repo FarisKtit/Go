@@ -3,10 +3,10 @@ package controllers;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import models.MainStorage;
 import models.ProfileImage;
 import models.User;
@@ -26,6 +26,21 @@ public class UserDashboardController extends GraphicalUserInterface {
 	        Image i = new Image(url);
 	        profileImage.setImage(i);
 	}
+	
+	@FXML
+	private ImageView profileImage;
+	@FXML
+	private ImageView imageOne;
+	@FXML
+	private ImageView imageTwo;
+	@FXML
+	private ImageView imageThree;
+	@FXML
+	private ImageView imageFour;
+	@FXML
+	private ImageView imageFive;
+	@FXML
+	private ImageView imageSix;
 	
 	public void selectImageOne() {
         ProfileImage pf = new ProfileImage(new File("emoticons/emoticon-1.png").toURI().toString());
