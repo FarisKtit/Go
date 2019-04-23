@@ -1,10 +1,14 @@
 package controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
+import models.MainStorage;
+import models.ProfileImage;
 import models.User;
 
 public class UserDashboardController extends GraphicalUserInterface {
@@ -14,7 +18,7 @@ public class UserDashboardController extends GraphicalUserInterface {
 	public void initData(ArrayList<User> list) {
 		currentUser =  list.get(0);
 		System.out.println(currentUser.getProfile().getUserName());
-	        if (currentUser.getProfile().getProfileImage() == null) {
+	    if (currentUser.getProfile().getProfileImage() == null) {
 	        ProfileImage pf = new ProfileImage(new File("emoticons/emoticon-1.png").toURI().toString());
 	        currentUser.getProfile().setProfileImage(pf);
 		}
