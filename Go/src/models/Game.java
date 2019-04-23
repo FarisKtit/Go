@@ -76,7 +76,9 @@ public class Game implements Serializable {
   public void setLoser(String Loser){
     this.Loser = Loser;
   }
-  
+  public Board getBoard() {
+	  return this.board;
+  }
   public String toString() {
 	  return storeplayerOne+"=="+storeplayerTwo+"=="+Winner+"=="+Loser+"=="+board+"=="+userMove+"=="+PlayerOnePasses+"=="+PlayerTwoPasses+"=="+gameID;  }
 }
