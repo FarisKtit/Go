@@ -3,10 +3,16 @@ package controllers;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import models.Leaderboard;
 import models.MainStorage;
 import models.ProfileImage;
 import models.User;
@@ -15,18 +21,10 @@ public class UserDashboardController extends GraphicalUserInterface {
 	
 	private User currentUser;
 	
-	public void initData(ArrayList<User> list) {
-		currentUser =  list.get(0);
-		System.out.println(currentUser.getProfile().getUserName());
-	    if (currentUser.getProfile().getProfileImage() == null) {
-	        ProfileImage pf = new ProfileImage(new File("emoticons/emoticon-1.png").toURI().toString());
-	        currentUser.getProfile().setProfileImage(pf);
-		}
-	        String url = currentUser.getProfile().getProfileImage().getURL();
-	        Image i = new Image(url);
-	        profileImage.setImage(i);
-	}
-	
+	@FXML
+	private ListView<String> leaderBoardListView;
+	@FXML
+	private ListView<String> gamesPlayedListView;
 	@FXML
 	private ImageView profileImage;
 	@FXML
@@ -42,14 +40,59 @@ public class UserDashboardController extends GraphicalUserInterface {
 	@FXML
 	private ImageView imageSix;
 	
+	public void initData(ArrayList<User> list) {
+		currentUser =  list.get(0);
+		currentUser.onLogIn();
+		try {
+			MainStorage.updateUser(currentUser);
+		} catch (Exception e1) {
+			alertUser("Last logged in", "Error", "Could not update last logged in date");
+		}
+		
+	    if (currentUser.getProfile().getProfileImage() == null) {
+	        ProfileImage pf = new ProfileImage(new File("emoticons/emoticon-1.png").toURI().toString());
+	        currentUser.getProfile().setProfileImage(pf);
+		}
+	    String url = currentUser.getProfile().getProfileImage().getURL();
+	    Image i = new Image(url);
+	    profileImage.setImage(i);
+	    
+	    Map<User, Double> leaders = null;
+	    
+	    ObservableList<String> obs = FXCollections.observableArrayList();
+	    leaderBoardListView.setItems(obs);
+
+	    try {
+			leaders = Leaderboard.showLeaders();
+			ArrayList<User> leaderBoard = new ArrayList<User>(leaders.keySet());
+			ArrayList<User> leaderBoardReversed = new ArrayList<User>();
+			for(int j = (leaderBoard.size() - 1); j > -1; j--) {
+				leaderBoardReversed.add(leaderBoard.get(j));
+			}
+			for(int k = 0; k < leaderBoardReversed.size(); k++) {
+				String userName = leaderBoardReversed.get(k).getProfile().getUserName();
+				String winPct = Double.toString(leaderBoardReversed.get(k).calculateWinPercentage());
+				obs.add(userName + ", win pct: " + winPct);
+			}
+			
+		} catch (Exception e) {
+			alertUser("Leaderboard", "Error", "Could not load leaderboard");
+		    return;
+		}
+	    ArrayList<String> gamesPlayed = currentUser.getGamesPlayed();
+	    ObservableList<String> gamesPlayedList = FXCollections.observableArrayList();
+	    gamesPlayedListView.setItems(gamesPlayedList);
+	    for(int k = 0; k < gamesPlayed.size(); k++) {
+	    	gamesPlayedList.add(gamesPlayed.get(k));
+	    }
+	}
+	
 	public void selectImageOne() {
         ProfileImage pf = new ProfileImage(new File("emoticons/emoticon-1.png").toURI().toString());
         updateUserImage(pf);
-
 	}
 	
 	public void selectImageTwo() {
-		
 		ProfileImage pf = new ProfileImage(new File("emoticons/emoticon-2.png").toURI().toString());
         updateUserImage(pf);
 	}
@@ -98,6 +141,7 @@ public class UserDashboardController extends GraphicalUserInterface {
 		    return;
 		}
 	}
+	
 	@FXML
 	public void goToEntryDashboard(ActionEvent event) {
 	    try {
@@ -107,21 +151,4 @@ public class UserDashboardController extends GraphicalUserInterface {
 		}
 	}
 	
-	@FXML
-	public void goToGameDashboard(ActionEvent event) {
-	    try {
-	        goToView("GameDashboard", event);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	@FXML
-	public void goToAdminDashboard(ActionEvent event) {
-	    try {
-	        goToView("AdminEntry", event);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 }

@@ -55,7 +55,8 @@ public class User implements Serializable{
     }
 
     public double calculateWinPercentage(){
-        return (wins/(wins+losses) * 100);
+    	if((wins + losses) == 0) return 0d;
+        return ((wins/(wins+losses)) * 100);
     }
 
     public int getWins(){
