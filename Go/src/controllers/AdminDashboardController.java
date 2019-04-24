@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import models.Administrator;
@@ -27,9 +28,12 @@ public class AdminDashboardController extends GraphicalUserInterface {
     private TextField lastNameField;
     @FXML
     private CheckBox isAdmin;
+    @FXML
+    private Label adminIdLabel;
     
     public void initData(ArrayList<User> list) {
 		Administrator currentUser = (Administrator) list.get(0);
+		//adminIdLabel.setText("Administrator ID: " + currentUser);
 	}
     
     @FXML
