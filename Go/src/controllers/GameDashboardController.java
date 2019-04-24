@@ -46,12 +46,12 @@ public class GameDashboardController extends GraphicalUserInterface {
 		String playerOne = playerOneField.getText().replaceAll("\\s+", "");
 		String playerTwo = playerTwoField.getText().replaceAll("\\s+", "");
 		//Check if either input field is empty.
-		if((playerOne.equals("")) || (playerTwo.equals(""))) {
+		if ((playerOne.equals("")) || (playerTwo.equals(""))) {
 			alertUser("Start Game", "Error", "Please make sure players are selected");
 			return;
 		}
 		//Make sure two unique users have been selected.
-		if(playerOne.equals(playerTwo)) {
+		if (playerOne.equals(playerTwo)) {
 			alertUser("Start Game", "Error", "Please make sure different players are selected");
 			return;
 		}
@@ -61,10 +61,10 @@ public class GameDashboardController extends GraphicalUserInterface {
 	    	User player1 = null;
 	    	User player2 = null;
 	    	ArrayList<User> userList = new ArrayList<User>();
-	    	for(int i = 0; i < list.size(); i++) {
+	    	for (int i = 0; i < list.size(); i++) {
 	    		//If they are an admin they should be instantiated as one, otherwise as a User.
-	    		if(list.get(i).getProfile().getUserName().equals(playerOne)) {	
-	    			if(list.get(i).isAdmin()) {
+	    		if (list.get(i).getProfile().getUserName().equals(playerOne)) {	
+	    			if (list.get(i).isAdmin()) {
 	    				player1 = (Administrator) list.get(i);
 	    				userList.add(player1);
 	    			} else {
@@ -74,9 +74,9 @@ public class GameDashboardController extends GraphicalUserInterface {
 	    		} 
 	    	}
 	    	//Carry out same logic for second user.
-	    	for(int i = 0; i < list.size(); i++) {
-		    	if(list.get(i).getProfile().getUserName().equals(playerTwo)) {
-	    			if(list.get(i).isAdmin()) {
+	    	for (int i = 0; i < list.size(); i++) {
+		    	if (list.get(i).getProfile().getUserName().equals(playerTwo)) {
+	    			if (list.get(i).isAdmin()) {
 	    				player2 = (Administrator) list.get(i);
 	    				userList.add(player2);
 	    			} else {
@@ -86,7 +86,7 @@ public class GameDashboardController extends GraphicalUserInterface {
 	    		}
 	    	}
 	    	//If either of the users are still null, they do not exist as real users.
-	    	if(player1 == null || player2 == null) {
+	    	if (player1 == null || player2 == null) {
 	    		//Alert to user then return.
 	    		alertUser("Start Game", "Error", "Please enter correct usernames");
 	    		return;

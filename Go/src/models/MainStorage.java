@@ -1,6 +1,5 @@
 package models;
 
-import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -17,8 +16,8 @@ import java.util.ArrayList;
  *
  */
 public class MainStorage {
-	
-    public static ArrayList<Game> games;
+	//Store games retrieved from disk
+    private static ArrayList<Game> games;
 	
     /**
      * Provides the ability to read saved games from files.
@@ -26,6 +25,7 @@ public class MainStorage {
      * @throws Exception
      */
 	public static ArrayList<Game> getGameList() throws Exception {
+		//Any other class requires a list of users can use this method.
 		loadGames();
 		return games;
 	}
@@ -37,6 +37,7 @@ public class MainStorage {
 	 * @throws Exception
 	 */
 	public static boolean saveGame(Game game) throws Exception {
+		//Save game to disk so it is permanent.
 		ArrayList<Game> games = getGameList();
 		games.add(game);
 		return writeGamesToMemory();
@@ -48,28 +49,31 @@ public class MainStorage {
 	 * @return
 	 * @throws IOException
 	 */
-	public static boolean writeUsersToMemory(ArrayList<User> userList) throws IOException {
+	public static boolean writeUsersToMemory(ArrayList<User> userList) throws Exception {
+		//Throw exception and let calling method respond, usually controller
+		//will manage this with the GUI.
+		//Write arraylist of users to file users.txt
 		OutputStream ops = null;
 		ObjectOutputStream objOps = null;
 		boolean successful = false;
 		try {
+			//Check if file exists, if not create a new one.
 			File fileChecker = new File("users.txt");
 			if(!fileChecker.exists()) {
 				fileChecker.createNewFile();
 			}
+			//Write to disk
 			ops = new FileOutputStream("users.txt");
 			objOps = new ObjectOutputStream(ops);
 			objOps.writeObject(userList);
 			objOps.flush();
 			successful = true;
-		} catch (EOFException exc) {
-			successful = false;
-		    exc.printStackTrace();
 		} finally {
 			try {
-				if(objOps != null) objOps.close();
+				//Close byte streams
+				if (objOps != null) objOps.close();
 			} catch (Exception ex) {
-				
+				throw new Exception();
 			}
 		}
 		return successful;
@@ -80,7 +84,10 @@ public class MainStorage {
 	 * @return boolean
 	 * @throws IOException
 	 */
-	public static boolean writeGamesToMemory() throws IOException {
+	public static boolean writeGamesToMemory() throws Exception {
+		//Throw exception and let calling method respond, usually controller
+		//will manage this with the GUI.
+		//Write arraylist of games to file games.txt
 		OutputStream ops = null;
 		ObjectOutputStream objOps = null;
 		boolean successful = false;
@@ -94,14 +101,12 @@ public class MainStorage {
 			objOps.writeObject(games);
 			objOps.flush();
 			successful = true;
-		} catch (EOFException exc) {
-			successful = false;
-		    exc.printStackTrace();
 		} finally {
 			try {
-				if(objOps != null) objOps.close();
+				//Close byte streams
+				if (objOps != null) objOps.close();
 			} catch (Exception ex) {
-				
+				throw new Exception();
 			}
 		}
 		return successful;
@@ -114,27 +119,31 @@ public class MainStorage {
 	 * @throws Exception
 	 */
 	protected static Object readFromMemory(String dataType) throws Exception {
+		//Throw exception and let calling method respond, usually controller
+		//will manage this with the GUI.
+		//Read either arraylist of games or users from disk and return as object
+		//This is then cast
 		InputStream fileIs = null;
 		ObjectInputStream objIs = null;
 		Object data = new ArrayList<Object>();
 		try {
+			//Create new file if it does not exist
 			File fileChecker = new File(dataType + ".txt");
-			if(!fileChecker.exists()) {
+			if (!fileChecker.exists()) {
 				fileChecker.createNewFile();
 			}
-			if((fileChecker.isFile() == true) && (fileChecker.length() > 0)) {
+			if ((fileChecker.isFile() == true) && (fileChecker.length() > 0)) {
 				fileIs = new FileInputStream(dataType + ".txt");
 				objIs = new ObjectInputStream(fileIs);
 				data = objIs.readObject();
 			}
-		} catch (EOFException exc) {
-		    throw new EOFException();
 		} finally {
 			try {
-				if(fileIs != null) fileIs.close();
-				if(objIs != null) objIs.close();
+				//Close byte streams
+				if (fileIs != null) fileIs.close();
+				if (objIs != null) objIs.close();
 			} catch(Exception ex) {
-				
+				throw new Exception();
 			}
 		}
 		return data;

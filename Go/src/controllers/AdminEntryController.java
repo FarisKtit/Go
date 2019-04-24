@@ -37,7 +37,7 @@ public class AdminEntryController extends GraphicalUserInterface {
 		ArrayList<User> users = null;
 		User user = null;
 		//Root gets direct access incase any errors reading the files and no users are available.
-		if(userName.equals("root")) {
+		if (userName.equals("root")) {
 			try {
 				goToView("AdminDashboard", event);
 			} catch (IOException e) {
@@ -46,7 +46,7 @@ public class AdminEntryController extends GraphicalUserInterface {
 			return;
 		}
 		//Alert user is input is empty.
-		if(userName.equals("") || password.equals("")) {
+		if (userName.equals("") || password.equals("")) {
 			alertUser("Login", "Error", "Please fill in the fields");
 			return;
 		}
@@ -58,21 +58,21 @@ public class AdminEntryController extends GraphicalUserInterface {
 			return;
 		}
 	    //Check if user is an admin, otherwise they cannot log into the dashboard.
-    	for(int i = 0; i < users.size(); i++) {
+    	for (int i = 0; i < users.size(); i++) {
     		if(users.get(i).getProfile().getUserName().equals(userName)) {
     			user = users.get(i);
-    			if(!(user instanceof Administrator)) {
+    			if (!(user instanceof Administrator)) {
     				alertUser("Login", "Error", "User is not an admin");
     				return;
     			}
-    			if(!(password.equals(user.getProfile().getUserName() + "94"))) {
+    			if (!(password.equals(user.getProfile().getUserName() + "94"))) {
     				alertUser("Login", "Error", "Password is incorrect");
     				return;
     			}
     		}
     	}
     	//Alert admin is user doesn not exist.
-    	if(user == null) {
+    	if (user == null) {
     		alertUser("Login", "Error", "Admin does not exist");
 			return;
     	}

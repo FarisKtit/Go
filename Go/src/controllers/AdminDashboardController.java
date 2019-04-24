@@ -75,7 +75,7 @@ public class AdminDashboardController extends GraphicalUserInterface {
     	int firstNameLen = firstName.length();
     	int lastNameLen = lastName.length();
     	//Check if inputs are not empty, Otherwise alert the user.
-    	if((userNameLen == 0) || (firstNameLen == 0) || (lastNameLen == 0)) {
+    	if ((userNameLen == 0) || (firstNameLen == 0) || (lastNameLen == 0)) {
     		String alertHeader = "Create New User";
     		String alertSubHeader = "Error";
     		String alertContent = "Please make sure all fields are complete";
@@ -84,7 +84,7 @@ public class AdminDashboardController extends GraphicalUserInterface {
     	}
     	User newUser = null;
     	//If regular user added, save as regular user, else save as admin.
-    	if(!isAdmin.isSelected()) {
+    	if (!isAdmin.isSelected()) {
     		newUser = new User(userName, firstName, lastName, false);
     	} else {
     		int current= (int) System.currentTimeMillis();
@@ -97,13 +97,13 @@ public class AdminDashboardController extends GraphicalUserInterface {
     		String alertHeader;
     		String alertSubHeader;
     		String alertContent;
-			if(result.equals("Success")) {
+			if (result.equals("Success")) {
 				//Notify admin if successful.
 				alertHeader = "Create New User";
 				alertSubHeader = "Success";
 				alertContent = "User created";
 				alertUser( alertHeader, alertSubHeader, alertContent);
-			} else if(result.equals("User exists")) {
+			} else if (result.equals("User exists")) {
 				//Notify admin is username already exists.
 				alertUser("Create New User", "Error", "User already exists");
 				return;
@@ -134,7 +134,7 @@ public class AdminDashboardController extends GraphicalUserInterface {
     	//Remove empty space from input field.
     	String userName = deleteUserField.getText().replaceAll("\\s+", "");
     	//Alert user if input field is empty.
-    	if(userName.length() == 0) {
+    	if (userName.length() == 0) {
     		String alertHeader = "Delete User";
     		String alertSubHeader = "Error";
     		String alertContent = "Please make sure the username field has been filled out";
@@ -147,12 +147,12 @@ public class AdminDashboardController extends GraphicalUserInterface {
     	try {
     		//Try to delete the user, manage errors by alerting admin via the GUI.
 			String result = UserStorage.deleteUser(userName);
-			if(result.equals("No user")) {
+			if (result.equals("No user")) {
 				alertHeader = "Delete User";
 				alertSubHeader = "Error";
 				alertContent = "Please make sure the user exists";
 	    		alertUser( alertHeader, alertSubHeader, alertContent);
-			} else if(result.equals("Success")) {
+			} else if (result.equals("Success")) {
 				alertHeader = "Delete User";
 				alertSubHeader = "Success";
 				alertContent = "User deleted";
@@ -195,7 +195,7 @@ public class AdminDashboardController extends GraphicalUserInterface {
     	try {
     		//Read all users from file and add to list view for admin.
 			users = UserStorage.getUserList();
-			for(int i = 0; i < users.size(); ++i) {
+			for (int i = 0; i < users.size(); ++i) {
 				String userName = users.get(i).getProfile().getUserName();
 				String firstName = users.get(i).getProfile().getFirstName();
 				String lastName = users.get(i).getProfile().getLastName();

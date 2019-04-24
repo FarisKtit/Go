@@ -79,7 +79,6 @@ public class EntryDashboardController extends GraphicalUserInterface {
 		//Data structure for storing sorted users by winning percentage.
 		//This data is retrieved using the Leaderboard class.
         Map<User, Double> leaders = null;
-	    
 	    ObservableList<String> obs = FXCollections.observableArrayList();
 	    leaderBoardListView.setItems(obs);
 
@@ -89,10 +88,10 @@ public class EntryDashboardController extends GraphicalUserInterface {
 			ArrayList<User> leaderBoard = new ArrayList<User>(leaders.keySet());
 			ArrayList<User> leaderBoardReversed = new ArrayList<User>();
 			//Reverse them using array list as they are in ascending order.
-			for(int j = (leaderBoard.size() - 1); j > -1; j--) {
+			for (int j = (leaderBoard.size() - 1); j > -1; j--) {
 				leaderBoardReversed.add(leaderBoard.get(j));
 			}
-			for(int k = 0; k < leaderBoardReversed.size(); k++) {
+			for (int k = 0; k < leaderBoardReversed.size(); k++) {
 				//Update list view with leaders on leaderboard.
 				String userName = leaderBoardReversed.get(k).getProfile().getUserName();
 				DecimalFormat df = new DecimalFormat(".##"); 
