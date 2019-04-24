@@ -7,11 +7,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import models.Administrator;
-import models.MainStorage;
 import models.User;
 import models.UserStorage;
 
-
+/**
+ * This class deals with authentication to ensure only administrators can access their dash board.
+ * @author Faris Ktit
+ * @version 1.3
+ */
 public class AdminEntryController extends GraphicalUserInterface {
     
 	@FXML
@@ -19,6 +22,10 @@ public class AdminEntryController extends GraphicalUserInterface {
 	@FXML
 	private TextField adminPassword;
 	
+	/**
+	 * Manages the authentication of administrators for accessing the Administrator' dash board.
+	 * @param event
+	 */
 	@FXML
 	public void goToAdminDashboard(ActionEvent event) {
 		String userName = adminUserName.getText().replaceAll("\\s+", "");
@@ -70,6 +77,10 @@ public class AdminEntryController extends GraphicalUserInterface {
 		}
 	}
 	
+	/**
+	 * Manages the navigation from administrator authentication back to home.
+	 * @param event
+	 */
 	@FXML
 	public void goToEntryDashboard(ActionEvent event) {
 	    try {
