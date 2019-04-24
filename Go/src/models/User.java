@@ -9,8 +9,8 @@ public class User implements Serializable{
     private LocalDateTime lastLoggedIn;
     private LocalDateTime joinDate;
     private ArrayList<String> gamesPlayed;
-    private int wins;
-    private int losses;
+    private double wins;
+    private double losses;
     private boolean isAdmin;
     private static final long serialVersionUID = 1L;
 
@@ -55,15 +55,17 @@ public class User implements Serializable{
     }
 
     public double calculateWinPercentage(){
-    	if((wins + losses) == 0) return 0d;
-        return ((wins/(wins+losses)) * 100);
+    	if((wins + losses) == 0) {
+    		return 0d;
+    	}
+        return wins/(wins+losses) * 100;
     }
 
-    public int getWins(){
+    public double getWins(){
        return this.wins;
     }
 
-    public int getLosses(){
+    public double getLosses(){
         return this.losses;
     }
 

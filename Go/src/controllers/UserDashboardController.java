@@ -74,6 +74,7 @@ public class UserDashboardController extends GraphicalUserInterface {
 				System.out.println(userName);
 				String winPct = Double.toString(leaderBoardReversed.get(k).calculateWinPercentage());
 				obs.add(userName + ", win pct: " + winPct);
+				System.out.println(userName + ", win pct: " + winPct + ", wins: " + leaderBoardReversed.get(k).getWins() + ", losses: " + leaderBoardReversed.get(k).getLosses());
 			}
 			
 		} catch (Exception e) {
