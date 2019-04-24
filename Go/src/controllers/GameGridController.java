@@ -47,18 +47,18 @@ public class GameGridController extends GraphicalUserInterface {
         game = new Game(obj.get(0), obj.get(1));
         playerOneTag.setText(obj.get(0).getProfile().getUserName());
         playerTwoTag.setText(obj.get(1).getProfile().getUserName());
+        createGrid();
 	}
 	
 	@FXML
 	private GridPane Grid;
     @FXML
     public void initialize() {
-    	createGrid();
+    	
     }
     
     @FXML
     public void clickGrid(MouseEvent e) {
-
     	int y = (int) e.getY();
     	int x = (int) e.getX();
         
@@ -115,7 +115,6 @@ public class GameGridController extends GraphicalUserInterface {
 		  playerOneStoneCaptures.setText("Stones captured: " + playerOneCaptures);
 		  playerTwoStoneCaptures.setText("Stones captured: " + playerTwoCaptures);
 	   }
-	   
     }
     
     public void recreateBoard(GridPane grid) {
@@ -142,28 +141,6 @@ public class GameGridController extends GraphicalUserInterface {
     			}	
     		}
     	}
-    }
-    
-    @FXML
-    public void forfeitPlayerOne(ActionEvent event) {
-    	
-    	game.setLoser(game.getplayerOne().getProfile().getUserName());
-    	game.setWinner(game.getPlayerTwo().getProfile().getUserName());
-    	updateUsers(game.getPlayerTwo().getProfile().getUserName(), game.getplayerOne().getProfile().getUserName());
-    	saveGame(game);
-    	alertUser("Forfeit", "Forfeit", "Forfeit player one");
-    	exitGame(event);
-    }
-    
-    @FXML
-    public void forfeitPlayerTwo(ActionEvent event) {
-    	
-    	game.setLoser(game.getPlayerTwo().getProfile().getUserName());
-    	game.setWinner(game.getplayerOne().getProfile().getUserName());
-    	updateUsers(game.getplayerOne().getProfile().getUserName(), game.getPlayerTwo().getProfile().getUserName());
-    	saveGame(game);
-    	alertUser("Forfeit", "Forfeit", "Forfeit player two");
-    	exitGame(event);
     }
     
     @FXML
@@ -198,38 +175,55 @@ public class GameGridController extends GraphicalUserInterface {
 			MainStorage.writeUsersToMemory(userList);
 		} catch (Exception e) {
 			alertUser("End Game", "Error", "Cannot update user data");
-			e.printStackTrace();
 		}
     }
     
     @FXML
-    public void playerOnePass() {
+    public void playerOnePass(ActionEvent event) {
     	if(game.getUserMove().equals("Player 2")) {
     		return;
     	}
     	playerOnePasses++;
     	if((playerOnePasses + playerTwoPasses) >= 4) {
     		calculateWinner();
+    		exitGame(event);
     	}
     	game.setUserMove("Player 2");
     	playerOnePassesLabel.setText("Passes: " + playerOnePasses);
     }
     
     @FXML
-    public void playerTwoPass() {
+    public void playerTwoPass(ActionEvent event) {
     	if(game.getUserMove().equals("Player 1")) {
     		return;
     	}
     	playerTwoPasses++;
     	if((playerOnePasses + playerTwoPasses) >= 4) {
     		calculateWinner();
+    		exitGame(event);
     	}
     	game.setUserMove("Player 1");
     	playerTwoPassesLabel.setText("Passes: " + playerTwoPasses);
     }
     
     public void calculateWinner() {
-    	
+    	int playerOneDeadStones = game.getBoard().countDeadStones(1);
+    	int playerTwoDeadStones = game.getBoard().countDeadStones(2);
+    	int playerOneScore = playerTwoDeadStones + playerOneCaptures;
+    	int playerTwoScore = playerOneDeadStones + playerTwoCaptures;
+    	if(playerTwoScore == playerOneScore) {
+    		alertUser("Draw", "Draw", "Both players have the same points");
+    	} else if(playerTwoScore > playerOneScore) {
+    		alertUser(playerTwoTag.getText() + " wins", "Score: " + (playerOneDeadStones + playerTwoCaptures), "Player two captures: " 
+    	    + playerTwoCaptures + ", opposition deadstones: " + playerOneDeadStones);
+        	updateUsers(game.getPlayerTwo().getProfile().getUserName(), game.getplayerOne().getProfile().getUserName());
+    	} else {
+    		alertUser(playerOneTag.getText() + " wins", "Score: " + (playerTwoDeadStones + playerOneCaptures), "Player one captures: " 
+    	    + playerOneCaptures + ", opposition deadstones: " + playerTwoDeadStones);
+        	updateUsers(game.getplayerOne().getProfile().getUserName(), game.getPlayerTwo().getProfile().getUserName());
+
+    	}
+    	saveGame(game);
     }
     
     public void createGrid() {

@@ -19,7 +19,6 @@
             <Button layoutX="56.0" layoutY="211.0" mnemonicParsing="false" onAction="#playerOnePass" text="Pass" />
             <Label fx:id="playerOneStoneCaptures" layoutX="14.0" layoutY="141.0" text="Stones Captured : 0" />
             <Label fx:id="playerOnePassesLabel" layoutX="37.0" layoutY="267.0" text="Passes: 0" />
-            <Button layoutX="52.0" layoutY="327.0" mnemonicParsing="false" onAction="#forfeitPlayerOne" text="Forfeit" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
@@ -62,7 +61,6 @@
                   <Button layoutX="58.0" layoutY="211.0" mnemonicParsing="false" onAction="#playerTwoPass" text="Pass" />
                   <Label fx:id="playerTwoStoneCaptures" layoutX="22.0" layoutY="140.0" text="Stones Captured: 0" />
                   <Label fx:id="playerTwoPassesLabel" layoutX="39.0" layoutY="265.0" text="Passes: 0" />
-                  <Button layoutX="52.0" layoutY="327.0" mnemonicParsing="false" onAction="#forfeitPlayerTwo" text="Forfeit" />
                </children>
             </AnchorPane>
         </items>
