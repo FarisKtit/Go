@@ -14,24 +14,26 @@ import java.util.ArrayList;
 
 public class MainStorage {
 	
-    public static ArrayList<User> users;
+    //public static ArrayList<User> users;
     public static ArrayList<Game> games;
 	
-    
+    /*
     public static ArrayList<User> getUserList() throws Exception {
         loadUsers();
         return users;
     }
+    */
 	
 	public static ArrayList<Game> getGameList() throws Exception {
 		loadGames();
 		return games;
 	}
-	
+	/*
 	public static void loadUsers() throws Exception {
 		users = new ArrayList<User>();
 		users = (ArrayList<User>) readFromMemory("users");
 	}
+	*/
 	
 	public static void loadGames() throws Exception {
 		games = new ArrayList<Game>();
@@ -43,7 +45,7 @@ public class MainStorage {
 		games.add(game);
 		return writeGamesToMemory();
 	}
-	
+	/*
 	public static String createUser(User user) throws Exception {
 		String username = user.getProfile().getUserName();
 		if(getUser(username) != null) {
@@ -98,6 +100,8 @@ public class MainStorage {
 		}
 		return deleted;
 	}
+	*/
+
 	
 	protected static Object readFromMemory(String dataType) throws Exception {
 		InputStream fileIs = null;

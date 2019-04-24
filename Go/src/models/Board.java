@@ -1,28 +1,54 @@
 package models;
-
+/**
+ * Implements board class.
+ * @author Antonius Ricky Sanjaya
+ *         Faris Ktit    
+ * @version 0.1
+ */
 import java.io.Serializable;
 
+/**
+ * Board class creates an empty board.
+ */
 public class Board implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
-	// size of the board
+	
+	/** Size of the board. */
 	private int size = 9;
-	// grid intersection
+	
+	/** Grid intersection. */
 	private int[][] board;
-	// player 2
+	
+	/** Player 2. */
 	private final int player2 = 2;
-	// player 1 
+	
+	/** Player 1. */ 
 	private final int player1 = 1;
 
-	// constructor of class board
+	/** 
+	 * Main constructor to create an empty board.
+	 */
 	public Board() {
 		this.board = new int[size][size];
 	}
 	
+	/**
+	 * Get the board component.
+	 * @return The board.
+	 */
 	public int[][] getBoard() {
 		return this.board;
 	}
 
-	// method to place stone
+	/**
+	 * Method to place stone on the board.
+	 * @param row The row position of the board.
+	 * @param column The column position of the board.
+	 * @param player The player.
+	 * @return String "SUCCESS" if given position is valid.
+	 * 		   String "FAIL" if given position is invalid.
+	 */
 	public String placeStones(int row, int column, String player) {
 		if (board[row][column] == 0) {
 			if (player.equals("Player 1")) {
@@ -38,7 +64,11 @@ public class Board implements Serializable {
 		}
 	}
 	
-	//main method to find captured stones
+	/** 
+	 * Main method to find captured stones.
+	 * @param oppositePlayer The enemy's stone.
+	 * @return The captured stones.
+	 */
 	public boolean[][] connectedStones(int oppositePlayer) {
 		boolean[][] connectedStones = null;
 		boolean isCaptured = false;
@@ -57,7 +87,10 @@ public class Board implements Serializable {
      	return null;
 	}
 
-	//replace captured stones with 0
+	/** 
+	 * Replace captured stones with 0.
+	 * @param connectedStones A boolean 2d array of captured stones.
+	 */
 	public void replaceConnectedStones(boolean[][] connectedStones) {
 		for (int row = 0; row < board.length; ++row) {
 			for (int column = 0; column < board[row].length; ++column) {
@@ -68,7 +101,13 @@ public class Board implements Serializable {
 		}
 	}
 
-	// method to check if the stone is captured
+	/**
+	 * Method to check if the stone is captured.
+	 * @param oppositePlayer The enemy's stone.
+	 * @param connectedStones A boolean 2d array of captured stones.
+	 * @return Captured if it is on the board and is captured.
+	 *         False if it is not captured and not on the board.
+	 */
 	public boolean isCaptured(int oppositePlayer, boolean[][] connectedStones) {
 		int currentPlayer;
 		if (oppositePlayer == 1)
@@ -101,7 +140,13 @@ public class Board implements Serializable {
 		return captured;
 	}
 
-	//method to find opponent's stones on the board
+	/** 
+	 * Method to find opponent's stones on the board.
+	 * @param row The row position on the board.
+	 * @param column The column position on the board.
+	 * @param oppositePlayer The enemy's stone.
+	 * @param connectedStones A boolean 2d array of captured stones.
+	 */
 	public void findConnectedStones(int row, int column, int oppositePlayer, boolean[][] connectedStones) {
 		if (row < 0 || row > 8 || column < 0 || column > 8) {
 			return;
@@ -180,18 +225,31 @@ public class Board implements Serializable {
 	}
 
 
-	// method to remove stone
+	/**
+	 * Method to remove stone.
+	 * @param row The row position on the board.
+	 * @param column The column position on the board.
+	 */
 	public void removeStone(int row, int column) {
 		board[row][column] = 0;
 	}
 
-	// method to check if the given position is occupied
+	/** 
+	 * Method to check if the given position is occupied.
+	 * @param row The row position on the board.
+	 * @param column The column position on the board.
+	 * @return True if the given position is occupied.
+	 *         False if the given position is not occupied.
+	 */
 	public boolean isOccupied(int row, int column) {
 		if (board[row][column] == 0) {
 			return false;
 		}
 		return true;
 	}
+	/** 
+	 * Method to overwrite to string.
+	 */
 	  public String toString() {
 	      return size+"=="+board+"=="+player2+"=="+player1;
 	  }

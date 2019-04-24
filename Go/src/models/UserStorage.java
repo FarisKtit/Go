@@ -8,11 +8,20 @@ import java.util.ArrayList;
  */
 
 public class UserStorage extends MainStorage {
-	
+
 	public static ArrayList<User> users;
+    
+    public static ArrayList<User> getUserList() throws Exception {
+        loadUsers();
+        return users;
+    }
+    
+	public static void loadUsers() throws Exception {
+		users = new ArrayList<User>();
+		users = (ArrayList<User>) readFromMemory("users");
+	}
 
-
-
+    
 	public static String createUser(User user) throws Exception {
 		String username = user.getProfile().getUserName();
 		if(getUser(username) != null) {
@@ -67,6 +76,8 @@ public class UserStorage extends MainStorage {
 		}
 		return deleted;
 	}
+
+
 
     public static ArrayList<User> newUserSinceLastLogin(LocalDateTime lastLoggedIn) throws Exception {
 		ArrayList<User> users = getUserList();
