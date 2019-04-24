@@ -147,5 +147,5 @@ public class MainStorage {
 	private static void loadGames() throws Exception {
 		games = new ArrayList<Game>();
 		games = (ArrayList<Game>) readFromMemory("games");
-	}
+    }
 }

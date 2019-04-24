@@ -36,28 +36,34 @@ public class GameDashboardController extends GraphicalUserInterface {
 	}
 	
 	/**
-	 * Checks if players are existing players or administrators then navigates players to the game Go94.
+	 * Checks if players are existing players or administrators 
+	 * then navigates players to the game Go94.
 	 * @param event
 	 */
 	@FXML
 	public void goToGameGrid(ActionEvent event) {
+		//Remove empty spaces from input fields.
 		String playerOne = playerOneField.getText().replaceAll("\\s+", "");
 		String playerTwo = playerTwoField.getText().replaceAll("\\s+", "");
+		//Check if either input field is empty.
 		if((playerOne.equals("")) || (playerTwo.equals(""))) {
 			alertUser("Start Game", "Error", "Please make sure players are selected");
 			return;
 		}
+		//Make sure two unique users have been selected.
 		if(playerOne.equals(playerTwo)) {
 			alertUser("Start Game", "Error", "Please make sure different players are selected");
 			return;
 		}
 	    try {
+	    	//Check if users are real users by comparing to saved file.
 	    	ArrayList<User> list = UserStorage.getUserList();
 	    	User player1 = null;
 	    	User player2 = null;
 	    	ArrayList<User> userList = new ArrayList<User>();
 	    	for(int i = 0; i < list.size(); i++) {
-	    		if(list.get(i).getProfile().getUserName().equals(playerOne)) {
+	    		//If they are an admin they should be instantiated as one, otherwise as a User.
+	    		if(list.get(i).getProfile().getUserName().equals(playerOne)) {	
 	    			if(list.get(i).isAdmin()) {
 	    				player1 = (Administrator) list.get(i);
 	    				userList.add(player1);
@@ -67,6 +73,7 @@ public class GameDashboardController extends GraphicalUserInterface {
 	    			}
 	    		} 
 	    	}
+	    	//Carry out same logic for second user.
 	    	for(int i = 0; i < list.size(); i++) {
 		    	if(list.get(i).getProfile().getUserName().equals(playerTwo)) {
 	    			if(list.get(i).isAdmin()) {
@@ -78,15 +85,18 @@ public class GameDashboardController extends GraphicalUserInterface {
 	    			}
 	    		}
 	    	}
+	    	//If either of the users are still null, they do not exist as real users.
 	    	if(player1 == null || player2 == null) {
+	    		//Alert to user then return.
 	    		alertUser("Start Game", "Error", "Please enter correct usernames");
 	    		return;
 	    	}
+	    	//Go to view with users to play the game if all is successful.
 	        goToViewWithUsers("GameGrid", event, userList);
 		} catch (IOException e) {
-			e.printStackTrace();
+			alertUser("Start Game", "Error", "Try again later");
 		} catch (Exception e) {
-			e.printStackTrace();
+			alertUser("Start Game", "Error", "Try again later");
 		}
 	}
 }

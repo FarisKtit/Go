@@ -27,7 +27,14 @@ import models.UserStorage;
  */
 public class GameGridController extends GraphicalUserInterface {
 	
+	//Store node width and half width of each node on board.
 	private final int NODE_WIDTH = 30;
+	private final int HALF_NODE_WIDTH = 15;
+	//Two successive passes by each player equal a total of four successive passes.
+	private final int PASS_LIMIT = 4;
+	//Store stone radius and Grid dimension as it is 9x9.
+	private final float STONE_RADIUS = 7.5f;
+	private final int GRID_DIMENSION = 9;
 	private Game game;
 	private int playerOnePasses = 0;
 	private int playerTwoPasses = 0;
@@ -36,6 +43,7 @@ public class GameGridController extends GraphicalUserInterface {
 	private int playerOneDeadStones = 0;
 	private int playerTwoDeadStones = 0;
 	
+	//Store all GUI elements to attach event handlers and and update.
 	@FXML
 	private Label playerOneTag;
 	@FXML
@@ -56,7 +64,9 @@ public class GameGridController extends GraphicalUserInterface {
 	 * @param obj
 	 */
 	public void initData(ArrayList<User> obj) {
+		//Create new game instance for this game.
         game = new Game(obj.get(0), obj.get(1));
+        //Add both players to game then create the grid with the intersections.
         playerOneTag.setText(obj.get(0).getProfile().getUserName());
         playerTwoTag.setText(obj.get(1).getProfile().getUserName());
         createGrid();
@@ -68,40 +78,47 @@ public class GameGridController extends GraphicalUserInterface {
 	 */
     @FXML
     public void clickGrid(MouseEvent e) {
+    	//Store x, y co-ordinates of mouse click
     	int y = (int) e.getY();
     	int x = (int) e.getX();
-        
-    	int nodeWidth = 30;
-        int yIndex = y / nodeWidth;
-        int xIndex = x / nodeWidth;
-        
+        //Divide by node width to get which column and row was clicked.
+        int yIndex = y / NODE_WIDTH;
+        int xIndex = x / NODE_WIDTH;
+        //Circle represents a stone.
         Circle c = new Circle();
-		c.setRadius(7.5);
+		c.setRadius(STONE_RADIUS);
 		
 		int currentPlayer = 0;
 		int oppositePlayer = 0;
-		if(game.getUserMove().equals("Player 1")) {
+		//deduce the current player and opposite player
+		if (game.getUserMove().equals("Player 1")) {
 			currentPlayer = 1;
 			oppositePlayer = 2;
+			//Reset passes by user if stone is placed.
 			playerOnePasses = 0;
 			playerOnePassesLabel.setText("Passes: " + playerOnePasses);
-			
+			//User one is black
 			c.setFill(javafx.scene.paint.Color.BLACK);
 		} else { 
 			currentPlayer = 2;
 			oppositePlayer = 1;
+			//Reset passes by user if stone is placed.
 			playerTwoPasses = 0;
 			playerTwoPassesLabel.setText("Passes: " + playerTwoPasses);
+			//User two is white
 			c.setFill(javafx.scene.paint.Color.WHITE);
 		}
-        if(game.placeStone(yIndex, xIndex).equals("SUCCESS")) {
+		//if place stone is successful, add stone to GUI
+        if (game.placeStone(yIndex, xIndex).equals("SUCCESS")) {
     		GridPane.setHalignment(c, HPos.valueOf("CENTER"));
     		GridPane.setValignment(c, VPos.valueOf("CENTER"));
     		Grid.add(c, xIndex, yIndex);	
         } else {
+        	//Otherwise it is an invalid move
         	alertUser("Move", "Invalid move", "Please choose a different intersection");
         }
         Board board = game.getBoard();
+        //Remove all captured stones if they exists.
         removeCapturedStones(board, currentPlayer, oppositePlayer);
     }
     
@@ -110,21 +127,25 @@ public class GameGridController extends GraphicalUserInterface {
      * @param grid
      */
     public void recreateBoard(GridPane grid) {
+    	//Remove all nodes and recreate grid.
     	ObservableList<Node> children = grid.getChildren();
     	grid.getChildren().removeAll(children);
     	createGrid();
     	Board board = game.getBoard();
+    	//Get 2D array which represents board from Board instance and update GUI.
     	int[][] occupiedBoard = board.getBoard();
-    	for(int i = 0; i < occupiedBoard.length; i++) {
-    		for(int j = 0; j < occupiedBoard[i].length; j++) {
-    			if(occupiedBoard[i][j] != 0) {
+    	for (int i = 0; i < occupiedBoard.length; i++) {
+    		for (int j = 0; j < occupiedBoard[i].length; j++) {
+    			if (occupiedBoard[i][j] != 0) {
+    				//If occupied, place correct stone for corresponding player.
     				Circle c = new Circle();
-        			c.setRadius(7.5);
+        			c.setRadius(STONE_RADIUS);
     				if(occupiedBoard[i][j] == 1) {
     					c.setFill(javafx.scene.paint.Color.BLACK);
     				} else {
     					c.setFill(javafx.scene.paint.Color.WHITE);
     				}
+    				//Update GUI
     	    		GridPane.setHalignment(c, HPos.valueOf("CENTER"));
     	    		GridPane.setValignment(c, VPos.valueOf("CENTER"));
     	    		Grid.add(c, j, i);
@@ -140,12 +161,14 @@ public class GameGridController extends GraphicalUserInterface {
      * @param oppositePlayer
      */
     public void removeCapturedStones(Board board, int currentPlayer, int oppositePlayer) {
+    	//Board instance returns connected stones as 2D boolean array
 		boolean[][] connected = board.connectedStones(oppositePlayer);
-		if(connected != null) {
+		if (connected != null) {
+		  //If there are connected stones, replace it on board instance, then GUI.
 		  board.replaceConnectedStones(connected);
-		  for(int i = 0; i < connected.length; i++) {
-		    for(int j = 0; j < connected[i].length; j++) {
-			  if(connected[i][j]) {
+		  for (int i = 0; i < connected.length; i++) {
+		    for (int j = 0; j < connected[i].length; j++) {
+			  if (connected[i][j]) {
 				  recreateBoard(Grid);
 				  if(currentPlayer == 1) {
 					  playerOneCaptures++;
@@ -179,11 +202,13 @@ public class GameGridController extends GraphicalUserInterface {
      */
     @FXML
     public void playerOnePass(ActionEvent event) {
-    	if(game.getUserMove().equals("Player 2")) {
+    	//When combination of passes from both players are equal to or greater than
+    	//four calculate winner and end game
+    	if (game.getUserMove().equals("Player 2")) {
     		return;
     	}
     	playerOnePasses++;
-    	if((playerOnePasses + playerTwoPasses) >= 4) {
+    	if ((playerOnePasses + playerTwoPasses) >= PASS_LIMIT) {
     		calculateWinner();
     		exitGame(event);
     	}
@@ -197,11 +222,13 @@ public class GameGridController extends GraphicalUserInterface {
      */
     @FXML
     public void playerTwoPass(ActionEvent event) {
-    	if(game.getUserMove().equals("Player 1")) {
+    	//When combination of passes from both players are equal to or greater than
+    	//four calculate winner and end game
+    	if (game.getUserMove().equals("Player 1")) {
     		return;
     	}
     	playerTwoPasses++;
-    	if((playerOnePasses + playerTwoPasses) >= 4) {
+    	if ((playerOnePasses + playerTwoPasses) >= PASS_LIMIT) {
     		calculateWinner();
     		exitGame(event);
     	}
@@ -215,10 +242,12 @@ public class GameGridController extends GraphicalUserInterface {
      * @return
      */
     private boolean saveGame(Game game) {
+    	//Attempt to save game to disk, then manage exception if raised by alerting through GUI.
     	try {
-			return MainStorage.saveGame(game);
+			MainStorage.saveGame(game);
 		} catch (Exception e) {
 			alertUser("End Game", "Error", "Cannot save game, system error");
+			return false;
 		}
     	return true;
     }
@@ -249,21 +278,29 @@ public class GameGridController extends GraphicalUserInterface {
      * Calculates the score of each player when 2 successive passes have happened.
      */
     private void calculateWinner() {
+    	//Calculate winner by taking their captured stones and adding the dead stones from 
+    	//the opposition
     	int playerOneDeadStones = game.getBoard().countDeadStones(1);
     	int playerTwoDeadStones = game.getBoard().countDeadStones(2);
     	int playerOneScore = playerTwoDeadStones + playerOneCaptures;
     	int playerTwoScore = playerOneDeadStones + playerTwoCaptures;
+    	String playerTwo = game.getPlayerTwo().getProfile().getUserName();
+    	String playerOne = game.getplayerOne().getProfile().getUserName();
+    	//Compare scores to see who is the winner.
     	if(playerTwoScore == playerOneScore) {
     		alertUser("Draw", "Draw", "Both players have the same points");
     	} else if(playerTwoScore > playerOneScore) {
-    		alertUser(playerTwoTag.getText() + " wins", "Score: " + (playerOneDeadStones + playerTwoCaptures), "Player two captures: " 
+    		int finalScore = (playerOneDeadStones + playerTwoCaptures);
+    		alertUser(playerTwo + " wins", "Score: " + finalScore, "Player two captures: " 
     	    + playerTwoCaptures + ", opposition deadstones: " + playerOneDeadStones);
-        	updateUsers(game.getPlayerTwo().getProfile().getUserName(), game.getplayerOne().getProfile().getUserName());
+        	updateUsers(playerTwo, playerOne);
     	} else {
-    		alertUser(playerOneTag.getText() + " wins", "Score: " + (playerTwoDeadStones + playerOneCaptures), "Player one captures: " 
+    		int finalScore = (playerTwoDeadStones + playerOneCaptures);
+    		alertUser(playerOne + " wins", "Score: " + finalScore, "Player one captures: " 
     	    + playerOneCaptures + ", opposition deadstones: " + playerTwoDeadStones);
-        	updateUsers(game.getplayerOne().getProfile().getUserName(), game.getPlayerTwo().getProfile().getUserName());
+        	updateUsers(playerOne, playerTwo);
     	}
+    	//Save game to disk when finished.
     	saveGame(game);
     }
     
@@ -271,22 +308,23 @@ public class GameGridController extends GraphicalUserInterface {
      * Creates the grid intersections for the board to play the game Go94.
      */
     public void createGrid() {
-    	for(int i = 0; i < 9; ++i) {
-    		for(int j = 0; j < 9; j++) {	
+    	//Create new grid by adding intersections.
+    	for(int i = 0; i < GRID_DIMENSION; ++i) {
+    		for(int j = 0; j < GRID_DIMENSION; j++) {	
     			Line line = new Line();
-    			line.setStartX(15.0f);
+    			line.setStartX(HALF_NODE_WIDTH);
     			line.setStartY(0.0f);
-    			line.setEndX(15.0f);
-    			line.setEndY(30.0f);
-    			Insets inset = new Insets(0.0d, 0d, 0d, 15.0d);
+    			line.setEndX(HALF_NODE_WIDTH);
+    			line.setEndY(NODE_WIDTH);
+    			Insets inset = new Insets(0.0d, 0d, 0d, HALF_NODE_WIDTH);
     			GridPane.setMargin(line, inset);
     			Grid.add(line, i, j);
     			
     			Line liney = new Line();
     			liney.setStartX(0.0f);
-    			liney.setStartY(15.0f);
-    			liney.setEndX(30.0f);
-    			liney.setEndY(15.0f);
+    			liney.setStartY(HALF_NODE_WIDTH);
+    			liney.setEndX(NODE_WIDTH);
+    			liney.setEndY(HALF_NODE_WIDTH);
     			Insets inset2 = new Insets(0.0d, 0d, 0d, 0.0d);
     			GridPane.setMargin(liney, inset2);
     			Grid.add(liney, i, j);
