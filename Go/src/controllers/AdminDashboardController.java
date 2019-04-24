@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import models.Administrator;
 import models.MainStorage;
 import models.User;
+import models.UserStorage;
 
 
 public class AdminDashboardController extends GraphicalUserInterface {
@@ -107,7 +108,7 @@ public class AdminDashboardController extends GraphicalUserInterface {
     	userListView.setItems(obs);
     	ArrayList<User> users;
     	try {
-			users = MainStorage.getUserList();
+			users = UserStorage.getUserList();
 			for(int i = 0; i < users.size(); ++i) {
 				String userName = users.get(i).getProfile().getUserName();
 				String firstName = users.get(i).getProfile().getFirstName();
