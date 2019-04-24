@@ -3,7 +3,6 @@ package controllers;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,7 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import models.Leaderboard;
+import models.Game;
 import models.MainStorage;
 import models.ProfileImage;
 import models.User;
@@ -57,6 +56,7 @@ public class UserDashboardController extends GraphicalUserInterface {
 	public void initData(ArrayList<User> list) {
 		currentUser =  list.get(0);
 		populateNewUsersSinceLastLogin();
+		populateNewGamesSinceLastLogin();
 		currentUser.onLogIn();
 		try {
 			MainStorage.updateUser(currentUser);
@@ -157,7 +157,21 @@ public class UserDashboardController extends GraphicalUserInterface {
 	}
 	
 	public void populateNewGamesSinceLastLogin() {
-		
+		ArrayList<Game> result = null;
+		try {
+			result = UserStorage.gamesPlayedSinceLastLogin(currentUser.getLastLoggedIn());
+		} catch (Exception e) {
+			alertUser("New Users", "Error", "Could not populate new games since last login");
+		    return;
+		}
+		ObservableList<String> newGames = FXCollections.observableArrayList();
+		newGamesListView.setItems(newGames);
+		if(result == null) {
+			return;
+		}
+	    for(int k = 0; k < result.size(); k++) {
+	    	newGames.add(result.get(k).getGameID());
+	    }
 	}
 	
 
