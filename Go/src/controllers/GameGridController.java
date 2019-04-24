@@ -140,7 +140,7 @@ public class GameGridController extends GraphicalUserInterface {
     				//If occupied, place correct stone for corresponding player.
     				Circle c = new Circle();
         			c.setRadius(STONE_RADIUS);
-    				if(occupiedBoard[i][j] == 1) {
+    				if (occupiedBoard[i][j] == 1) {
     					c.setFill(javafx.scene.paint.Color.BLACK);
     				} else {
     					c.setFill(javafx.scene.paint.Color.WHITE);
@@ -170,7 +170,7 @@ public class GameGridController extends GraphicalUserInterface {
 		    for (int j = 0; j < connected[i].length; j++) {
 			  if (connected[i][j]) {
 				  recreateBoard(Grid);
-				  if(currentPlayer == 1) {
+				  if (currentPlayer == 1) {
 					  playerOneCaptures++;
 				  } else {
 					  playerTwoCaptures++;
@@ -260,11 +260,11 @@ public class GameGridController extends GraphicalUserInterface {
     private void updateUsers(String winner, String loser) {
     	try {
 			ArrayList<User> userList = UserStorage.getUserList();
-			for(int i = 0; i < userList.size(); i++) {
-				if(userList.get(i).getProfile().getUserName().equals(winner)) {
+			for (int i = 0; i < userList.size(); i++) {
+				if (userList.get(i).getProfile().getUserName().equals(winner)) {
 					userList.get(i).addGamePlayed(game.getGameID(), true);
 				}
-				if(userList.get(i).getProfile().getUserName().equals(loser)) {
+				if (userList.get(i).getProfile().getUserName().equals(loser)) {
 					userList.get(i).addGamePlayed(game.getGameID(), false);
 				}
 			}
@@ -282,14 +282,17 @@ public class GameGridController extends GraphicalUserInterface {
     	//the opposition
     	int playerOneDeadStones = game.getBoard().countDeadStones(1);
     	int playerTwoDeadStones = game.getBoard().countDeadStones(2);
+    	
     	int playerOneScore = playerTwoDeadStones + playerOneCaptures;
     	int playerTwoScore = playerOneDeadStones + playerTwoCaptures;
+    	
     	String playerTwo = game.getPlayerTwo().getProfile().getUserName();
     	String playerOne = game.getplayerOne().getProfile().getUserName();
+    	
     	//Compare scores to see who is the winner.
-    	if(playerTwoScore == playerOneScore) {
+    	if (playerTwoScore == playerOneScore) {
     		alertUser("Draw", "Draw", "Both players have the same points");
-    	} else if(playerTwoScore > playerOneScore) {
+    	} else if (playerTwoScore > playerOneScore) {
     		int finalScore = (playerOneDeadStones + playerTwoCaptures);
     		alertUser(playerTwo + " wins", "Score: " + finalScore, "Player two captures: " 
     	    + playerTwoCaptures + ", opposition deadstones: " + playerOneDeadStones);
@@ -309,8 +312,8 @@ public class GameGridController extends GraphicalUserInterface {
      */
     public void createGrid() {
     	//Create new grid by adding intersections.
-    	for(int i = 0; i < GRID_DIMENSION; ++i) {
-    		for(int j = 0; j < GRID_DIMENSION; j++) {	
+    	for (int i = 0; i < GRID_DIMENSION; ++i) {
+    		for (int j = 0; j < GRID_DIMENSION; j++) {	
     			Line line = new Line();
     			line.setStartX(HALF_NODE_WIDTH);
     			line.setStartY(0.0f);
@@ -330,6 +333,5 @@ public class GameGridController extends GraphicalUserInterface {
     			Grid.add(liney, i, j);
     		}
     	}
-    }
-    
+    } 
 }

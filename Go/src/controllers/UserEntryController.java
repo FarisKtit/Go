@@ -25,13 +25,16 @@ public class UserEntryController extends GraphicalUserInterface {
 	 */
 	@FXML
 	public void goToUserDashboard(ActionEvent event) {
+		//Remove empty spaces from input fields.
 		String userName = userNameField.getText().replaceAll("\\s+", "");
 		String userPassword = userPasswordField.getText().replaceAll("\\s+", "");
-		if(!userPassword.equals(userName + "94")) {
+		//Password must be username with 94 on the end, otherwise reject.
+		if (!userPassword.equals(userName + "94")) {
 			alertUser("User Dashboard", "Error", "Incorrect login details");
 			return;
 		}
 		User u = null;
+		//Try to retrieve user, check if they are a real user.
 		try {
 			u = UserStorage.getUser(userName);
 		} catch (IOException e1) {
@@ -40,13 +43,15 @@ public class UserEntryController extends GraphicalUserInterface {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if(userName.equals("") || userPassword.equals("")) {
+		//Make sure input fields are not empty
+		if (userName.equals("") || userPassword.equals("")) {
 			alertUser("User Dashboard", "Error", "Please complete all fields");
 			return;
-		} else if(u == null) {
+		} else if (u == null) {
 			alertUser("User Dashboard", "Error", "Incorrect login details");
 			return;
 		}
+		//If we reach here it is successful and navigate to userdashboard.
 		ArrayList<User> list = new ArrayList<User>();
 		list.add(u);
 	    try {
