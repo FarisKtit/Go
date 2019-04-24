@@ -18,10 +18,10 @@ public class MainStorage {
     public static ArrayList<Game> games;
 	
     
-	//public static ArrayList<User> getUserList() throws Exception {
-	//	loadUsers();
-	//	return users;
-	//}
+    public static ArrayList<User> getUserList() throws Exception {
+        loadUsers();
+        return users;
+    }
 	
 	public static ArrayList<Game> getGameList() throws Exception {
 		loadGames();
@@ -69,7 +69,7 @@ public class MainStorage {
 	
 	public static boolean updateUser(User obj) throws Exception {
 		String userName = obj.getProfile().getUserName();
-		ArrayList<User> users = UserStorage.getUserList();
+		ArrayList<User> users = getUserList();
 		boolean updated = false;
 		for(int i = 0; i < users.size(); i++) {
 			if(users.get(i).getProfile().getUserName().equals(userName)) {
