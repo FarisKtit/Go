@@ -4,6 +4,10 @@ import java.time.LocalDateTime;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * @author cerriannesantos
+ * User class used for creating a user 
+ */
 public class User implements Serializable{
     private UserProfile profile;
     private LocalDateTime lastLoggedIn;

@@ -2,6 +2,11 @@ package models;
 
 import java.io.Serializable;
 
+/**
+ * @author cerriannesantos
+ * UserProfile class responsible for creating a user profile
+ */
+
 public class UserProfile implements Serializable{
     private String userName;
     private String firstName;

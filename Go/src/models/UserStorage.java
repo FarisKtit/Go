@@ -3,6 +3,10 @@ package models;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * @author cerriannesantos UserStorage class responsible for containing user information and methods to access this information
+ */
+
 public class UserStorage extends MainStorage {
 	
 	public static ArrayList<User> users;

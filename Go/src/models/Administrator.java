@@ -3,6 +3,10 @@ package models;
 import java.time.LocalDateTime;
 import java.io.Serializable;
 
+/**
+ * @author cerriannesantos
+ * Administator class responsible for creating an administrator
+ */
 public class Administrator extends User implements Serializable{
     private int adminNumber;
     private static final long serialVersionUID = 1L;
