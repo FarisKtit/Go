@@ -16,6 +16,7 @@ import models.Leaderboard;
 import models.MainStorage;
 import models.ProfileImage;
 import models.User;
+import models.UserStorage;
 
 public class UserDashboardController extends GraphicalUserInterface {
 	
@@ -25,6 +26,10 @@ public class UserDashboardController extends GraphicalUserInterface {
 	private ListView<String> leaderBoardListView;
 	@FXML
 	private ListView<String> gamesPlayedListView;
+	@FXML
+	private ListView<String> newUsersListView;
+	@FXML
+	private ListView<String> newGamesListView;
 	@FXML
 	private ImageView profileImage;
 	@FXML
@@ -39,6 +44,15 @@ public class UserDashboardController extends GraphicalUserInterface {
 	private ImageView imageFive;
 	@FXML
 	private ImageView imageSix;
+	
+	@FXML
+	public void goToEntryDashboard(ActionEvent event) {
+	    try {
+	        goToView("EntryDashboard", event);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public void initData(ArrayList<User> list) {
 		currentUser =  list.get(0);
@@ -57,30 +71,7 @@ public class UserDashboardController extends GraphicalUserInterface {
 	    Image i = new Image(url);
 	    profileImage.setImage(i);
 	    
-	    Map<User, Double> leaders = null;
 	    
-	    ObservableList<String> obs = FXCollections.observableArrayList();
-	    leaderBoardListView.setItems(obs);
-
-	    try {
-			leaders = Leaderboard.showLeaders();
-			ArrayList<User> leaderBoard = new ArrayList<User>(leaders.keySet());
-			ArrayList<User> leaderBoardReversed = new ArrayList<User>();
-			for(int j = (leaderBoard.size() - 1); j > -1; j--) {
-				leaderBoardReversed.add(leaderBoard.get(j));
-			}
-			for(int k = 0; k < leaderBoardReversed.size(); k++) {
-				String userName = leaderBoardReversed.get(k).getProfile().getUserName();
-				System.out.println(userName);
-				String winPct = Double.toString(leaderBoardReversed.get(k).calculateWinPercentage());
-				obs.add(userName + ", win pct: " + winPct);
-				System.out.println(userName + ", win pct: " + winPct + ", wins: " + leaderBoardReversed.get(k).getWins() + ", losses: " + leaderBoardReversed.get(k).getLosses());
-			}
-			
-		} catch (Exception e) {
-			alertUser("Leaderboard", "Error", "Could not load leaderboard");
-		    return;
-		}
 	    ArrayList<String> gamesPlayed = currentUser.getGamesPlayed();
 	    ObservableList<String> gamesPlayedList = FXCollections.observableArrayList();
 	    gamesPlayedListView.setItems(gamesPlayedList);
@@ -144,13 +135,29 @@ public class UserDashboardController extends GraphicalUserInterface {
 		}
 	}
 	
-	@FXML
-	public void goToEntryDashboard(ActionEvent event) {
-	    try {
-	        goToView("EntryDashboard", event);
-		} catch (IOException e) {
-			e.printStackTrace();
+	public void populateNewUsersSinceLastLogin() {
+		ArrayList<User> result = null;
+		try {
+			result = UserStorage.newUserSinceLastLogin(currentUser.getLastLoggedIn());
+		} catch (Exception e) {
+			alertUser("New Users", "Error", "Could not populate new users since last login");
+		    return;
 		}
+		ObservableList<String> newUsers = FXCollections.observableArrayList();
+		newUsersListView.setItems(newUsers);
+		if(result == null) {
+			return;
+		}
+	    for(int k = 0; k < result.size(); k++) {
+	    	newUsers.add(result.get(k).getProfile().getUserName());
+	    }
+		
 	}
+	
+	public void populateNewGamesSinceLastLogin() {
+		
+	}
+	
+
 	
 }

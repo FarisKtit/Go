@@ -14,7 +14,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Circle;
@@ -28,6 +27,8 @@ public class GameGridController extends GraphicalUserInterface {
 	private int playerTwoPasses = 0;
 	private int playerOneCaptures = 0;
 	private int playerTwoCaptures = 0;
+	private int playerOneDeadStones = 0;
+	private int playerTwoDeadStones = 0;
 	
 	@FXML
 	private Label playerOneTag;
@@ -203,6 +204,9 @@ public class GameGridController extends GraphicalUserInterface {
     
     @FXML
     public void playerOnePass() {
+    	if(game.getUserMove().equals("Player 2")) {
+    		return;
+    	}
     	playerOnePasses++;
     	if((playerOnePasses + playerTwoPasses) >= 4) {
     		calculateWinner();
@@ -213,6 +217,9 @@ public class GameGridController extends GraphicalUserInterface {
     
     @FXML
     public void playerTwoPass() {
+    	if(game.getUserMove().equals("Player 1")) {
+    		return;
+    	}
     	playerTwoPasses++;
     	if((playerOnePasses + playerTwoPasses) >= 4) {
     		calculateWinner();

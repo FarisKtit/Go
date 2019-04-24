@@ -22,7 +22,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="140.0" layoutY="84.0" text="Administrator ID:" />
+            <Label fx:id="adminIdLabel" layoutX="140.0" layoutY="84.0" text="Administrator ID:" />
             <Button layoutX="197.0" layoutY="324.0" mnemonicParsing="false" onAction="#goToEntryDashboard" prefHeight="41.0" prefWidth="95.0" text="Home" />
             <CheckBox fx:id="isAdmin" layoutX="190.0" layoutY="268.0" mnemonicParsing="false" text="Administrator" />
          </children></AnchorPane>

@@ -36,7 +36,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <ListView layoutX="513.0" layoutY="142.0" prefHeight="200.0" prefWidth="248.0" />
+      <ListView fx:id="leaderBoardListView" layoutX="513.0" layoutY="142.0" prefHeight="200.0" prefWidth="248.0" />
       <Label layoutX="513.0" layoutY="122.0" text="userName" />
       <Label layoutX="595.0" layoutY="122.0" text="winPercentage" />
       <Label layoutX="711.0" layoutY="122.0" text="no.Wins" />
