@@ -2,20 +2,31 @@ package controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import models.Administrator;
-import models.MainStorage;
 import models.User;
 import models.UserStorage;
 
 
-
+/**
+ * This class manages the selection of two users from which to start a game of Go94.
+ * @author Faris Ktit
+ *
+ */
 public class GameDashboardController extends GraphicalUserInterface {
 	
 	@FXML
+	private TextField playerOneField;
+	@FXML
+	private TextField playerTwoField;
+	@FXML
+	
+	/**
+	 * Manages the navigation from the Game Dashboard back to the homepage.
+	 * @param event
+	 */
 	public void goToEntryDashboard(ActionEvent event) {
 	    try {
 	        goToView("EntryDashboard", event);
@@ -24,11 +35,10 @@ public class GameDashboardController extends GraphicalUserInterface {
 		}
 	}
 	
-	@FXML
-	private TextField playerOneField;
-	@FXML
-	private TextField playerTwoField;
-	
+	/**
+	 * Checks if players are existing players or administrators then navigates players to the game Go94.
+	 * @param event
+	 */
 	@FXML
 	public void goToGameGrid(ActionEvent event) {
 		String playerOne = playerOneField.getText().replaceAll("\\s+", "");
@@ -76,7 +86,6 @@ public class GameDashboardController extends GraphicalUserInterface {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

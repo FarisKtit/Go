@@ -15,7 +15,7 @@ import models.User;
 import models.UserStorage;
 
 /**
- * This class manages interactions with the administrators dashboard to manage players.
+ * This class manages interactions with the administrators' dash board to manage players.
  * @author Faris Ktit
  * @version 1.5 
  */

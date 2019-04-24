@@ -16,6 +16,13 @@ import models.ProfileImage;
 import models.User;
 import models.UserStorage;
 
+/**
+ * This class manages displaying user information, such as games played since last login,
+ * the new users since last login. their profile image and selection of a new one and 
+ * 
+ * @author Faris Ktit
+ *
+ */
 public class UserDashboardController extends GraphicalUserInterface {
 	
 	private User currentUser;
