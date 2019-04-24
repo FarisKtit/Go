@@ -3,6 +3,7 @@ package models;
 import java.io.Serializable;
 
 /**
+ * Implements UserProfile class.
  * @author cerriannesantos
  * UserProfile class responsible for creating a user profile
  */

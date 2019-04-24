@@ -4,8 +4,9 @@ import java.time.LocalDateTime;
 import java.io.Serializable;
 
 /**
- * @author cerriannesantos
- * Administator class responsible for creating an administrator
+ * Implements Administrator class.
+ * @author cerriannesantos.
+ * Administator class responsible for creating an administrator.
  */
 
 public class Administrator extends User implements Serializable{

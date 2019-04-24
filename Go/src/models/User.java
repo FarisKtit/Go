@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
+ * Implements User class.
  * @author cerriannesantos
  * User class used for creating a user
  */

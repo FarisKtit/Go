@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /**
+ * Implements User Storage class.
  * @author cerriannesantos UserStorage class responsible for containing user information and methods to access this information
  */
 
