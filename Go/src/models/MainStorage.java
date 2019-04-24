@@ -21,7 +21,6 @@ public class MainStorage {
 	
     /**
      * Provides the ability to read saved games from files.
-     * @return ArrayList<Game>
      * @throws Exception
      */
 	public static ArrayList<Game> getGameList() throws Exception {
@@ -32,7 +31,7 @@ public class MainStorage {
 	
 	/**
 	 * Provides the ability to save a game to a file.
-	 * @param game
+	 * @param Game
 	 * @return boolean
 	 * @throws Exception
 	 */
