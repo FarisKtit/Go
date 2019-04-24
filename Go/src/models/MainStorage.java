@@ -131,11 +131,11 @@ public class MainStorage {
 		ObjectOutputStream objOps = null;
 		boolean successful = false;
 		try {
-			File fileChecker = new File("users.txt");
+			File fileChecker = new File("./../../users.txt");
 			if(!fileChecker.exists()) {
 				fileChecker.createNewFile();
 			}
-			ops = new FileOutputStream("users.txt");
+			ops = new FileOutputStream("./../../users.txt");
 			objOps = new ObjectOutputStream(ops);
 			objOps.writeObject(userList);
 			objOps.flush();
@@ -158,11 +158,11 @@ public class MainStorage {
 		ObjectOutputStream objOps = null;
 		boolean successful = false;
 		try {
-			File fileChecker = new File("games.txt");
+			File fileChecker = new File("./../../games.txt");
 			if(!fileChecker.exists()) {
 				fileChecker.createNewFile();
 			}
-			ops = new FileOutputStream("games.txt");
+			ops = new FileOutputStream("./../../games.txt");
 			objOps = new ObjectOutputStream(ops);
 			objOps.writeObject(games);
 			objOps.flush();
