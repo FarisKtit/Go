@@ -117,18 +117,18 @@ public class Board implements Serializable {
 	// method to find the opponent's stones on the board
 	public int countDeadStones(int currentPlayer) {
 		int count = 0;
-		count = deadStones(int currentPlayer);
+		count = deadStones(currentPlayer);
 		return count;
 	}
 
 	// method to count the dead stones
-	public int deadStones (int currentPlayer) {
+	private int deadStones (int currentPlayer) {
 		boolean[][] connectedStones = null;
 		int count = 0;
 		for (int i = 0; i < board.length; i++) {
 			for (int j =0; j <board[i].length; j++) {
 				if(board[i][j] == currentPlayer) {
-					connetedStones = boolean[9][9];
+					connectedStones = new boolean[9][9];
 					findConnectedStones(i, j, currentPlayer, connectedStones);
 					if(isDead(currentPlayer, connectedStones)) {
 						count++;
@@ -140,28 +140,28 @@ public class Board implements Serializable {
 	}
 
 	// method to check if the stone is a dead stone
-	public boolean isDead(int currentPlayer, boolean [][] connectedStones) {
+	private boolean isDead(int currentPlayer, boolean [][] connectedStones) {
 		int count = 0;
 		for (int i = 0; i <connectedStones.length; i++){
 			for (int j = 0; j < connectedStones[i].length; j++){
 				if (connectedStones[i][j]) {
 					if (i - 1 >= 0) {
-						if (board[i - 1][j] = 0) {
+						if (board[i - 1][j] == 0) {
 							count++;
 						}
 					}
 					if (i + 1 <= 8) {
-						if (board[i + 1][j] = 0) {
+						if (board[i + 1][j] == 0) {
 							count++;
 						}
 					}
 					if (j - 1 >= 0) {
-						if (board[i][j - 1] = 0) {
+						if (board[i][j - 1] == 0) {
 							count++;
 						}
 					}
 					if (j + 1 <= 8) {
-						if (board[i][j + 1] = 0) {
+						if (board[i][j + 1] == 0) {
 							count++;
 						}
 					}

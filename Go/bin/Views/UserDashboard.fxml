@@ -21,12 +21,12 @@
       </Label>
       <Button fx:id="EntryDashboardBtn" layoutX="450.0" layoutY="335.0" mnemonicParsing="false" onAction="#goToEntryDashboard" prefHeight="42.0" prefWidth="153.0" text="Home" />
       <ListView fx:id="gamesPlayedListView" layoutX="265.0" layoutY="133.0" prefHeight="187.0" prefWidth="153.0" />
-      <Label layoutX="440.0" layoutY="111.0" text="New Users Since Last Login" />
+      <Label layoutX="440.0" layoutY="110.0" prefHeight="18.0" prefWidth="172.0" text="New Users Since Last Login" />
       <ListView layoutX="425.0" layoutY="133.0" prefHeight="187.0" prefWidth="200.0" />
-      <Label layoutX="670.0" layoutY="111.0" text="Leaderboard" />
+      <Label layoutX="633.0" layoutY="111.0" prefHeight="18.0" prefWidth="153.0" text="Games Since Last Login" />
       <ListView fx:id="leaderBoardListView" layoutX="633.0" layoutY="133.0" prefHeight="187.0" prefWidth="153.0" />
       <Label layoutX="74.0" layoutY="111.0" text="Select your Avatar" />
-      <GridPane layoutX="4.0" layoutY="133.0" pickOnBounds="false" prefHeight="259.0" prefWidth="252.0" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="544.0" AnchorPane.topAnchor="133.0">
+      <GridPane layoutX="14.0" layoutY="128.0" pickOnBounds="false" prefHeight="259.0" prefWidth="252.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="534.0" AnchorPane.topAnchor="128.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
