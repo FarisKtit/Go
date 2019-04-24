@@ -6,11 +6,10 @@ import java.util.ArrayList;
 
 /**
  * Implements User class.
- * @author cerriannesantos
- * User class used for creating a user
+ * @author cerriannesantos.
+ * User class used for creating a user.
  */
-
-public class User implements Serializable{
+public class User implements Serializable {
     private UserProfile profile;
     private LocalDateTime lastLoggedIn;
     private LocalDateTime joinDate;
@@ -21,14 +20,13 @@ public class User implements Serializable{
     private static final long serialVersionUID = 1L;
 
     /**
-     * Constructor for class User
-     * @param userName Users Username
-     * @param firstName Users first name
-     * @param lastName users last name
-     * @param isAdmin boolean value whether or not User is an admin
+     * Constructor for class User.
+     * @param userName Users Username.
+     * @param firstName Users first name.
+     * @param lastName users last name.
+     * @param isAdmin boolean value whether or not User is an admin.
      */
-
-    public User(String userName, String firstName, String lastName, boolean isAdmin){
+    public User(String userName, String firstName, String lastName, boolean isAdmin) {
         this.profile = new UserProfile(userName, firstName, lastName);
         this.lastLoggedIn = LocalDateTime.MIN;
         this.joinDate = LocalDateTime.now();
@@ -39,48 +37,43 @@ public class User implements Serializable{
     }
 
     /**
-     * Gets the User profile
-     * @return returns users profile
+     * Gets the User profile.
+     * @return returns users profile.
      */
-
-    public UserProfile getProfile(){
+    public UserProfile getProfile() {
         return this.profile;
     }
 
     /**
-     * Sets Last date time logged in for User
+     * Sets Last date time logged in for User.
      */
-
     public void onLogIn(){
         lastLoggedIn = LocalDateTime.now();
 
     }
 
     /**
-     * Gets last log in date for User
-     * @return last log in date time
+     * Gets last log in date for User.
+     * @return last log in date time.
      */
-
-    public LocalDateTime getLastLoggedIn(){
+    public LocalDateTime getLastLoggedIn() {
         return this.lastLoggedIn;
     }
 
     /**
-     * Gets Users join date
-     * @return join date
+     * Gets Users join date.
+     * @return join date.
      */
-
-    public LocalDateTime getJoinDate(){
+    public LocalDateTime getJoinDate() {
         return this.joinDate;
     }
 
     /**
-     * Records games played and wins or losses of User
-     * @param gameID gameID
-     * @param win Wins
+     * Records games played and wins or losses of User.
+     * @param gameID gameID.
+     * @param win Wins.
      */
-
-    public void addGamePlayed(String gameID, boolean win){
+    public void addGamePlayed(String gameID, boolean win) {
         if (win){
             wins = wins + 1;
         } else {
@@ -90,20 +83,18 @@ public class User implements Serializable{
     }
 
     /**
-     * Gets games played by User
-     * @return Games played by User
+     * Gets games played by User.
+     * @return Games played by User.
      */
-
-    public ArrayList<String> getGamesPlayed(){
+    public ArrayList<String> getGamesPlayed() {
         return this.gamesPlayed;
     }
 
     /**
-     * Calculates win percentage for user
-     * @return The Users win percentage
+     * Calculates win percentage for user.
+     * @return The Users win percentage.
      */
-
-    public double calculateWinPercentage(){
+    public double calculateWinPercentage() {
     	if((wins + losses) == 0) {
     		return 0d;
     	}
@@ -111,35 +102,32 @@ public class User implements Serializable{
     }
 
     /**
-     * Gets number of wins for User
-     * @return Users wins
+     * Gets number of wins for User.
+     * @return Users wins.
      */
-
-    public double getWins(){
+    public double getWins() {
        return this.wins;
     }
 
     /**
-     * Gets number of losses for User
-     * @return Users losses
+     * Gets number of losses for User.
+     * @return Users losses.
      */
-
-    public double getLosses(){
+    public double getLosses() {
         return this.losses;
     }
 
     /**
-     * Returns whether or not User is an admin
-     * @return true if User is admin, false otherwise
+     * Returns whether or not User is an admin.
+     * @return true if User is admin, false otherwise.
      */
 
     public boolean isAdmin(){return isAdmin;}
 
     /**
-     * Creates a string of fields used in this class
-     * @return string of fields of the class
+     * Get all data and return it to the user interface.
+     * @return All inputs and outputs.
      */
-
     public String toString() {
         return profile+"=="+lastLoggedIn+"=="+joinDate+"=="+gamesPlayed+"=="+wins+"=="
                 +losses+"=="+isAdmin;
