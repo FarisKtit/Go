@@ -6,17 +6,7 @@ import java.util.ArrayList;
 public class UserStorage extends MainStorage {
 	
 	public static ArrayList<User> users;
-	
-	public static ArrayList<User> getUserList() throws Exception {
-		loadUsers();
-		return users;
-	}
-	
-	public static void loadUsers() throws Exception {
-		users = new ArrayList<User>();
-		users = (ArrayList<User>) readFromMemory("users");
-	}
-	
+
 	public static String createUser(User user) throws Exception {
 		String username = user.getProfile().getUserName();
 		if(getUser(username) != null) {
@@ -29,7 +19,7 @@ public class UserStorage extends MainStorage {
 			return "Error";
 		}
 	}
-	
+
 	public static User getUser(String username) throws Exception {
 		loadUsers();
 		for(int i = 0; i < users.size(); i++) {
@@ -39,7 +29,21 @@ public class UserStorage extends MainStorage {
 		}
 		return null;
 	}
-	
+
+	public static boolean updateUser(User obj) throws Exception {
+		String userName = obj.getProfile().getUserName();
+		ArrayList<User> users = getUserList();
+		boolean updated = false;
+		for(int i = 0; i < users.size(); i++) {
+			if(users.get(i).getProfile().getUserName().equals(userName)) {
+				users.set(i, obj);
+				updated = true;
+			}
+		}
+		writeUsersToMemory(users);
+		return updated;
+	}
+
 	public static String deleteUser(String userName) throws Exception {
 		loadUsers();
 		String deleted = "No user";
@@ -57,7 +61,7 @@ public class UserStorage extends MainStorage {
 		}
 		return deleted;
 	}
-	
+
     public static ArrayList<User> newUserSinceLastLogin(LocalDateTime lastLoggedIn) throws Exception {
 		ArrayList<User> users = getUserList();
 		ArrayList<User> result = new ArrayList<User>();
