@@ -11,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import models.Administrator;
-import models.MainStorage;
 import models.User;
 import models.UserStorage;
 
@@ -33,35 +32,52 @@ public class AdminDashboardController extends GraphicalUserInterface {
     @FXML
     private Label adminIdLabel;
     
-    public void initData(ArrayList<User> list) {
-		Administrator currentUser = (Administrator) list.get(0);
-		adminIdLabel.setText("Administrator ID: " + currentUser.getAdminID());
-	}
-    
     @FXML
     public void initialize() {
     	populateListView();
     }
+    
+	@FXML
+	public void goToEntryDashboard(ActionEvent event) {
+	    try {
+	        goToView("EntryDashboard", event);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
     
     @FXML
     public void createUser(ActionEvent event) {
     	String userName = userNameField.getText().replaceAll("\\s+", "");
     	String firstName = firstNameField.getText().replaceAll("\\s+", "");
     	String lastName = lastNameField.getText().replaceAll("\\s+", "");
-    	if((userName.length() == 0) || (firstName.length() == 0) || (lastName.length() == 0)) {
-    		alertUser("Create New User", "Error", "Please make sure all fields have been filled in");
+    	int userNameLen = userName.length();
+    	int firstNameLen = firstName.length();
+    	int lastNameLen = lastName.length();
+    	if((userNameLen == 0) || (firstNameLen == 0) || (lastNameLen == 0)) {
+    		String alertHeader = "Create New User";
+    		String alertSubHeader = "Error";
+    		String alertContent = "Please make sure all fields are complete";
+    		alertUser(alertHeader, alertSubHeader, alertContent);
     		return;
     	}
     	User newUser = null;
-    	if(!isAdmin.isSelected()) newUser = new User(userName, firstName, lastName, false);
-    	else {
+    	if(!isAdmin.isSelected()) {
+    		newUser = new User(userName, firstName, lastName, false);
+    	} else {
     		int current= (int) System.currentTimeMillis();
     		newUser = new Administrator(current, userName, firstName, lastName);
     	}
     	try {
     		String result = UserStorage.createUser(newUser);
+    		String alertHeader;
+    		String alertSubHeader;
+    		String alertContent;
 			if(result.equals("Success")) {
-				alertUser("Create New User", "Success", "User created");
+				alertHeader = "Create New User";
+				alertSubHeader = "Success";
+				alertContent = "User created";
+				alertUser( alertHeader, alertSubHeader, alertContent);
 			} else if(result.equals("User exists")) {
 				alertUser("Create New User", "Error", "User already exists");
 				return;
@@ -85,25 +101,47 @@ public class AdminDashboardController extends GraphicalUserInterface {
     public void deleteUser(ActionEvent event) {
     	String userName = deleteUserField.getText().replaceAll("\\s+", "");
     	if(userName.length() == 0) {
-    		alertUser("Delete User", "Error", "Please make sure the username field has been filled out");
+    		String alertHeader = "Delete User";
+    		String alertSubHeader = "Error";
+    		String alertContent = "Please make sure the username field has been filled out";
+    		alertUser(alertHeader, alertSubHeader, alertContent);
     		return;
     	}
+		String alertHeader;
+		String alertSubHeader;
+		String alertContent;
     	try {
 			String result = UserStorage.deleteUser(userName);
 			if(result.equals("No user")) {
-	    		alertUser("Delete User", "Error", "Please make sure the user exists");
+				alertHeader = "Delete User";
+				alertSubHeader = "Error";
+				alertContent = "Please make sure the user exists";
+	    		alertUser( alertHeader, alertSubHeader, alertContent);
 			} else if(result.equals("Success")) {
-				alertUser("Delete User", "Success", "User deleted");
+				alertHeader = "Delete User";
+				alertSubHeader = "Success";
+				alertContent = "User deleted";
+				alertUser( alertHeader, alertSubHeader, alertContent);
 			} else {
-				alertUser("Delete User", "Error", "Please try again later");
+				alertHeader = "Delete User";
+				alertSubHeader = "Error";
+				alertContent = "Please try again later";
+				alertUser( alertHeader, alertSubHeader, alertContent);
 			}
 		} catch (Exception e) {
-			alertUser("Delete User", "Error", "Please try again later");
+			alertHeader = "Delete User";
+			alertSubHeader = "Error";
+			alertContent = "Please try again later";
+			alertUser( alertHeader, alertSubHeader, alertContent);
 		}
     	deleteUserField.setText("");
     	populateListView();
     }
     
+    public void initData(ArrayList<User> list) {
+		Administrator currentUser = (Administrator) list.get(0);
+		adminIdLabel.setText("Administrator ID: " + currentUser.getAdminID());
+	}
     
     public void populateListView() {
     	ObservableList<String> obs = FXCollections.observableArrayList();
@@ -118,17 +156,11 @@ public class AdminDashboardController extends GraphicalUserInterface {
 				obs.add(userName + " " + firstName + " " + lastName);
 			}
 		} catch (Exception e) {
-    		alertUser("Load User List", "Error", "Users could not be loaded at this time");
+			String alertHeader = "Load User List";
+			String alertSubHeader = "Error";
+			String alertContent = "Users could not be loaded at this time";
+    		alertUser( alertHeader, alertSubHeader, alertContent);
 		}
     }
-    
-	@FXML
-	public void goToEntryDashboard(ActionEvent event) {
-	    try {
-	        goToView("EntryDashboard", event);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
+   
 }
