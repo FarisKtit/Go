@@ -59,7 +59,8 @@ public class UserStorage extends MainStorage {
 	}
 	
     public static ArrayList<User> newUserSinceLastLogin(LocalDateTime lastLoggedIn) throws Exception {
-        ArrayList<User> result = getUserList();
+		ArrayList<User> users = getUserList();
+		ArrayList<User> result = new ArrayList<User>();
         for (int i = 0; i < users.size(); i++)
         {
             if (users.get(i).getJoinDate().isAfter(lastLoggedIn)){
@@ -70,7 +71,8 @@ public class UserStorage extends MainStorage {
     }
 
     public static ArrayList<Game> gamesPlayedSinceLastLogin(LocalDateTime lastLoggedIn) throws Exception {
-        ArrayList<Game> result = getGameList();
+		ArrayList<Game> games = getGameList();
+		ArrayList<Game> result = new ArrayList<Game>();
         for (int i = 0; i < games.size(); i++)
         {
             if (games.get(i).getGameDate().isAfter(lastLoggedIn)){

@@ -14,6 +14,9 @@ public class Administrator extends User implements Serializable{
     public void createNewUserAccount(String AdministratorDashboard){
     }
     public boolean isAdmin(){return true;}
+    public int getAdminID () {
+        return this.adminNumber;
+    }
     public String toString() {
         return super.toString() + "==" + this.adminNumber;
     }
