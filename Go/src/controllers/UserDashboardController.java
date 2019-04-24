@@ -157,7 +157,6 @@ public class UserDashboardController extends GraphicalUserInterface {
 	
 	/**
 	 * Sets the user' profile image to a new profile image.
-	 * @param profileImage
 	 */
 	public void updateUserImage(ProfileImage image) {
 		//Update profile image of current user logged in.
