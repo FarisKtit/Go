@@ -140,7 +140,6 @@ public class UserDashboardController extends GraphicalUserInterface {
 		ArrayList<User> result = null;
 		try {
 			result = UserStorage.newUserSinceLastLogin(currentUser.getLastLoggedIn());
-			System.out.println(currentUser.getLastLoggedIn());
 		} catch (Exception e) {
 			alertUser("New Users", "Error", "Could not populate new users since last login");
 		    return;
