@@ -73,8 +73,6 @@ public class UserStorage extends MainStorage {
 		return deleted;
 	}
 
-
-
     public static ArrayList<User> newUserSinceLastLogin(LocalDateTime lastLoggedIn) throws Exception {
 		ArrayList<User> users = getUserList();
 		ArrayList<User> result = new ArrayList<User>();
