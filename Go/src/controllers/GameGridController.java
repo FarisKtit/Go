@@ -62,7 +62,7 @@ public class GameGridController extends GraphicalUserInterface {
         int xIndex = x / nodeWidth;
         
         Circle c = new Circle();
-		c.setRadius(15);
+		c.setRadius(7.5);
 		
 		int currentPlayer = 0;
 		int oppositePlayer = 0;
@@ -119,7 +119,7 @@ public class GameGridController extends GraphicalUserInterface {
     			
     			if(occupiedBoard[i][j] != 0) {
     				Circle c = new Circle();
-        			c.setRadius(15);
+        			c.setRadius(7.5);
     				if(occupiedBoard[i][j] == 1) {
     					c.setFill(javafx.scene.paint.Color.BLACK);
     				} else {
