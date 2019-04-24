@@ -7,17 +7,17 @@ import java.util.ArrayList;
  * @author cerriannesantos UserStorage class responsible for containing user information and methods to access this information
  */
 
-public class UserStorage extends MainStorage {
+public class UserStorage extends MainStorage{
 
 	public static ArrayList<User> users;
 
 	/**
 	 * Gets a list of all users in system
-	 * @return A list of all users in system 
+	 * @return A list of all users in system
 	 * @throws Exception
 	 */
 
-    public static ArrayList<User> getUserList() throws Exception {
+    public static ArrayList<User> getUserList() throws Exception{
         loadUsers();
         return users;
     }
@@ -27,7 +27,7 @@ public class UserStorage extends MainStorage {
 	 * @throws Exception
 	 */
 
-	public static void loadUsers() throws Exception {
+	public static void loadUsers() throws Exception{
 		users = new ArrayList<User>();
 		users = (ArrayList<User>) readFromMemory("users");
 	}
