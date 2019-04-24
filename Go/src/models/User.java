@@ -95,7 +95,7 @@ public class User implements Serializable {
      * @return The Users win percentage.
      */
     public double calculateWinPercentage() {
-    	if((wins + losses) == 0) {
+    	if ((wins + losses) == 0) {
     		return 0d;
     	}
         return wins/(wins+losses) * 100;
@@ -121,7 +121,6 @@ public class User implements Serializable {
      * Returns whether or not User is an admin.
      * @return true if User is admin, false otherwise.
      */
-
     public boolean isAdmin(){return isAdmin;}
 
     /**

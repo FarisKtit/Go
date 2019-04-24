@@ -39,11 +39,11 @@ public class UserStorage extends MainStorage {
 	 */
 	public static String createUser(User user) throws Exception {
 		String username = user.getProfile().getUserName();
-		if(getUser(username) != null) {
+		if (getUser(username) != null) {
 			return "User exists";
 		}
 		users.add(user);
-		if(writeUsersToMemory(users)) {
+		if (writeUsersToMemory(users)) {
 			return "Success";
 		} else {
 			return "Error";
@@ -58,7 +58,7 @@ public class UserStorage extends MainStorage {
 	 */
 	public static User getUser(String username) throws Exception {
 		loadUsers();
-		for(int i = 0; i < users.size(); i++) {
+		for (int i = 0; i < users.size(); i++) {
 			if(users.get(i).getProfile().getUserName().equals(username)) {
 				return users.get(i);
 			}
@@ -76,7 +76,7 @@ public class UserStorage extends MainStorage {
 		String userName = obj.getProfile().getUserName();
 		ArrayList<User> users = getUserList();
 		boolean updated = false;
-		for(int i = 0; i < users.size(); i++) {
+		for (int i = 0; i < users.size(); i++) {
 			if(users.get(i).getProfile().getUserName().equals(userName)) {
 				users.set(i, obj);
 				updated = true;
@@ -95,16 +95,16 @@ public class UserStorage extends MainStorage {
 	public static String deleteUser(String userName) throws Exception {
 		loadUsers();
 		String deleted = "No user";
-		for(int i = 0; i < users.size(); i++) {
+		for (int i = 0; i < users.size(); i++) {
 			if(users.get(i).getProfile().getUserName().equals(userName)) {
 				users.remove(i);
 				deleted = "Success";
 			}
 		}
-		if(deleted.equals("No user")) {
+		if (deleted.equals("No user")) {
 			return deleted;
 		}
-		if(!writeUsersToMemory(users)) {
+		if (!writeUsersToMemory(users)) {
 			deleted = "Error";
 		}
 		return deleted;
