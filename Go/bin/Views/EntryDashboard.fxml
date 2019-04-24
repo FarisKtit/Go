@@ -8,29 +8,38 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EntryDashboardController">
     <children>
-        <Button fx:id="UserDashboardBtn" alignment="CENTER" layoutX="172.0" layoutY="113.0" mnemonicParsing="false" onAction="#goToUserDashboard" prefHeight="50.0" prefWidth="128.0" text="User Dashboard" />
-        <Button fx:id="GameDashboardBtn" layoutX="172.0" layoutY="299.0" mnemonicParsing="false" onAction="#goToGameDashboard" prefHeight="50.0" prefWidth="128.0" text="Game Dashboard" />
-        <Button fx:id="AdminDashboardBtn" layoutX="172.0" layoutY="205.0" mnemonicParsing="false" onAction="#goToAdminDashboard" prefHeight="50.0" prefWidth="128.0" text="Admin Dashboard" />
+        <Button fx:id="UserDashboardBtn" alignment="CENTER" layoutX="33.0" layoutY="113.0" mnemonicParsing="false" onAction="#goToUserDashboard" prefHeight="50.0" prefWidth="128.0" text="User Dashboard" />
+        <Button fx:id="GameDashboardBtn" layoutX="27.0" layoutY="299.0" mnemonicParsing="false" onAction="#goToGameDashboard" prefHeight="50.0" prefWidth="128.0" text="Game Dashboard" />
+        <Button fx:id="AdminDashboardBtn" layoutX="33.0" layoutY="205.0" mnemonicParsing="false" onAction="#goToAdminDashboard" prefHeight="50.0" prefWidth="128.0" text="Admin Dashboard" />
       <Label alignment="CENTER" layoutX="203.0" layoutY="21.0" text="Welcome to Go94" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="48.0" />
          </font>
       </Label>
-      <Label layoutX="421.0" layoutY="126.0" text="Go to the User Dashboard ">
+      <Label layoutX="210.0" layoutY="127.0" text="Go to the User Dashboard ">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="419.0" layoutY="312.0" text="Go to the Game Dashboard">
+      <Label layoutX="208.0" layoutY="313.0" text="Go to the Game Dashboard">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="417.0" layoutY="218.0" text="Go to the Admin Dashboard">
+      <Label layoutX="206.0" layoutY="219.0" text="Go to the Admin Dashboard">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
+      <Label layoutX="587.0" layoutY="90.0" text="Leaderboard">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ListView layoutX="513.0" layoutY="142.0" prefHeight="200.0" prefWidth="248.0" />
+      <Label layoutX="513.0" layoutY="122.0" text="userName" />
+      <Label layoutX="595.0" layoutY="122.0" text="winPercentage" />
+      <Label layoutX="711.0" layoutY="122.0" text="no.Wins" />
     </children>
 
 </AnchorPane>

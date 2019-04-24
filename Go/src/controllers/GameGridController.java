@@ -13,6 +13,8 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Circle;
@@ -22,9 +24,18 @@ import models.User;
 public class GameGridController extends GraphicalUserInterface {
 	
 	private static Game game;
+	private int playerOnePasses = 0;
+	private int playerTwoPasses = 0;
+	
+	@FXML
+	private Label playerOneTag;
+	@FXML
+	private Label playerTwoTag;
 	
 	public void initData(ArrayList<User> obj) {
         game = new Game(obj.get(0), obj.get(1));
+        playerOneTag.setText(obj.get(0).getProfile().getUserName());
+        playerTwoTag.setText(obj.get(1).getProfile().getUserName());
 	}
 	
 	@FXML
@@ -68,10 +79,12 @@ public class GameGridController extends GraphicalUserInterface {
 		c.setRadius((int) (Grid.getWidth()/Grid.getColumnCount())/4);
 		int oppositePlayer = 0;
 		if(game.getUserMove().equals("Player 1")) {
+			playerOnePasses = 0;
 			oppositePlayer = 2;
 			c.setFill(javafx.scene.paint.Color.BLACK);
 		} else { 
 			oppositePlayer = 1;
+			playerTwoPasses = 0;
 			c.setFill(javafx.scene.paint.Color.WHITE);
 		}
         if(game.placeStone(yIndex, xIndex).equals("SUCCESS")) {
@@ -165,6 +178,16 @@ public class GameGridController extends GraphicalUserInterface {
 			alertUser("End Game", "Error", "Cannot update user data");
 			e.printStackTrace();
 		}
+    }
+    
+    @FXML
+    public void playerOnePass() {
+    	
+    }
+    
+    @FXML
+    public void playerTwoPass() {
+    	
     }
     
 }
