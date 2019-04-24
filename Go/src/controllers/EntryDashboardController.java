@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -66,7 +67,8 @@ public class EntryDashboardController extends GraphicalUserInterface {
 			for(int k = 0; k < leaderBoardReversed.size(); k++) {
 				String userName = leaderBoardReversed.get(k).getProfile().getUserName();
 				System.out.println(userName);
-				String winPct = Double.toString(leaderBoardReversed.get(k).calculateWinPercentage());
+				DecimalFormat df = new DecimalFormat(".##"); 
+				String winPct = df.format(leaderBoardReversed.get(k).calculateWinPercentage());
 				obs.add(userName + ", win pct: " + winPct + "%, wins: " + leaderBoardReversed.get(k).getWins());
 				System.out.println(userName + ", win pct: " + winPct + ", wins: " + leaderBoardReversed.get(k).getWins() + ", losses: " + leaderBoardReversed.get(k).getLosses());
 			}

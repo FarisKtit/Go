@@ -17,6 +17,7 @@ import models.UserStorage;
 
 
 public class AdminDashboardController extends GraphicalUserInterface {
+
     @FXML
     private ListView<String> userListView;
     @FXML
@@ -34,7 +35,7 @@ public class AdminDashboardController extends GraphicalUserInterface {
     
     public void initData(ArrayList<User> list) {
 		Administrator currentUser = (Administrator) list.get(0);
-		//adminIdLabel.setText("Administrator ID: " + currentUser);
+		adminIdLabel.setText("Administrator ID: " + currentUser.getAdminID());
 	}
     
     @FXML
@@ -58,7 +59,7 @@ public class AdminDashboardController extends GraphicalUserInterface {
     		newUser = new Administrator(current, userName, firstName, lastName);
     	}
     	try {
-    		String result = MainStorage.createUser(newUser);
+    		String result = UserStorage.createUser(newUser);
 			if(result.equals("Success")) {
 				alertUser("Create New User", "Success", "User created");
 			} else if(result.equals("User exists")) {
@@ -70,6 +71,7 @@ public class AdminDashboardController extends GraphicalUserInterface {
 			}
 		} catch (Exception e) {
 	    	alertUser("Create New User", "Error", "Please try again later");
+	    	e.printStackTrace();
 	    	return;
 		}
 
@@ -87,7 +89,7 @@ public class AdminDashboardController extends GraphicalUserInterface {
     		return;
     	}
     	try {
-			String result = MainStorage.deleteUser(userName);
+			String result = UserStorage.deleteUser(userName);
 			if(result.equals("No user")) {
 	    		alertUser("Delete User", "Error", "Please make sure the user exists");
 			} else if(result.equals("Success")) {
