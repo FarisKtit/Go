@@ -10,19 +10,36 @@ import java.util.ArrayList;
 public class UserStorage extends MainStorage {
 
 	public static ArrayList<User> users;
-    
+
+	/**
+	 * Gets a list of all users in system
+	 * @return A list of all users in system 
+	 * @throws Exception
+	 */
+
     public static ArrayList<User> getUserList() throws Exception {
         loadUsers();
         return users;
     }
-    
+
+	/**
+	 * Loads users from memory
+	 * @throws Exception
+	 */
+
 	public static void loadUsers() throws Exception {
 		users = new ArrayList<User>();
 		users = (ArrayList<User>) readFromMemory("users");
 	}
 
-    
-	public static String createUser(User user) throws Exception {
+	/**
+	 * Creates a user if not already exists
+	 * @param user Takes in a user
+	 * @return Success or error depending on whether a new user was created
+	 * @throws Exception
+	 */
+
+	public static String createUser(User user) throws Exception{
 		String username = user.getProfile().getUserName();
 		if(getUser(username) != null) {
 			return "User exists";
@@ -35,22 +52,36 @@ public class UserStorage extends MainStorage {
 		}
 	}
 
-	public static User getUser(String username) throws Exception {
+	/**
+	 * Gets a user by taking in user name
+	 * @param username username
+	 * @return A user is returned
+	 * @throws Exception
+	 */
+
+	public static User getUser(String username) throws Exception{
 		loadUsers();
 		for(int i = 0; i < users.size(); i++) {
-			if(users.get(i).getProfile().getUserName().equals(username)) {
+			if(users.get(i).getProfile().getUserName().equals(username)){
 				return users.get(i);
 			}
 		}
 		return null;
 	}
 
-	public static boolean updateUser(User obj) throws Exception {
+	/**
+	 * Updates a user
+	 * @param obj User
+	 * @return an updated user
+	 * @throws Exception
+	 */
+
+	public static boolean updateUser(User obj) throws Exception{
 		String userName = obj.getProfile().getUserName();
 		ArrayList<User> users = getUserList();
 		boolean updated = false;
 		for(int i = 0; i < users.size(); i++) {
-			if(users.get(i).getProfile().getUserName().equals(userName)) {
+			if(users.get(i).getProfile().getUserName().equals(userName)){
 				users.set(i, obj);
 				updated = true;
 			}
@@ -58,6 +89,13 @@ public class UserStorage extends MainStorage {
 		writeUsersToMemory(users);
 		return updated;
 	}
+
+	/**
+	 * Method to delete a user
+	 * @param userName takes in user name
+	 * @return success, no user or error depending on whether user was successfully deleted
+	 * @throws Exception
+	 */
 
 	public static String deleteUser(String userName) throws Exception {
 		loadUsers();
@@ -77,9 +115,14 @@ public class UserStorage extends MainStorage {
 		return deleted;
 	}
 
+	/**
+	 * Returns a list of new users since user last login
+	 * @param lastLoggedIn last logged in by user
+	 * @return list of new users since user last login
+	 * @throws Exception
+	 */
 
-
-    public static ArrayList<User> newUserSinceLastLogin(LocalDateTime lastLoggedIn) throws Exception {
+    public static ArrayList<User> newUserSinceLastLogin(LocalDateTime lastLoggedIn) throws Exception{
 		ArrayList<User> users = getUserList();
 		ArrayList<User> result = new ArrayList<User>();
         for (int i = 0; i < users.size(); i++)
@@ -91,7 +134,14 @@ public class UserStorage extends MainStorage {
         return result;
     }
 
-    public static ArrayList<Game> gamesPlayedSinceLastLogin(LocalDateTime lastLoggedIn) throws Exception {
+	/**
+	 * Returns a list of new games played since user last logged in
+	 * @param lastLoggedIn last logged in
+	 * @return list of new games played since user last logged in
+	 * @throws Exception
+	 */
+
+    public static ArrayList<Game> gamesPlayedSinceLastLogin(LocalDateTime lastLoggedIn) throws Exception{
 		ArrayList<Game> games = getGameList();
 		ArrayList<Game> result = new ArrayList<Game>();
         for (int i = 0; i < games.size(); i++)

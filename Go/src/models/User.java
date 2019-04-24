@@ -8,6 +8,7 @@ import java.util.ArrayList;
  * @author cerriannesantos
  * User class used for creating a user
  */
+
 public class User implements Serializable{
     private UserProfile profile;
     private LocalDateTime lastLoggedIn;
@@ -23,8 +24,9 @@ public class User implements Serializable{
      * @param userName Users Username
      * @param firstName Users first name
      * @param lastName users last name
-     * @param isAdmin whether or not User is an admin
+     * @param isAdmin boolean value whether or not User is an admin
      */
+
     public User(String userName, String firstName, String lastName, boolean isAdmin){
         this.profile = new UserProfile(userName, firstName, lastName);
         this.lastLoggedIn = LocalDateTime.MIN;
@@ -45,8 +47,9 @@ public class User implements Serializable{
     }
 
     /**
-     * Sets Last date time last logged in for User
+     * Sets Last date time logged in for User
      */
+
     public void onLogIn(){
         lastLoggedIn = LocalDateTime.now();
 
@@ -57,7 +60,7 @@ public class User implements Serializable{
      * @return last log in date time
      */
 
-    public LocalDateTime getLastLoggedIn() {
+    public LocalDateTime getLastLoggedIn(){
         return this.lastLoggedIn;
     }
 
@@ -65,15 +68,17 @@ public class User implements Serializable{
      * Gets Users join date
      * @return join date
      */
-    public LocalDateTime getJoinDate() {
+
+    public LocalDateTime getJoinDate(){
         return this.joinDate;
     }
 
     /**
-     * Records games played by User
+     * Records games played and wins or losses of User
      * @param gameID gameID
      * @param win Wins
      */
+
     public void addGamePlayed(String gameID, boolean win){
         if (win){
             wins = wins + 1;
@@ -87,6 +92,7 @@ public class User implements Serializable{
      * Gets games played by User
      * @return Games played by User
      */
+
     public ArrayList<String> getGamesPlayed(){
         return this.gamesPlayed;
     }
@@ -95,6 +101,7 @@ public class User implements Serializable{
      * Calculates win percentage for user
      * @return The Users win percentage
      */
+
     public double calculateWinPercentage(){
     	if((wins + losses) == 0) {
     		return 0d;
@@ -104,16 +111,18 @@ public class User implements Serializable{
 
     /**
      * Gets number of wins for User
-     * @return User wins
+     * @return Users wins
      */
+
     public double getWins(){
        return this.wins;
     }
 
     /**
      * Gets number of losses for User
-     * @return User losses
+     * @return Users losses
      */
+
     public double getLosses(){
         return this.losses;
     }
@@ -122,12 +131,14 @@ public class User implements Serializable{
      * Returns whether or not User is an admin
      * @return true if User is admin, false otherwise
      */
+
     public boolean isAdmin(){return isAdmin;}
 
     /**
      * Creates a string of fields used in this class
-     * @return string of fields of class
+     * @return string of fields of the class
      */
+
     public String toString() {
         return profile+"=="+lastLoggedIn+"=="+joinDate+"=="+gamesPlayed+"=="+wins+"=="
                 +losses+"=="+isAdmin;
