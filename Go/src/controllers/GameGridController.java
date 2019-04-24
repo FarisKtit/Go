@@ -2,7 +2,6 @@ package controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import models.Board;
 import models.Game;
 import models.MainStorage;
@@ -43,6 +42,8 @@ public class GameGridController extends GraphicalUserInterface {
 	private Label playerOnePassesLabel;
 	@FXML
 	private Label playerTwoPassesLabel;
+	@FXML
+	private GridPane Grid;
 	
 	public void initData(ArrayList<User> obj) {
         game = new Game(obj.get(0), obj.get(1));
@@ -51,13 +52,6 @@ public class GameGridController extends GraphicalUserInterface {
         createGrid();
 	}
 	
-	@FXML
-	private GridPane Grid;
-    @FXML
-    public void initialize() {
-    	
-    }
-    
     @FXML
     public void clickGrid(MouseEvent e) {
     	int y = (int) e.getY();
@@ -86,20 +80,16 @@ public class GameGridController extends GraphicalUserInterface {
 			playerTwoPassesLabel.setText("Passes: " + playerTwoPasses);
 			c.setFill(javafx.scene.paint.Color.WHITE);
 		}
-		System.out.println(currentPlayer + " " + oppositePlayer);
         if(game.placeStone(yIndex, xIndex).equals("SUCCESS")) {
     		GridPane.setHalignment(c, HPos.valueOf("CENTER"));
     		GridPane.setValignment(c, VPos.valueOf("CENTER"));
-
     		Grid.add(c, xIndex, yIndex);	
-        	
         } else {
         	alertUser("Move", "Invalid move", "Please choose a different intersection");
         }
         Board b = game.getBoard();
 		boolean[][] connected = b.connectedStones(oppositePlayer);
 		if(connected != null) {
-		  System.out.println("Captured");
 		  b.replaceConnectedStones(connected);
 		  for(int i = 0; i < connected.length; i++) {
 		    for(int j = 0; j < connected[i].length; j++) {
@@ -153,32 +143,6 @@ public class GameGridController extends GraphicalUserInterface {
 		}
     }
     
-    private boolean saveGame(Game game) {
-    	try {
-			return MainStorage.saveGame(game);
-		} catch (Exception e) {
-			alertUser("End Game", "Error", "Cannot save game, system error");
-		}
-    	return true;
-    }
-    
-    private void updateUsers(String winner, String loser) {
-    	try {
-			ArrayList<User> userList = UserStorage.getUserList();
-			for(int i = 0; i < userList.size(); i++) {
-				if(userList.get(i).getProfile().getUserName().equals(winner)) {
-					userList.get(i).addGamePlayed(game.getGameID(), true);
-				}
-				if(userList.get(i).getProfile().getUserName().equals(loser)) {
-					userList.get(i).addGamePlayed(game.getGameID(), false);
-				}
-			}
-			MainStorage.writeUsersToMemory(userList);
-		} catch (Exception e) {
-			alertUser("End Game", "Error", "Cannot update user data");
-		}
-    }
-    
     @FXML
     public void playerOnePass(ActionEvent event) {
     	if(game.getUserMove().equals("Player 2")) {
@@ -207,7 +171,33 @@ public class GameGridController extends GraphicalUserInterface {
     	playerTwoPassesLabel.setText("Passes: " + playerTwoPasses);
     }
     
-    public void calculateWinner() {
+    private boolean saveGame(Game game) {
+    	try {
+			return MainStorage.saveGame(game);
+		} catch (Exception e) {
+			alertUser("End Game", "Error", "Cannot save game, system error");
+		}
+    	return true;
+    }
+    
+    private void updateUsers(String winner, String loser) {
+    	try {
+			ArrayList<User> userList = UserStorage.getUserList();
+			for(int i = 0; i < userList.size(); i++) {
+				if(userList.get(i).getProfile().getUserName().equals(winner)) {
+					userList.get(i).addGamePlayed(game.getGameID(), true);
+				}
+				if(userList.get(i).getProfile().getUserName().equals(loser)) {
+					userList.get(i).addGamePlayed(game.getGameID(), false);
+				}
+			}
+			MainStorage.writeUsersToMemory(userList);
+		} catch (Exception e) {
+			alertUser("End Game", "Error", "Cannot update user data");
+		}
+    }
+    
+    private void calculateWinner() {
     	int playerOneDeadStones = game.getBoard().countDeadStones(1);
     	int playerTwoDeadStones = game.getBoard().countDeadStones(2);
     	int playerOneScore = playerTwoDeadStones + playerOneCaptures;
@@ -222,7 +212,6 @@ public class GameGridController extends GraphicalUserInterface {
     		alertUser(playerOneTag.getText() + " wins", "Score: " + (playerTwoDeadStones + playerOneCaptures), "Player one captures: " 
     	    + playerOneCaptures + ", opposition deadstones: " + playerTwoDeadStones);
         	updateUsers(game.getplayerOne().getProfile().getUserName(), game.getPlayerTwo().getProfile().getUserName());
-
     	}
     	saveGame(game);
     }
