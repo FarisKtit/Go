@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import models.Administrator;
 import models.MainStorage;
 import models.User;
+import models.UserStorage;
 
 
 public class GameDashboardController extends GraphicalUserInterface {
@@ -40,7 +41,7 @@ public class GameDashboardController extends GraphicalUserInterface {
 			return;
 		}
 	    try {
-	    	ArrayList<User> list = MainStorage.getUserList();
+	    	ArrayList<User> list = UserStorage.getUserList();
 	    	User player1 = null;
 	    	User player2 = null;
 	    	ArrayList<User> userList = new ArrayList<User>();

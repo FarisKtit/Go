@@ -19,6 +19,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import models.User;
+import models.UserStorage;
 
 public class GameGridController extends GraphicalUserInterface {
 	
@@ -163,7 +164,7 @@ public class GameGridController extends GraphicalUserInterface {
     
     private void updateUsers(String winner, String loser) {
     	try {
-			ArrayList<User> userList = MainStorage.getUserList();
+			ArrayList<User> userList = UserStorage.getUserList();
 			for(int i = 0; i < userList.size(); i++) {
 				if(userList.get(i).getProfile().getUserName().equals(winner)) {
 					userList.get(i).addGamePlayed(game.getGameID(), true);

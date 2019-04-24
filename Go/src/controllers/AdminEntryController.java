@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import models.Administrator;
 import models.MainStorage;
 import models.User;
+import models.UserStorage;
 
 
 public class AdminEntryController extends GraphicalUserInterface {
@@ -37,7 +38,7 @@ public class AdminEntryController extends GraphicalUserInterface {
 			return;
 		}
 	    try {
-	    	users = MainStorage.getUserList();
+	    	users = UserStorage.getUserList();
 		} catch (Exception e) {
 			alertUser("Login", "Error", "System error");
 			return;
