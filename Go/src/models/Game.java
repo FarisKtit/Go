@@ -1,9 +1,15 @@
-package models;
+/**
+* Author: Nathan Forester
+*/
+package models; // connected to the game package
 
-import java.io.Serializable;
+import java.io.Serializable; // Import libraries allowing the functions within this class to work
 import java.time.LocalDateTime;
 
-public class Game implements Serializable {
+/**
+* This class represents various datatypes in constructing the game class
+*/
+public class Game implements Serializable { //all constructors and datatypes used in the Game class
   
   private LocalDateTime gameDate;
   private Board board;
@@ -17,7 +23,10 @@ public class Game implements Serializable {
   private String Loser;
   private static final long serialVersionUID = 1L;
   
-  public Game (User U1, User U2){
+  /**
+  * Store users as players accessing user profile data.
+  */
+  public Game (User U1, User U2){ //Stores user values as players and allows subsequent get and set functions to be called
 	  this.storeplayerOne = U1;
 	  this.storeplayerTwo = U2;
 	  this.board = new Board();
@@ -25,8 +34,13 @@ public class Game implements Serializable {
 	  this.gameDate = LocalDateTime.now();
 	  userMove = "Player 1";
   }
-  
-  public String placeStone(int x, int y) {
+  /**
+  * Create a coordinate from an integer pair (x, y).
+  * @param x The new x coordinate.
+  * @param y The new y coordinate.
+  * @return The res value.
+  */
+  public String placeStone(int x, int y) { //two integers representing coordinates on the board, with x representing the first user and y representing the second
     String res = board.placeStones(x, y, userMove);
     if(res.equals("SUCCESS")) {
         if(userMove.equals("Player 1")) userMove = "Player 2";
@@ -35,7 +49,11 @@ public class Game implements Serializable {
     return res;
   }
   
-  public String checkPasses() {
+  /**
+  * Check passes.
+  * @return The string argument. 
+  */
+  public String checkPasses() { //checks number of legal passes and does not allow any player to pass more than three times, else the game ends. If all moves are legal, the game continues
     if (PlayerOnePasses >= 3) {
       return "Player one reached 3 passes";
     }
@@ -45,52 +63,99 @@ public class Game implements Serializable {
     return "Ok";
   }
   
-  public LocalDateTime getGameDate() {
+  /**
+  * Get the date.
+  * @return The date.
+  */
+  public LocalDateTime getGameDate() { //finds the time and date of the game currently being played or about to be played
 	  return this.gameDate;
   }
   
-  public String getUserMove() {
+  /**
+  * Get the next user.
+  * @return Current user turn. 
+  */
+  public String getUserMove() { //allows the application to know whose turn it is next
 	  return userMove;
   }
   
-  public void setUserMove(String move) {
+  /**
+  * Set next or current user move.
+  */
+  public void setUserMove(String move) { //sets the value of the new move
 	  this.userMove = move;
   }
   
-  public User getplayerOne() {
+  /**
+  * Get player one.
+  * @return The current player one.
+  */
+  public User getplayerOne() { // stores player one within the corresponding user profile
     return this.storeplayerOne;
   }
   
-  public User getPlayerTwo() {
+  /**
+  * Get player two.
+  * @return The current player two.
+  */
+  public User getPlayerTwo() { // stores player two within the corresponding user profile
     return this.storeplayerTwo;
   }
   
-  public String getGameID () {
+  /**
+  * Get game identification number.
+  * @return The current game identification number.
+  */
+  public String getGameID () { //obtains a game identification number
   return this.gameID;
   }
   
-  public void getGameID(String GameID){
+ /**
+  * Get and set game identification number.
+  */
+  public void getGameID(String GameID){ // assigns game identification number
     this.gameID = GameID;
   }
   
-  public String getWinner(){
+  /**
+  * Get winning player data. 
+  * @return The current winner (player one or player two).
+  */
+  public String getWinner(){ // obtains the value of the winner
     return this.Winner;
   }
   
-  public String getLoser(){
+  /**
+  * Get the losing player data. 
+  * @return The current losing player (player one or player two).
+  */
+  public String getLoser(){ //obtains the value of the losing player
     return this.Loser;
   }
-  
-  public void setWinner(String Winner){
+  /**
+  * Set winner.
+  */
+  public void setWinner(String Winner){ // assigns a value to the winning player
     this.Winner = Winner;
   }
-  
-  public void setLoser(String Loser){
+  /**
+  * Set losing player.
+  */
+  public void setLoser(String Loser){ // assigns a value to the losing player
     this.Loser = Loser;
   }
-  public Board getBoard() {
+  
+  /**
+  * Get board.
+  * @return The value of the board.
+  */
+  public Board getBoard() { // obtains the value of the board
 	  return this.board;
   }
+  /**
+  * Get all data and return it to the user interface.
+  * @return All inputs and outputs. 
+  */
   public String toString() {
 	  return storeplayerOne+"=="+storeplayerTwo+"=="+Winner+"=="+Loser+"=="+board+"=="+userMove+"=="+PlayerOnePasses+"=="+PlayerTwoPasses+"=="+gameID;  }
 }
