@@ -103,30 +103,30 @@ public class User implements Serializable{
     }
 
     /**
-     * Gets number of wins for
-     * @return
+     * Gets number of wins for User
+     * @return User wins
      */
     public double getWins(){
        return this.wins;
     }
 
     /**
-     *
-     * @return
+     * Gets number of losses for User
+     * @return User losses
      */
     public double getLosses(){
         return this.losses;
     }
 
     /**
-     *
-     * @return
+     * Returns whether or not User is an admin
+     * @return true if User is admin, false otherwise
      */
     public boolean isAdmin(){return isAdmin;}
 
     /**
-     *
-     * @return
+     * Creates a string of fields used in this class
+     * @return string of fields of class
      */
     public String toString() {
         return profile+"=="+lastLoggedIn+"=="+joinDate+"=="+gamesPlayed+"=="+wins+"=="
