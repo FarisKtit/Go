@@ -1,20 +1,40 @@
-package models;
+/**
+* Author: Nathan Forester
+*/
+package models; //connected to the game package
 
-import java.io.Serializable;
+import java.io.Serializable; //import library to allow the functions within the class to compile and run properly
 
-public class ProfileImage implements Serializable {
+/**
+* This class represents a long and a string input (serialVersionUID, ProfileImage). 
+*/
+public class ProfileImage implements Serializable { 
  private static final long serialVersionUID = 1L;
  private String URL;
+ /**
+ * Generate profile image.
+ */
  public ProfileImage (String input) {
- this.URL = input;
+ this.URL = input; //the URL is found from input
  }
- public String getURL () {
+ /**
+ * Get the URL.
+ * @return Get the location or address of new image.
+ */
+ public String getURL () { //gets the location of the image
  return this.URL;
  }
- public void setURL (String input) {
+ /**
+ * 
+ */
+ public void setURL (String input) { //sets the location of the image
  this.URL = input;
  }
- public String toString() {
+ /**
+ * Return the URL.
+ * @return The new image.
+ */
+ public String toString() { //returns the location and image
      return URL;
  }
 }
