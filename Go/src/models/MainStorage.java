@@ -14,24 +14,26 @@ import java.util.ArrayList;
 
 public class MainStorage {
 	
-    public static ArrayList<User> users;
+    //public static ArrayList<User> users;
     public static ArrayList<Game> games;
 	
-    
+    /*
     public static ArrayList<User> getUserList() throws Exception {
         loadUsers();
         return users;
     }
+    */
 	
 	public static ArrayList<Game> getGameList() throws Exception {
 		loadGames();
 		return games;
 	}
-	
+	/*
 	public static void loadUsers() throws Exception {
 		users = new ArrayList<User>();
 		users = (ArrayList<User>) readFromMemory("users");
 	}
+	*/
 	
 	public static void loadGames() throws Exception {
 		games = new ArrayList<Game>();
@@ -43,7 +45,7 @@ public class MainStorage {
 		games.add(game);
 		return writeGamesToMemory();
 	}
-	
+	/*
 	public static String createUser(User user) throws Exception {
 		String username = user.getProfile().getUserName();
 		if(getUser(username) != null) {
@@ -98,6 +100,8 @@ public class MainStorage {
 		}
 		return deleted;
 	}
+	*/
+
 	
 	protected static Object readFromMemory(String dataType) throws Exception {
 		InputStream fileIs = null;
@@ -131,11 +135,11 @@ public class MainStorage {
 		ObjectOutputStream objOps = null;
 		boolean successful = false;
 		try {
-			File fileChecker = new File("./../../users.txt");
+			File fileChecker = new File("users.txt");
 			if(!fileChecker.exists()) {
 				fileChecker.createNewFile();
 			}
-			ops = new FileOutputStream("./../../users.txt");
+			ops = new FileOutputStream("users.txt");
 			objOps = new ObjectOutputStream(ops);
 			objOps.writeObject(userList);
 			objOps.flush();
@@ -158,11 +162,11 @@ public class MainStorage {
 		ObjectOutputStream objOps = null;
 		boolean successful = false;
 		try {
-			File fileChecker = new File("./../../games.txt");
+			File fileChecker = new File("games.txt");
 			if(!fileChecker.exists()) {
 				fileChecker.createNewFile();
 			}
-			ops = new FileOutputStream("./../../games.txt");
+			ops = new FileOutputStream("games.txt");
 			objOps = new ObjectOutputStream(ops);
 			objOps.writeObject(games);
 			objOps.flush();

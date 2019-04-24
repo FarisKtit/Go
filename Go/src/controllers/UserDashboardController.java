@@ -59,7 +59,7 @@ public class UserDashboardController extends GraphicalUserInterface {
 		populateNewGamesSinceLastLogin();
 		currentUser.onLogIn();
 		try {
-			MainStorage.updateUser(currentUser);
+			UserStorage.updateUser(currentUser);
 		} catch (Exception e1) {
 			alertUser("Last logged in", "Error", "Could not update last logged in date");
 		}
@@ -115,7 +115,7 @@ public class UserDashboardController extends GraphicalUserInterface {
 
 		boolean updated;
 		try {
-			updated = MainStorage.updateUser(currentUser);
+			updated = UserStorage.updateUser(currentUser);
 		} catch (Exception e) {
 			alertUser("profile image update", "Error", "Could not update profile image");
 		    return;
@@ -129,7 +129,7 @@ public class UserDashboardController extends GraphicalUserInterface {
 		    return;
 		}
 		try {
-			currentUser = MainStorage.getUser(currentUser.getProfile().getUserName());
+			currentUser = UserStorage.getUser(currentUser.getProfile().getUserName());
 		} catch (Exception e) {
 			alertUser("profile image update", "Error", "Could not update profile image");
 		    return;

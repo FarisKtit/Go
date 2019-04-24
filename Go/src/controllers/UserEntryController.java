@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import models.MainStorage;
 import models.User;
+import models.UserStorage;
 
 
 public class UserEntryController extends GraphicalUserInterface {
@@ -28,7 +29,7 @@ public class UserEntryController extends GraphicalUserInterface {
 		}
 		User u = null;
 		try {
-			u = MainStorage.getUser(userName);
+			u = UserStorage.getUser(userName);
 		} catch (IOException e1) {
 			alertUser("User Dashboard", "Error", "Please try again later");
 			return;
