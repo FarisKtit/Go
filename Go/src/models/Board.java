@@ -17,6 +17,10 @@ public class Board implements Serializable {
 	public Board() {
 		this.board = new int[size][size];
 	}
+	
+	public int[][] getBoard() {
+		return this.board;
+	}
 
 	// method to place stone
 	public String placeStones(int row, int column, String player) {
@@ -44,13 +48,13 @@ public class Board implements Serializable {
 					connectedStones = new boolean[size][size];
 					findConnectedStones(row, column, oppositePlayer, connectedStones);
 					isCaptured = isCaptured(oppositePlayer, connectedStones);
+					if (isCaptured)
+						return connectedStones;
 				}
 			}
 		}
-		if (isCaptured)
-			return connectedStones;
-		else
-			return null;
+		
+     	return null;
 	}
 
 	//replace captured stones with 0
