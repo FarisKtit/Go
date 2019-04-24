@@ -31,7 +31,6 @@ public class MainStorage {
 	
 	/**
 	 * Provides the ability to save a game to a file.
-	 * @param Game
 	 * @return boolean
 	 * @throws Exception
 	 */
