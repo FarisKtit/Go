@@ -35,6 +35,10 @@ public class GameDashboardController extends GraphicalUserInterface {
 			alertUser("Start Game", "Error", "Please make sure players are selected");
 			return;
 		}
+		if(playerOne.equals(playerTwo)) {
+			alertUser("Start Game", "Error", "Please make sure different players are selected");
+			return;
+		}
 	    try {
 	    	ArrayList<User> list = MainStorage.getUserList();
 	    	User player1 = null;
