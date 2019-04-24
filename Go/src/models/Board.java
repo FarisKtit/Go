@@ -2,7 +2,8 @@ package models;
 /**
  * Implements board class.
  * @author Antonius Ricky Sanjaya
- *         Faris Ktit    
+ *         Faris Ktit
+ *         Sian Hardaker
  * @version 0.1
  */
 import java.io.Serializable;
@@ -163,14 +164,22 @@ public class Board implements Serializable {
 		}
 	}
 
-	// method to find the opponent's stones on the board
+	/**
+	 * Method to initialise the count for the dead stones on the board
+	 * @param currentPlayer Your stone.
+	 * @return The count.
+	 */
 	public int countDeadStones(int currentPlayer) {
 		int count = 0;
 		count = deadStones(currentPlayer);
 		return count;
 	}
 
-	// method to count the dead stones
+	/**
+	 * Method to count the dead stones on the board
+	 * @param currentPlayer Your stone.
+	 * @return The updated count
+	 */
 	private int deadStones (int currentPlayer) {
 		boolean[][] connectedStones = null;
 		int count = 0;
@@ -188,7 +197,13 @@ public class Board implements Serializable {
 		return count;
 	}
 
-	// method to check if the stone is a dead stone
+	/**
+	 * Method to check if the stone is Dead
+	 * @param currentPlayer Your stone.
+	 * @param connectedStones A boolean 2d array of captured stones
+	 * @return True if the stone is on the board and has one free space around the edge.
+	 * 		   False if the stone has more than one space around it.
+	 */
 	private boolean isDead(int currentPlayer, boolean [][] connectedStones) {
 		int count = 0;
 		for (int i = 0; i <connectedStones.length; i++){
@@ -223,7 +238,6 @@ public class Board implements Serializable {
 			return true;
 		}
 	}
-
 
 	/**
 	 * Method to remove stone.
