@@ -2,23 +2,27 @@ package controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
-import javafx.scene.control.PasswordField;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import models.MainStorage;
 import models.User;
 import models.UserStorage;
 
-
+/**
+ * This class manages the authentication of users when logging into their dashboard.
+ * @author Faris Ktit
+ *
+ */
 public class UserEntryController extends GraphicalUserInterface {
 	@FXML
 	private TextField userNameField;
 	@FXML
 	private TextField userPasswordField;
 	
+	/**
+	 * Manages the logging in of an .
+	 * @param event
+	 */
 	@FXML
 	public void goToUserDashboard(ActionEvent event) {
 		String userName = userNameField.getText().replaceAll("\\s+", "");
@@ -52,6 +56,10 @@ public class UserEntryController extends GraphicalUserInterface {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	public void goToEntryDashboard(ActionEvent event) {
 	    try {

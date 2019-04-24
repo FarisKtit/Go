@@ -22,7 +22,7 @@ import models.UserStorage;
 
 /**
  * This class manages all interactions with the board and manages the scoring system for the game Go94.
- * @author farisktit
+ * @author Faris Ktit
  * @version 1.9
  */
 public class GameGridController extends GraphicalUserInterface {

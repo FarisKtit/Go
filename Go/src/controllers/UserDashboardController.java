@@ -3,7 +3,6 @@ package controllers;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,10 +16,11 @@ import models.User;
 import models.UserStorage;
 
 /**
- * This class manages displaying user information, such as games played since last login,
- * the new users since last login. their profile image and selection of a new one and 
- * 
+ * This class manages displaying user specific information, such as games played since last login,
+ * the new users since last login. This class also provides the ability to select and display
+ * a profile image. Also the list of all games played by the specific user.
  * @author Faris Ktit
+ * @author Nathan Forester
  *
  */
 public class UserDashboardController extends GraphicalUserInterface {
@@ -50,6 +50,10 @@ public class UserDashboardController extends GraphicalUserInterface {
 	@FXML
 	private ImageView imageSix;
 	
+	/**
+	 * Manages the navigation from the user' dash board back to the homepage.
+	 * @param event
+	 */
 	@FXML
 	public void goToEntryDashboard(ActionEvent event) {
 	    try {
@@ -59,6 +63,11 @@ public class UserDashboardController extends GraphicalUserInterface {
 		}
 	}
 	
+	/**
+	 * Initialises the dashboard with the user specific information such as profile image, games played,
+	 * games played since last login and new users since last login.
+	 * @param list
+	 */
 	public void initData(ArrayList<User> list) {
 		currentUser =  list.get(0);
 		populateNewUsersSinceLastLogin();
@@ -69,7 +78,6 @@ public class UserDashboardController extends GraphicalUserInterface {
 		} catch (Exception e1) {
 			alertUser("Last logged in", "Error", "Could not update last logged in date");
 		}
-		
 	    if (currentUser.getProfile().getProfileImage() == null) {
 	        ProfileImage pf = new ProfileImage(new File("emoticons/emoticon-1.png").toURI().toString());
 	        currentUser.getProfile().setProfileImage(pf);
@@ -77,8 +85,6 @@ public class UserDashboardController extends GraphicalUserInterface {
 	    String url = currentUser.getProfile().getProfileImage().getURL();
 	    Image i = new Image(url);
 	    profileImage.setImage(i);
-	    
-	    
 	    ArrayList<String> gamesPlayed = currentUser.getGamesPlayed();
 	    ObservableList<String> gamesPlayedList = FXCollections.observableArrayList();
 	    gamesPlayedListView.setItems(gamesPlayedList);
@@ -87,38 +93,62 @@ public class UserDashboardController extends GraphicalUserInterface {
 	    }
 	}
 	
+	/**
+	 * Selects a profile image from the selection of profile images available.
+	 */
 	public void selectImageOne() {
         ProfileImage pf = new ProfileImage(new File("emoticons/emoticon-1.png").toURI().toString());
         updateUserImage(pf);
 	}
 	
+	/**
+	 * Selects a profile image from the selection of profile images available.
+	 */
 	public void selectImageTwo() {
 		ProfileImage pf = new ProfileImage(new File("emoticons/emoticon-2.png").toURI().toString());
         updateUserImage(pf);
 	}
 	
+	/**
+	 * Selects a profile image from the selection of profile images available.
+	 */
 	public void selectImageThree() {
 		ProfileImage pf = new ProfileImage(new File("emoticons/emoticon-3.png").toURI().toString());
         updateUserImage(pf);	
 	}
+	
+	/**
+	 * Selects a profile image from the selection of profile images available.
+	 */
 	public void selectImageFour() {
 		ProfileImage pf = new ProfileImage(new File("emoticons/emoticon-4.png").toURI().toString());
         updateUserImage(pf);	
 	}
+	
+	/**
+	 * Selects a profile image from the selection of profile images available.
+	 */
 	public void selectImageFive() {
 		ProfileImage pf = new ProfileImage(new File("emoticons/emoticon-5.png").toURI().toString());
         updateUserImage(pf);
 	}
+	
+	/**
+	 * Selects a profile image from the selection of profile images available.
+	 */
 	public void selectImageSix() {
 		ProfileImage pf = new ProfileImage(new File("emoticons/emoticon-6.png").toURI().toString());
         updateUserImage(pf);
 	}
 	
-	public void updateUserImage(ProfileImage pf) {
-		currentUser.getProfile().setProfileImage(pf);
+	/**
+	 * Sets the user' profile image to a new profile image.
+	 * @param profileImage
+	 */
+	public void updateUserImage(ProfileImage image) {
+		currentUser.getProfile().setProfileImage(image);
 		String url = currentUser.getProfile().getProfileImage().getURL();
 		Image i = new Image(url);
-
 		boolean updated;
 		try {
 			updated = UserStorage.updateUser(currentUser);
@@ -127,7 +157,6 @@ public class UserDashboardController extends GraphicalUserInterface {
 		    return;
 		}
 		if (updated == true) {
-			
 			profileImage.setImage(i);
 		}
 		else {
@@ -142,6 +171,9 @@ public class UserDashboardController extends GraphicalUserInterface {
 		}
 	}
 	
+	/**
+	 * Populates a list with new users since the last time the logged in user had logged in.
+	 */
 	public void populateNewUsersSinceLastLogin() {
 		ArrayList<User> result = null;
 		try {
@@ -161,6 +193,9 @@ public class UserDashboardController extends GraphicalUserInterface {
 		
 	}
 	
+	/**
+	 * Populates a list with new games played since the last time the logged in user had logged in.
+	 */
 	public void populateNewGamesSinceLastLogin() {
 		ArrayList<Game> result = null;
 		try {

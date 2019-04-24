@@ -115,13 +115,14 @@ public class UserStorage extends MainStorage{
 		return deleted;
 	}
 
+
 	/**
 	 * Returns a list of new users since user last login
 	 * @param lastLoggedIn last logged in by user
 	 * @return list of new users since user last login
 	 * @throws Exception
 	 */
-
+  
     public static ArrayList<User> newUserSinceLastLogin(LocalDateTime lastLoggedIn) throws Exception{
 		ArrayList<User> users = getUserList();
 		ArrayList<User> result = new ArrayList<User>();
