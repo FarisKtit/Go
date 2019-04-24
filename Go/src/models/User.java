@@ -28,7 +28,7 @@ public class User implements Serializable {
      */
     public User(String userName, String firstName, String lastName, boolean isAdmin) {
         this.profile = new UserProfile(userName, firstName, lastName);
-        this.lastLoggedIn = LocalDateTime.MIN;
+        this.lastLoggedIn = LocalDateTime.now();
         this.joinDate = LocalDateTime.now();
         this.gamesPlayed = new ArrayList<String>();
         this.isAdmin = isAdmin;
