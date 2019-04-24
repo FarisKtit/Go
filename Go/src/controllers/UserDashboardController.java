@@ -24,9 +24,10 @@ import models.UserStorage;
  *
  */
 public class UserDashboardController extends GraphicalUserInterface {
-	
+	//Store user that is logged into dashboard
 	private User currentUser;
 	
+	//
 	@FXML
 	private ListView<String> leaderBoardListView;
 	@FXML
@@ -184,10 +185,10 @@ public class UserDashboardController extends GraphicalUserInterface {
 		}
 		ObservableList<String> newUsers = FXCollections.observableArrayList();
 		newUsersListView.setItems(newUsers);
-		if(result == null) {
+		if (result == null) {
 			return;
 		}
-	    for(int k = 0; k < result.size(); k++) {
+	    for (int k = 0; k < result.size(); k++) {
 	    	newUsers.add(result.get(k).getProfile().getUserName());
 	    }
 		
@@ -206,10 +207,10 @@ public class UserDashboardController extends GraphicalUserInterface {
 		}
 		ObservableList<String> newGames = FXCollections.observableArrayList();
 		newGamesListView.setItems(newGames);
-		if(result == null) {
+		if (result == null) {
 			return;
 		}
-	    for(int k = 0; k < result.size(); k++) {
+	    for (int k = 0; k < result.size(); k++) {
 	    	newGames.add(result.get(k).getGameID());
 	    }
 	}

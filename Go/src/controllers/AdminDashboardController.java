@@ -20,7 +20,8 @@ import models.UserStorage;
  * @version 1.5 
  */
 public class AdminDashboardController extends GraphicalUserInterface {
-
+    
+	//Store all GUI elements for attaching events or updating.
     @FXML
     private ListView<String> userListView;
     @FXML
@@ -41,6 +42,7 @@ public class AdminDashboardController extends GraphicalUserInterface {
      */
     @FXML
     public void initialize() {
+    	//On initialisation, place all users in the system 
     	populateListView();
     }
     
@@ -50,10 +52,12 @@ public class AdminDashboardController extends GraphicalUserInterface {
      */
 	@FXML
 	public void goToEntryDashboard(ActionEvent event) {
+		//Try to navigate to homepage, catch exception is arises and make it
+		//known in the GUI.
 	    try {
 	        goToView("EntryDashboard", event);
 		} catch (IOException e) {
-			e.printStackTrace();
+			alertUser("Navigation", "Error", "Cant return to homepage");
 		}
 	}
     
@@ -63,12 +67,14 @@ public class AdminDashboardController extends GraphicalUserInterface {
 	 */
     @FXML
     public void createUser(ActionEvent event) {
+    	//Remove all empty spaces from input fields for creating a user.
     	String userName = userNameField.getText().replaceAll("\\s+", "");
     	String firstName = firstNameField.getText().replaceAll("\\s+", "");
     	String lastName = lastNameField.getText().replaceAll("\\s+", "");
     	int userNameLen = userName.length();
     	int firstNameLen = firstName.length();
     	int lastNameLen = lastName.length();
+    	//Check if inputs are not empty, Otherwise alert the user.
     	if((userNameLen == 0) || (firstNameLen == 0) || (lastNameLen == 0)) {
     		String alertHeader = "Create New User";
     		String alertSubHeader = "Error";
@@ -77,6 +83,7 @@ public class AdminDashboardController extends GraphicalUserInterface {
     		return;
     	}
     	User newUser = null;
+    	//If regular user added, save as regular user, else save as admin.
     	if(!isAdmin.isSelected()) {
     		newUser = new User(userName, firstName, lastName, false);
     	} else {
@@ -84,28 +91,34 @@ public class AdminDashboardController extends GraphicalUserInterface {
     		newUser = new Administrator(current, userName, firstName, lastName);
     	}
     	try {
+    		//Try to create user and save to disk, if fails, manage with alerting
+    		//user.
     		String result = UserStorage.createUser(newUser);
     		String alertHeader;
     		String alertSubHeader;
     		String alertContent;
 			if(result.equals("Success")) {
+				//Notify admin if successful.
 				alertHeader = "Create New User";
 				alertSubHeader = "Success";
 				alertContent = "User created";
 				alertUser( alertHeader, alertSubHeader, alertContent);
 			} else if(result.equals("User exists")) {
+				//Notify admin is username already exists.
 				alertUser("Create New User", "Error", "User already exists");
 				return;
 			} else {
+				//Otherwise we have a generic system error.
 				alertUser("Create New User", "Error", "Please try again later");
 				return;
 			}
 		} catch (Exception e) {
+			//Any exceptions are caught and alerted to the user via the GUI.
 	    	alertUser("Create New User", "Error", "Please try again later");
 	    	e.printStackTrace();
 	    	return;
 		}
-
+        //Empty input fields and reload the list.
     	userNameField.setText("");
     	firstNameField.setText("");
     	lastNameField.setText("");
@@ -118,7 +131,9 @@ public class AdminDashboardController extends GraphicalUserInterface {
      */
     @FXML
     public void deleteUser(ActionEvent event) {
+    	//Remove empty space from input field.
     	String userName = deleteUserField.getText().replaceAll("\\s+", "");
+    	//Alert user if input field is empty.
     	if(userName.length() == 0) {
     		String alertHeader = "Delete User";
     		String alertSubHeader = "Error";
@@ -130,6 +145,7 @@ public class AdminDashboardController extends GraphicalUserInterface {
 		String alertSubHeader;
 		String alertContent;
     	try {
+    		//Try to delete the user, manage errors by alerting admin via the GUI.
 			String result = UserStorage.deleteUser(userName);
 			if(result.equals("No user")) {
 				alertHeader = "Delete User";
@@ -148,11 +164,13 @@ public class AdminDashboardController extends GraphicalUserInterface {
 				alertUser( alertHeader, alertSubHeader, alertContent);
 			}
 		} catch (Exception e) {
+			//Exception caught and generic alert message provided to admin.
 			alertHeader = "Delete User";
 			alertSubHeader = "Error";
 			alertContent = "Please try again later";
 			alertUser( alertHeader, alertSubHeader, alertContent);
 		}
+    	//Empty input field and reload user list.
     	deleteUserField.setText("");
     	populateListView();
     }
@@ -162,6 +180,7 @@ public class AdminDashboardController extends GraphicalUserInterface {
      * @param list
      */
     public void initData(ArrayList<User> list) {
+    	//Retrieves user from AdminEntryController after successful authentication.
 		Administrator currentUser = (Administrator) list.get(0);
 		adminIdLabel.setText("Administrator ID: " + currentUser.getAdminID());
 	}
@@ -174,6 +193,7 @@ public class AdminDashboardController extends GraphicalUserInterface {
     	userListView.setItems(obs);
     	ArrayList<User> users;
     	try {
+    		//Read all users from file and add to list view for admin.
 			users = UserStorage.getUserList();
 			for(int i = 0; i < users.size(); ++i) {
 				String userName = users.get(i).getProfile().getUserName();
@@ -182,6 +202,7 @@ public class AdminDashboardController extends GraphicalUserInterface {
 				obs.add(userName + " " + firstName + " " + lastName);
 			}
 		} catch (Exception e) {
+			//Any exception is handled via alerting the admin via the GUI.
 			String alertHeader = "Load User List";
 			String alertSubHeader = "Error";
 			String alertContent = "Users could not be loaded at this time";
