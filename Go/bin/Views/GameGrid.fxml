@@ -17,8 +17,8 @@
             <Label fx:id="playerOneTag" layoutX="56.0" layoutY="24.0" text="Player 1" />
             <ImageView fitHeight="72.0" fitWidth="82.0" layoutX="18.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" />
             <Button layoutX="56.0" layoutY="211.0" mnemonicParsing="false" onAction="#playerOnePass" text="Pass" />
-            <Label layoutX="28.0" layoutY="139.0" text="Stones Captured" />
-            <Label layoutX="37.0" layoutY="267.0" text="No. of Passes" />
+            <Label fx:id="playerOneStoneCaptures" layoutX="14.0" layoutY="141.0" text="Stones Captured : 0" />
+            <Label fx:id="playerOnePassesLabel" layoutX="37.0" layoutY="267.0" text="Passes: 0" />
             <Button layoutX="52.0" layoutY="327.0" mnemonicParsing="false" onAction="#forfeitPlayerOne" text="Forfeit" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
@@ -60,8 +60,8 @@
                   <Label fx:id="playerTwoTag" layoutX="57.0" layoutY="24.0" text="Player 2" />
                   <ImageView fitHeight="72.0" fitWidth="82.0" layoutX="20.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
                   <Button layoutX="58.0" layoutY="211.0" mnemonicParsing="false" onAction="#playerTwoPass" text="Pass" />
-                  <Label layoutX="30.0" layoutY="139.0" text="Stones Captured" />
-                  <Label layoutX="39.0" layoutY="265.0" text="No. of Passes" />
+                  <Label fx:id="playerTwoStoneCaptures" layoutX="22.0" layoutY="140.0" text="Stones Captured: 0" />
+                  <Label fx:id="playerTwoPassesLabel" layoutX="39.0" layoutY="265.0" text="Passes: 0" />
                   <Button layoutX="52.0" layoutY="327.0" mnemonicParsing="false" onAction="#forfeitPlayerTwo" text="Forfeit" />
                </children>
             </AnchorPane>

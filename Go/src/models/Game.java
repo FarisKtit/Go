@@ -53,6 +53,10 @@ public class Game implements Serializable {
 	  return userMove;
   }
   
+  public void setUserMove(String move) {
+	  this.userMove = move;
+  }
+  
   public User getplayerOne() {
     return this.storeplayerOne;
   }
