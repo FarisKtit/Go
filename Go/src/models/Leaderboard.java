@@ -25,7 +25,7 @@ public class Leaderboard {
 	 * @throws Exception
 	 */
 	public static Map<User, Double> showLeaders() throws Exception {
-		ArrayList<User> allUsers = MainStorage.getUserList();
+		ArrayList<User> allUsers = UserStorage.getUserList();
 		Map<User, Double> leaderTable = new HashMap<User, Double>();
 		for (User user : allUsers) {
 			leaderTable.put(user, user.calculateWinPercentage());
