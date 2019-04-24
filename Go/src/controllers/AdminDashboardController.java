@@ -14,7 +14,11 @@ import models.Administrator;
 import models.User;
 import models.UserStorage;
 
-
+/**
+ * This class manages interactions with the administrators dashboard to manage players.
+ * @author Faris Ktit
+ * @version 1.5 
+ */
 public class AdminDashboardController extends GraphicalUserInterface {
 
     @FXML
@@ -32,11 +36,18 @@ public class AdminDashboardController extends GraphicalUserInterface {
     @FXML
     private Label adminIdLabel;
     
+    /**
+     * Presents a list of all users saved on the game Go94.
+     */
     @FXML
     public void initialize() {
     	populateListView();
     }
     
+    /**
+     * Manages navigation to the home page from the dash board.
+     * @param event
+     */
 	@FXML
 	public void goToEntryDashboard(ActionEvent event) {
 	    try {
@@ -46,6 +57,10 @@ public class AdminDashboardController extends GraphicalUserInterface {
 		}
 	}
     
+	/**
+	 * Provides the ability for the administrator to add new players to the Game.
+	 * @param event
+	 */
     @FXML
     public void createUser(ActionEvent event) {
     	String userName = userNameField.getText().replaceAll("\\s+", "");
@@ -97,6 +112,10 @@ public class AdminDashboardController extends GraphicalUserInterface {
     	populateListView();
     }
     
+    /**
+     * Manages the removal of players from the game Go94.
+     * @param event
+     */
     @FXML
     public void deleteUser(ActionEvent event) {
     	String userName = deleteUserField.getText().replaceAll("\\s+", "");
@@ -138,12 +157,19 @@ public class AdminDashboardController extends GraphicalUserInterface {
     	populateListView();
     }
     
+    /**
+     * Sets the administrator that is in charge of the dash board.
+     * @param list
+     */
     public void initData(ArrayList<User> list) {
 		Administrator currentUser = (Administrator) list.get(0);
 		adminIdLabel.setText("Administrator ID: " + currentUser.getAdminID());
 	}
     
-    public void populateListView() {
+    /**
+     * Gathers all players on the system and presents it to the Administrator as a list.
+     */
+    private void populateListView() {
     	ObservableList<String> obs = FXCollections.observableArrayList();
     	userListView.setItems(obs);
     	ArrayList<User> users;
